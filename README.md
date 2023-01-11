@@ -19,11 +19,11 @@ Once the software is installed, execute the following code to run the tests.
 
     cd intentional
     chmod +x *.sh
-    ./init.sh
-    ./build.sh
-    ./download.sh
-    ./start.sh
-    ./stop.sh
+    bash init.sh
+    bash build.sh
+    bash download.sh
+    bash start.sh
+    bash stop.sh
 
 ## Working and deploying the application
 
