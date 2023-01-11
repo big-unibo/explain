@@ -15,6 +15,8 @@ cp ../web/js/config.example.js ../web/js/config.js
 
 P=$(pwd)
 echo $P
+sed -i "s+\!HOME\!+${P}+g" src/main/resources/config.yml
+sed -i "s+\!HOME\!+${P}+g" .env
 
 cd src/main/python
 if [ -d venv ]; then
@@ -40,5 +42,4 @@ pip install -r requirements.txt
 chmod -R 777 venv
 cd -
 
-sed -i "s+\!HOME\!+${P}+g" src/main/resources/config.yml
-sed -i "s+\!HOME\!+${P}+g" .env
+
