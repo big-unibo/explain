@@ -1,0 +1,116 @@
+plugins {
+    id 'java-library'
+    id 'war'
+    id 'antlr'
+    id 'jacoco'
+    id 'org.jetbrains.kotlin.jvm' version '1.8.0'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
+}
+
+shadowJar {
+    zip64 true
+}
+
+
+java { toolchain {languageVersion = JavaLanguageVersion.of(14) } }
+
+kotlin { jvmToolchain { languageVersion.set(JavaLanguageVersion.of(14)) } }
+
+compileJava {
+    dependsOn generateGrammarSource
+    sourceCompatibility = '14'
+    targetCompatibility = '14'
+}
+
+compileKotlin {
+    dependsOn generateGrammarSource
+    kotlinOptions {
+        jvmTarget = "14"
+    }
+}
+
+compileTestKotlin {
+    dependsOn generateGrammarSource
+    kotlinOptions {
+        jvmTarget = "14"
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.enabled true
+        csv.enabled true
+    }
+}
+
+if (hasProperty('buildScan')) {
+    buildScan {
+        termsOfServiceUrl = 'https://gradle.com/terms-of-service'
+        termsOfServiceAgree = 'yes'
+    }
+}
+
+dependencies {
+    implementation files('libs/db-migration-0.1.0.jar')
+    // ANTLR 4
+    implementation 'org.antlr:antlr4:4.11.1'
+    antlr "org.antlr:antlr4:4.11.1"
+    // servlet
+    implementation 'javax:javaee-api:8.0.1'
+    implementation 'io.ktor:ktor-server-servlet:2.2.2'
+    // kotlin
+    implementation "com.github.holgerbrandl:krangl:0.18.4"
+    implementation 'io.github.cdimascio:dotenv-kotlin:6.4.0'
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
+    // java
+    implementation 'mysql:mysql-connector-java:8.0.31'
+    implementation 'com.github.doyaaaaaken:kotlin-csv-jvm:1.7.0'
+    implementation 'org.apache.commons:commons-csv:1.9.0'
+    implementation 'org.jgrapht:jgrapht-core:1.5.1'
+    implementation 'edu.stanford.nlp:stanford-corenlp:4.5.1'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-io:commons-io:2.11.0'
+    implementation 'org.slf4j:slf4j-api:2.0.6'
+    implementation 'org.slf4j:slf4j-log4j12:2.0.6'
+    implementation 'org.json:json:20220924'
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'com.opencsv:opencsv:5.7.1'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.14.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.14.1'
+    implementation 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
+    implementation 'org.jooq:jool:0.9.14'
+    // Test
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+}
+
+generateGrammarSource {
+    outputDirectory = file("src/main/java/it/unibo/antlr/gen")
+    arguments += ["-visitor"]
+}
+
+task runServlet(type: JavaExec) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = "it.unibo.web.IAMServlet"
+}
+
+task testPython(type: Exec) {
+    workingDir 'src/main/python'
+    if (System.getProperty('os.name').toLowerCase(Locale.ROOT).contains('windows')) {
+        commandLine 'cmd', '/c', 'runTests.bat'
+    } else {
+        commandLine './runTests.sh'
+    }
+}
+
+defaultTasks 'clean', 'build', 'check', 'jacocoTestReport', 'testPython', 'war'
