@@ -4,6 +4,7 @@ set -exo
 ############################################################
 # REMEMBER TO RUN THIS SCRIPT WITH bash AND NOT WITH sh
 ############################################################
+find . -type f -iname "*.sh" -exec chmod +x {} \;
 
 echo "Replacing .env.example with .env"
 cp .env.example .env
