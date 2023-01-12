@@ -1,20 +1,13 @@
 import argparse
-import numpy as np
-import pandas as pd
-from scipy import stats
-from sklearn.cluster import KMeans
-from sklearn.ensemble import IsolationForest
-from yellowbrick.cluster import KElbowVisualizer
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 import json
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import sklearn as sk
 import numpy as np
 import os
 import random
+from sklearn.ensemble import IsolationForest
 
 # SEED all random generators
 seed = 4
@@ -32,14 +25,21 @@ axessize = 12
 legendsize = 11
 markersize = 5
 
+
 def myprint(z, x='x'):
     c = str(round(z[0], 2))
     z = z[1:]
     ret = c + ('' if len(z) == 0 else ('$\cdot ' + x + '$' if len(z) == 1 else '$\cdot ' + x + '^' + str(len(z)) + '$') + ('' if myprint(z, x=x).startswith('-') else '+') + myprint(z, x=x))
     return ret
 
-def fit(df, r=4, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):
+
+def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):  # test_size=0.33
     models = {}
+
+    # filter away the outliers with isolation forests
+    # clf = IsolationForest()
+    # y = clf.fit_predict(df[[x_label, y_label]])
+    # df = df[y == 1]
 
     # split the dataset into training and test
     if test_size is not None:
@@ -79,13 +79,15 @@ def fit(df, r=4, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
 
         # print it
         m = '{}={}'.format(y_label, myprint(list(z), x=x_label))
+        color = colors[i % len(colors)]
+
         if plt_all:
             # ... and plot it
             x = [x for x in range(int(train[x_label].min()), int(train[x_label].max()), 1)]
-            axs[1][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=colors[i])
+            axs[1][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             # test it
             x = [x for x in range(int(test[x_label].min()), int(test[x_label].max()), 1)]
-            axs[2][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=colors[i])
+            axs[2][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             # In statistics, the coefficient of determination, denoted R2 or r2 and
             # pronounced "R squared", is the proportion of the variation in the
             # dependent variable that is predictable from the independent variable.
@@ -112,7 +114,7 @@ def fit(df, r=4, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
 
         if plt_all:
             ax0 = axs[i] if not plt_all else axs[0][i]
-            ax0.plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=colors[i])
+            ax0.plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             ax0.set_ylabel(y_label, fontsize=labelsize)
             ax0.set_xlabel(x_label, fontsize=labelsize)
             ax0.grid(True)
@@ -129,16 +131,19 @@ def fit(df, r=4, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
     # fix the layout
     fig.tight_layout()
     fig2.tight_layout()
+    fig.savefig('example_{}.pdf'.format(x_label))
+    fig2.savefig('error_{}.pdf'.format(x_label))
+
     print(json.dumps(models, indent=2))
     print(argmin)
     return models[argmin], axs if not plt_all else axs[0], fig, axs2, fig2
 
-def fit_all(X, measure, othermeasures, plt_all=False):
+def fit_all(X, measure, othermeasures, r=6, plt_all=False):
     if len(X) > 0:
         prop = []
         ax, fig, axe, fige = None, None, None, None
         for m in othermeasures:
-            component, ax, fig, axe, fige = fit(X, r=4, kpi='score', x_label=m, y_label=measure, plt_all=plt_all)
+            component, ax, fig, axe, fige = fit(X, r=r, kpi='score', x_label=m, y_label=measure, plt_all=plt_all)
             for k, v in component.items():
                 prop.append(["Polyfit", m, k, v])
         if len(prop) == 0:
@@ -173,12 +178,18 @@ if __name__ == '__main__':
     except Error:
         X = pd.read_csv(path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
 
+    import time
+    import sys
+
     X.columns = [x.lower() for x in X.columns]
     print(X.columns)
     measures = [x["MEA"].lower() for x in cube["MC"]]
     if len(measures) < 2:
         raise ValueError("Not enough measures: " + str(measures))
     measures.remove(measure)
-
-    X, P, ax, fig, axe, fige = fit_all(X, measure, measures)
+    start = time.time()
+    X, P, ax, fig, axe, fige = fit_all(X, measure, measures, plt_all=True)
+    end = time.time()
+    print(round((end - start) * 1000))
+    # sys.exit(1)
     P.to_csv(path + file + "_" + str(session_step) + "_property.csv", index=False)

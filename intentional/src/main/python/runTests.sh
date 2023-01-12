@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -exo
 # if [ -d "venv" ]; then
 #   # Take action if $DIR exists.
 # else
@@ -10,3 +10,4 @@ set -e
 source venv/bin/activate # activate the virtual environment
 python3 -m unittest -f TestAssess.py
 python3 -m unittest -f TestAssessExt.py
+python3 -m unittest -f TestExplain.py
