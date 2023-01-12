@@ -16,7 +16,7 @@ class CustomExplainVisitor(val explain: Explain) : ExplainBaseVisitor<JSONObject
         if (ctx.sc != null) {
             visit(ctx.sc)
         }
-        explain.addMeasures(listOf(ctx.mc.name))
+        explain.addMeasures(ctx.mc.name)
         return null
     }
 

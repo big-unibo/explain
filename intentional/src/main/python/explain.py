@@ -1,19 +1,16 @@
 import argparse
-import json
 import numpy as np
 import pandas as pd
 from scipy import stats
 from sklearn.cluster import KMeans
 from sklearn.ensemble import IsolationForest
 from yellowbrick.cluster import KElbowVisualizer
-from numpy import exp, loadtxt, pi, sqrt, random, linspace
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score, mean_squared_error
 import json
 import os
 import pandas as pd
 import matplotlib.pyplot as plt
-import matplotlib.font_manager as font_manager
 import sklearn as sk
 import numpy as np
 import os
@@ -139,10 +136,13 @@ def fit(df, r=4, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
 def fit_all(X, measure, othermeasures, plt_all=False):
     if len(X) > 0:
         prop = []
+        ax, fig, axe, fige = None, None, None, None
         for m in othermeasures:
             component, ax, fig, axe, fige = fit(X, r=4, kpi='score', x_label=m, y_label=measure, plt_all=plt_all)
             for k, v in component.items():
                 prop.append(["Polyfit", m, k, v])
+        if len(prop) == 0:
+            raise ValueError('Empty properties with othermeasures ' + str(othermeasures))
         return X, pd.DataFrame(prop, columns=["model", "component", "property", "value"]), ax, fig, axe, fige
     else:
         raise ValueError('Empty data')
@@ -155,17 +155,15 @@ if __name__ == '__main__':
     parser.add_argument("--path", help="where to put the output", type=str)
     parser.add_argument("--file", help="the file name", type=str)
     parser.add_argument("--session_step", help="the session step", type=int)
-    parser.add_argument("--othermeasures", nargs='*', help="other measures to explain")
     parser.add_argument("--cube", help="cube")
+    parser.add_argument("--measure", help="measure to explain")
     args = parser.parse_args()
     path = args.path.replace("\"", "")
     file = args.file
+    measure = args.measure
     session_step = args.session_step
     cube = args.cube.replace("__", " ")
-    compute_property = bool(args.computeproperty)
-    k = args.k
     cube = json.loads(cube)
-    othermeasures = args.othermeasures
 
     ###############################################################################
     # APPLY MODELS
@@ -176,7 +174,11 @@ if __name__ == '__main__':
         X = pd.read_csv(path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
 
     X.columns = [x.lower() for x in X.columns]
-    measure = [x["MEA"].lower() for x in cube["MC"]]
+    print(X.columns)
+    measures = [x["MEA"].lower() for x in cube["MC"]]
+    if len(measures) < 2:
+        raise ValueError("Not enough measures: " + str(measures))
+    measures.remove(measure)
 
-    X, P = fit_all(X, measure, othermeasures)
+    X, P, ax, fig, axe, fige = fit_all(X, measure, measures)
     P.to_csv(path + file + "_" + str(session_step) + "_property.csv", index=False)

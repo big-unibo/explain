@@ -2,6 +2,7 @@ package it.unibo.conversational.database;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import it.unibo.conversational.Utils;
 import it.unibo.conversational.datatypes.Entity;
 import org.apache.commons.lang3.tuple.Pair;
@@ -9,10 +10,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static it.unibo.conversational.database.DBmanager.*;
 
@@ -152,6 +150,16 @@ public final class QueryGenerator {
             }
         });
         return attributes;
+    }
+
+    public static Set<String> getMeasures(final Cube cube) {
+        final Set<String> measures = Sets.newLinkedHashSet();
+        executeMetaQuery(cube, "select * from `" + tabMEASURE + "`", res -> {
+            while (res.next()) {
+                measures.add(res.getString(name(tabMEASURE)).toLowerCase());
+            }
+        });
+        return measures;
     }
 
     public static List<String> getLevelsFromMember(final Cube cube, final String member) {

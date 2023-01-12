@@ -1,19 +1,13 @@
 package it.unibo.explain
 
-import com.google.common.collect.Sets
 import it.unibo.Intention
+import it.unibo.conversational.database.QueryGenerator
 import it.unibo.describe.Describe.Companion.clauseToString
 import java.io.File
 
 class Explain : Intention {
-    private var models: Set<String> = Sets.newLinkedHashSet()
-
     constructor(d: Intention?) : super(d, false) {}
     constructor() : super(null, false) {}
-
-    fun setModels(models: List<String>) {
-        this.models = models.toSet()
-    }
 
     override fun toPythonCommand(commandPath: String, path: String): String {
         val sessionStep = getSessionStep()
@@ -22,6 +16,7 @@ class Explain : Intention {
                 + " --path " + (if (path.contains(" ")) "\"" else "") + path.replace("\\", "/") + (if (path.contains(" ")) "\"" else "") //
                 + " --file " + filename //
                 + " --session_step " + sessionStep //
+                + " --measure " + measures.first() //
                 + " --cube " + json.toString().replace(" ", "__"))
         return fullCommand
     }
