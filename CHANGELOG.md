@@ -1,3 +1,16 @@
+## [1.0.1](https://github.com/big-unibo/explain/compare/1.0.0...1.0.1) (2023-01-16)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.github.cdimascio:dotenv-kotlin to v6.4.1 ([f09847d](https://github.com/big-unibo/explain/commit/f09847dddbb91ce89866703c5393a7ec441f2786))
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.6.3 ([f24b413](https://github.com/big-unibo/explain/commit/f24b41386133a7eb4b5a91da4e35e9b8dfd19db1))
+* **deps:** update dependency requests to v2.28.2 ([5ea6707](https://github.com/big-unibo/explain/commit/5ea6707fa30772f59b7e9af5002f3aa7a3a6c218))
+
 ## 1.0.0 (2023-01-11)
 
 
