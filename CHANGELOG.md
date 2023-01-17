@@ -1,3 +1,20 @@
+## [1.1.0](https://github.com/big-unibo/explain/compare/1.0.1...1.1.0) (2023-01-17)
+
+
+### Features
+
+* **explain:** introducing explain ([92b0f64](https://github.com/big-unibo/explain/commit/92b0f64cfc95d09411ce1b112e0f54e353b25b4b))
+
+
+### Bug Fixes
+
+* **ci:** fix release ([75486f7](https://github.com/big-unibo/explain/commit/75486f7d526e26493f5361b0a1e5e0a6a0b28541))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.20.2 ([e1b4f60](https://github.com/big-unibo/explain/commit/e1b4f60581c9a108aa5d639392833ae574aff52f))
+
 ## [1.0.1](https://github.com/big-unibo/explain/compare/1.0.0...1.0.1) (2023-01-16)
 
 
