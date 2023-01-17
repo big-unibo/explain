@@ -42,6 +42,8 @@ object ExplainExecute {
         val timeModel = d.computePython(pythonPath, path, "explain.py")
         L.warn("Models computed")
         d.measures.removeIf { othermeasures.contains(it) }
+        d.statistics["intention"] = d.toString()
+        d.statistics["intention_characters"] = d.toString().length
         val s = "$path${d.filename}_${d.sessionStep}"
         val cube: DataFrame = DataFrame.readCSV("$s.csv") // .sortedBy(*coordinate.toTypedArray())
         val prop: DataFrame = DataFrame.readCSV("${s}_property.csv") // .sortedBy(*coordinate.toTypedArray())

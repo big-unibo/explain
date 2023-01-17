@@ -9,6 +9,7 @@ config.js
 *.twbr
 **/src/main/resources/assess/cube_0_*.csv
 **/resources/**/log.txt
+**/resources/**/intention/*.csv
 **/resources/**/output/*.csv
 **/resources/**/output/*.json
 **/credentials.yml

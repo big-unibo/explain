@@ -42,18 +42,18 @@ class TestExplain {
         val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
         var first = true
 
-        for (t in 0..0) {
+        for (t in 0..5) {
             listOf(
-                // "with sales explain unit_sales by product_family, the_month", // 36
-                // "with sales explain unit_sales by the_date", // 323
+                "with sales explain unit_sales by product_family, the_month", // 36
+                "with sales explain unit_sales by the_date", // 323
                 "with sales explain unit_sales by product_category, the_month", // 540
-                // "with sales explain unit_sales by product_subcategory, the_month", // 1224
-                // "with sales explain unit_sales by product_category, the_date", // 12113
-                // "with sales explain unit_sales by customer_id, the_month", // 16949
-                // "with sales explain unit_sales by product_id, the_month",// 18492
-                // "with sales explain unit_sales by the_date, customer_id", // 20k
-                // "with sales explain unit_sales by the_date, product_id", // 77k
-                // "with sales explain unit_sales by the_date, customer_id, product_id" // 87k
+                "with sales explain unit_sales by product_subcategory, the_month", // 1224
+                "with sales explain unit_sales by product_category, the_date", // 12113
+                "with sales explain unit_sales by customer_id, the_month", // 16949
+                "with sales explain unit_sales by product_id, the_month",// 18492
+                "with sales explain unit_sales by the_date, customer_id", // 20k
+                "with sales explain unit_sales by the_date, product_id", // 77k
+                "with sales explain unit_sales by the_date, customer_id, product_id" // 87k
             ).forEach { s ->
                 val d = ExplainExecute.parse(s)
                 ExplainExecute.execute(d, path)
