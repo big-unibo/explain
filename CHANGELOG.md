@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/big-unibo/explain/compare/1.1.0...1.1.1) (2023-01-17)
+
+
+### Bug Fixes
+
+* **ci:** fix the release ([6ed74bb](https://github.com/big-unibo/explain/commit/6ed74bbd0049d36fe5557b3e21e062c99ac332f6))
+
 ## [1.1.0](https://github.com/big-unibo/explain/compare/1.0.1...1.1.0) (2023-01-17)
 
 
