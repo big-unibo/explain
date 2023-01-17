@@ -10,7 +10,7 @@ config.plugins.push(
     ["@semantic-release/github", {
         "assets": [
           {"path": "dist/"},
-          {"path": "resources/intention"}
+          {"path": "intentional/resources/intention"}
         ]
     }],
     "@semantic-release/git",
