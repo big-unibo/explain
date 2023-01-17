@@ -39,16 +39,18 @@ class Describe : Intention {
     companion object {
         var id = 0
         var computeProperty = true
-    }
 
-    fun clauseToString(o: Any): String {
-        return if (o is Triple<*, *, *>) {
-            val c = o as Triple<String, String, List<String>>
-            return c.left + c.middle + c.right[0]
-        } else {
-            o.toString()
+        fun clauseToString(o: Any): String {
+            return if (o is Triple<*, *, *>) {
+                val c = o as Triple<String, String, List<String>>
+                return c.left + c.middle + c.right[0]
+            } else {
+                o.toString()
+            }
         }
     }
+
+
 
     override fun toString(): String {
         return "with ${cubeSyn} " +
