@@ -13,7 +13,7 @@ This repository allows the user to:
 Running the experiments requires the following software to be installed:
 - Docker
 - Java 14
-- Python 3.10.4
+- Python 3.10
 
 Once the software is installed, execute the following code to run the tests.
 
