@@ -1,4 +1,4 @@
-# Intentional OLAP: ASSESS
+# Intentional OLAP: EXPLAIN
 
 [![build](https://github.com/big-unibo/explain/actions/workflows/build.yml/badge.svg)](https://github.com/big-unibo/explain/actions/workflows/build.yml)
 
