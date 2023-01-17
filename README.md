@@ -1,6 +1,6 @@
-# Intentional Analytics Model
+# Intentional OLAP: ASSESS
 
-[![build](https://github.com/w4bo/iam-demo/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/w4bo/iam-demo/actions/workflows/build.yml)
+[![build](https://github.com/big-unibo/explain/actions/workflows/build.yml/badge.svg)](https://github.com/big-unibo/explain/actions/workflows/build.yml)
 
 ## Running the tests
 
