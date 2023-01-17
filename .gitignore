@@ -8,8 +8,12 @@ config.js
 *.sql
 *.twbr
 **/src/main/resources/assess/cube_0_*.csv
+**/src/main/python/*.csv
+**/src/main/python/*.pdf
 **/resources/**/log.txt
 **/resources/**/intention/*.csv
+**/resources/**/intention/*.pdf
+**/resources/**/intention/*.svg
 **/resources/**/output/*.csv
 **/resources/**/output/*.json
 **/credentials.yml

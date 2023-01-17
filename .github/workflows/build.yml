@@ -36,6 +36,13 @@ jobs:
           bash download.sh
           bash start.sh
           bash stop.sh
+      - name: Run the notebooks
+        run: |
+          cd intentional/src/main/python
+          for f in *.ipynb;
+            do echo "Processing $f file...";
+            jupyter nbconvert --execute --to notebook --inplace $f
+          done
 
   release:
     needs:

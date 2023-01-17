@@ -1,9 +1,5 @@
 import pandas as pd
 import unittest
-import math
-# sys.path.append('src/main/python/')
-# sys.path.append('../../main/python/')
-from assess import *
 from assess_ext import *
 
 

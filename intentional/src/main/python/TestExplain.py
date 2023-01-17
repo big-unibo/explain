@@ -156,6 +156,18 @@ class TestExplain(unittest.TestCase):
         self.assertTrue(P["component"].nunique() == 2)
         self.assertTrue(P[(P["component"] == 'Cost') & (P["property"] == "degree")]["value"].iloc[0] == 2)
 
+    def test3(self):
+        df = pd.read_csv("gen_cube_1000000.csv")
+        file_path = "../../../resources/intention/explain_scalability_python.csv"
+        for j in range(0, 3):
+            for i in range(2, 11):
+                start = time.time()
+                fit_all(df, "A", ["p({})".format(x) for x in range(1, i)])
+                end_time = round((time.time() - start) * 1000)  # time is in ms
+                pd \
+                    .DataFrame([[i - 1, end_time]], columns=["measures", "time"]) \
+                    .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
+
 
 if __name__ == '__main__':
     unittest.main()
