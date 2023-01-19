@@ -1,3 +1,15 @@
+## [1.1.2](https://github.com/big-unibo/explain/compare/1.1.1...1.1.2) (2023-01-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mysql:mysql-connector-java to v8.0.32 ([3767a22](https://github.com/big-unibo/explain/commit/3767a229897f6fde5314b348f3748ef5e9cfcc83))
+
+
+### Dependency updates
+
+* **deps:** update dependency pandas to v1.5.3 ([50183c1](https://github.com/big-unibo/explain/commit/50183c13991ab008c9807b4fbcade0e4f01debde))
+
 ## [1.1.1](https://github.com/big-unibo/explain/compare/1.1.0...1.1.1) (2023-01-17)
 
 
