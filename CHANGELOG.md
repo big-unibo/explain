@@ -1,3 +1,16 @@
+## [1.1.4](https://github.com/big-unibo/explain/compare/1.1.3...1.1.4) (2023-01-29)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.14.2 ([27556d8](https://github.com/big-unibo/explain/commit/27556d84001e72b6ddb2d783d077620b4f282b90))
+
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.2.1 ([934128a](https://github.com/big-unibo/explain/commit/934128a069a8046b4814969a886a9f3b989f691a))
+* **deps:** update dependency sqlalchemy to v2 ([f55131a](https://github.com/big-unibo/explain/commit/f55131ad4ae35af56afc90b760d357d886df0141))
+
 ## [1.1.3](https://github.com/big-unibo/explain/compare/1.1.2...1.1.3) (2023-01-21)
 
 
