@@ -1,3 +1,15 @@
+## [1.1.6](https://github.com/big-unibo/explain/compare/1.1.5...1.1.6) (2023-02-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.2.3 ([9e93b5d](https://github.com/big-unibo/explain/commit/9e93b5d75865fd53c83ed8268c0f467b1348c622))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.21.0 ([7694f19](https://github.com/big-unibo/explain/commit/7694f19ae4f2d762558317524b4e970bce7fd152))
+
 ## [1.1.5](https://github.com/big-unibo/explain/compare/1.1.4...1.1.5) (2023-01-29)
 
 
