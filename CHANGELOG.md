@@ -1,3 +1,26 @@
+## [1.1.9](https://github.com/big-unibo/explain/compare/1.1.8...1.1.9) (2023-02-20)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.antlr:antlr4 to v4.12.0 ([16c423e](https://github.com/big-unibo/explain/commit/16c423eba8432d9210a962775bdaf20bc40b450b))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v3.10.0 ([8677730](https://github.com/big-unibo/explain/commit/8677730c28cced51cbd95209606bef91e28c6c3b))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.21.2 ([a8b02f1](https://github.com/big-unibo/explain/commit/a8b02f10477e2a38cda0e453ebec505c89a85a14))
+* **deps:** update dependency matplotlib to v3.7.0 ([ff4524a](https://github.com/big-unibo/explain/commit/ff4524a9ddf3903d645e7264ef4269b87298b0c0))
+* **deps:** update dependency numpy to v1.24.2 ([1aadcef](https://github.com/big-unibo/explain/commit/1aadcef82c39e444928e03e2280359e83b045194))
+* **deps:** update dependency scipy to v1.10.1 ([a6af716](https://github.com/big-unibo/explain/commit/a6af716675ee4545ae4f6fea4defadbf010bdc7e))
+* **deps:** update dependency sqlalchemy to v2.0.2 ([f0d542f](https://github.com/big-unibo/explain/commit/f0d542fb49ba2ceef8fd2585d9b1f3217f0676f4))
+* **deps:** update dependency sqlalchemy to v2.0.3 ([c655b8f](https://github.com/big-unibo/explain/commit/c655b8f7f1e1a5de937f2bbf23c1965c7f346729))
+* **deps:** update dependency sqlalchemy to v2.0.4 ([33cf93c](https://github.com/big-unibo/explain/commit/33cf93cb103aa8358333b35dc9aa18d2b82b060f))
+
 ## [1.1.8](https://github.com/big-unibo/explain/compare/1.1.7...1.1.8) (2023-02-05)
 
 
