@@ -1,3 +1,15 @@
+## [1.1.10](https://github.com/big-unibo/explain/compare/1.1.9...1.1.10) (2023-02-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20230227 ([d009b1d](https://github.com/big-unibo/explain/commit/d009b1d2417c3f6f6b5452e4a3b35f5c0bfb3af1))
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.1 ([3b12825](https://github.com/big-unibo/explain/commit/3b128259ceac51fd8cf86ee1cec0f12f08581b1e))
+
 ## [1.1.9](https://github.com/big-unibo/explain/compare/1.1.8...1.1.9) (2023-02-20)
 
 
