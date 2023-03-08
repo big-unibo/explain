@@ -1,3 +1,19 @@
+## [1.1.12](https://github.com/big-unibo/explain/compare/1.1.11...1.1.12) (2023-03-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.jooq:jool to v0.9.15 ([5fac7d6](https://github.com/big-unibo/explain/commit/5fac7d6c82c8dd30c2751d1490f99458044d38b6))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.21.3 ([c4a5d50](https://github.com/big-unibo/explain/commit/c4a5d5042e3d4cc083de4259eedbc7a0aeffcf93))
+* **deps:** update dependency matplotlib to v3.7.1 ([ab9694d](https://github.com/big-unibo/explain/commit/ab9694d5e93004745f3f580137ca79e77d5b816a))
+* **deps:** update dependency notebook to v6.5.3 ([1f6f86e](https://github.com/big-unibo/explain/commit/1f6f86e9d91d0f70223e27c76bb1a8403ac53d03))
+* **deps:** update dependency sqlalchemy to v2.0.5.post1 ([db87b15](https://github.com/big-unibo/explain/commit/db87b154b37853d1737897136de9c878b2937094))
+* **deps:** update node.js to 18.15 ([8cf4d41](https://github.com/big-unibo/explain/commit/8cf4d415fdb26102bf62e245498e0e646984dafc))
+
 ## [1.1.11](https://github.com/big-unibo/explain/compare/1.1.10...1.1.11) (2023-02-28)
 
 
