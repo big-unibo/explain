@@ -1,3 +1,10 @@
+## [1.1.14](https://github.com/big-unibo/explain/compare/1.1.13...1.1.14) (2023-03-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.slf4j:slf4j-log4j12 to v2.0.7 ([25e7583](https://github.com/big-unibo/explain/commit/25e758371a3ce1c2ca5d3ed73e3fb679423515b1))
+
 ## [1.1.13](https://github.com/big-unibo/explain/compare/1.1.12...1.1.13) (2023-03-18)
 
 
