@@ -1,3 +1,22 @@
+## [1.1.13](https://github.com/big-unibo/explain/compare/1.1.12...1.1.13) (2023-03-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.slf4j:slf4j-api to v2.0.7 ([a2eff46](https://github.com/big-unibo/explain/commit/a2eff4619f878c5720431613d2922cacae3db05b))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.4.0 ([80f7fcb](https://github.com/big-unibo/explain/commit/80f7fcbf9bdbde8a805c583359585e9b7b90a6e4))
+
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.2.2 ([0e973f4](https://github.com/big-unibo/explain/commit/0e973f4bb7f2addb90e163363158b6c1ea24708e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.17 ([8e8f5a9](https://github.com/big-unibo/explain/commit/8e8f5a9c11b0ee440b84353ce7198ddbac1cb4f1))
+* **deps:** update dependency sqlalchemy to v2.0.6 ([90b9426](https://github.com/big-unibo/explain/commit/90b9426ebfaca3ff155de4c589cf3abd0a6b4c54))
+
 ## [1.1.12](https://github.com/big-unibo/explain/compare/1.1.11...1.1.12) (2023-03-08)
 
 
