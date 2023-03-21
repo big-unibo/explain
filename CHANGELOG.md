@@ -1,3 +1,17 @@
+## [1.1.15](https://github.com/big-unibo/explain/compare/1.1.14...1.1.15) (2023-03-21)
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.3 ([a40577f](https://github.com/big-unibo/explain/commit/a40577f926e9409fcf2803ff147f0d1181146084))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.22.0 ([f145445](https://github.com/big-unibo/explain/commit/f145445c8e0c100823e4dade66f1d6d31e107c1d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.19 ([54092fb](https://github.com/big-unibo/explain/commit/54092fbad0ce000e51956bf0ba3a537108d3b1a8))
+* **deps:** update dependency sqlalchemy to v2.0.7 ([6e3889a](https://github.com/big-unibo/explain/commit/6e3889abbbdd11d7f582f2624a09132735add4d8))
+
 ## [1.1.14](https://github.com/big-unibo/explain/compare/1.1.13...1.1.14) (2023-03-18)
 
 
