@@ -22,7 +22,7 @@ cd src/main/python
 if [ -d venv ]; then
     echo "venv already exists"
 else
-    if [[ "$(python -V 2>&1)" == "Python 3" ]]; then
+    if [[ "$(python -V 2>&1)" =~ "Python 3" ]]; then
         echo "python found"
         python -m venv venv
     fi
