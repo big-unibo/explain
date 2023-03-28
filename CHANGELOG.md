@@ -1,3 +1,22 @@
+## [1.1.16](https://github.com/big-unibo/explain/compare/1.1.15...1.1.16) (2023-03-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.github.doyaaaaaken:kotlin-csv-jvm to v1.9.0 ([2eb247b](https://github.com/big-unibo/explain/commit/2eb247ba99b4b73a26ae268da53b8b8d4a57b184))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.5.0 ([c6c3115](https://github.com/big-unibo/explain/commit/c6c31151bf71d64367987b227333067bc38b8404))
+* **deps:** update actions/setup-java action to v3.11.0 ([be6f193](https://github.com/big-unibo/explain/commit/be6f193a09cf209b4209242e6ca75ea61884c1bf))
+
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn-extra to v0.3.0 ([aa74034](https://github.com/big-unibo/explain/commit/aa7403455c62f74e6478aae5f3f656ce526054f0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.22 ([7daa46b](https://github.com/big-unibo/explain/commit/7daa46b6854bcc9d43f096588b57ea70633d7e2e))
+
 ## [1.1.15](https://github.com/big-unibo/explain/compare/1.1.14...1.1.15) (2023-03-21)
 
 
