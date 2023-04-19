@@ -1,3 +1,27 @@
+## [1.1.17](https://github.com/big-unibo/explain/compare/1.1.16...1.1.17) (2023-04-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency mysql:mysql-connector-java to v8.0.33 ([b45aeee](https://github.com/big-unibo/explain/commit/b45aeee9cc03b58b873ed3a12fe20ff26486c597))
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v6.5.4 ([0216707](https://github.com/big-unibo/explain/commit/02167072978bf8691e3bdfc5c26eb9643dca71c0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.23 ([3c42ba5](https://github.com/big-unibo/explain/commit/3c42ba5f0bd97e3514566f060a03d3fbf4646e41))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.24 ([7a80c5c](https://github.com/big-unibo/explain/commit/7a80c5ce1d34a74874b2d6c0e390ca9f807f1fbb))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.25 ([72a293b](https://github.com/big-unibo/explain/commit/72a293b00ae4b0a82f9a04dfea02a6b3a3cb2d43))
+* **deps:** update dependency sqlalchemy to v2.0.8 ([5c58556](https://github.com/big-unibo/explain/commit/5c585560f641e44a45ee2da6039718f24551d44e))
+* **deps:** update dependency sqlalchemy to v2.0.9 ([54cb228](https://github.com/big-unibo/explain/commit/54cb22881bf73e9eb00531c743120cbe384fcc8c))
+* **deps:** update node.js to 18.16 ([b5853a4](https://github.com/big-unibo/explain/commit/b5853a4cf53908c0f50e2b7e32234c7dc1d80249))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.5.1 ([599876c](https://github.com/big-unibo/explain/commit/599876c2b19f3cf5b4b37535a603c4581b315cb2))
+* **deps:** update actions/checkout action to v3.5.2 ([2932565](https://github.com/big-unibo/explain/commit/29325658b31d49dff5022af430a22b30a90957f2))
+
 ## [1.1.16](https://github.com/big-unibo/explain/compare/1.1.15...1.1.16) (2023-03-28)
 
 
