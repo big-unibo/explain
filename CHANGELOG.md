@@ -1,3 +1,16 @@
+## [1.1.19](https://github.com/big-unibo/explain/compare/1.1.18...1.1.19) (2023-04-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.15.0 ([31eec37](https://github.com/big-unibo/explain/commit/31eec37d7c0950e3017f724c5b1f6f584cb55318))
+
+
+### Dependency updates
+
+* **deps:** update dependency numpy to v1.24.3 ([336c5ad](https://github.com/big-unibo/explain/commit/336c5ad9a46311c85cab928d77c2bd66e2b99959))
+* **deps:** update dependency sqlalchemy to v2.0.10 ([f632498](https://github.com/big-unibo/explain/commit/f632498e150a42d93264e650835348d084540439))
+
 ## [1.1.18](https://github.com/big-unibo/explain/compare/1.1.17...1.1.18) (2023-04-19)
 
 
