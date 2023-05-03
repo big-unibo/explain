@@ -1,3 +1,18 @@
+## [1.1.23](https://github.com/big-unibo/explain/compare/1.1.22...1.1.23) (2023-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.jgrapht:jgrapht-core to v1.5.2 ([82608d2](https://github.com/big-unibo/explain/commit/82608d25eee83c7c2a8f9e0a0bd0e0f6e83d44f0))
+
+
+### Dependency updates
+
+* **deps:** update dependency requests to v2.29.0 ([e58f79e](https://github.com/big-unibo/explain/commit/e58f79e0341886a6216b553dfbfb13ba3520a927))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.26 ([11c8b2d](https://github.com/big-unibo/explain/commit/11c8b2dd1e123038307453a70dc680463e7acbcb))
+* **deps:** update dependency sqlalchemy to v2.0.11 ([8edc5df](https://github.com/big-unibo/explain/commit/8edc5df448421a794f3dafd54743f93f5b014da5))
+* **deps:** update dependency sqlalchemy to v2.0.12 ([e2e5fed](https://github.com/big-unibo/explain/commit/e2e5fed51664972170a9df230297ac33c66cad6d))
+
 ## [1.1.22](https://github.com/big-unibo/explain/compare/1.1.21...1.1.22) (2023-04-26)
 
 
