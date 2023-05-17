@@ -1,3 +1,18 @@
+## [1.1.24](https://github.com/big-unibo/explain/compare/1.1.23...1.1.24) (2023-05-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.15.1 ([f7f37f6](https://github.com/big-unibo/explain/commit/f7f37f6297635d6a3a6477d5068405b93c6a9c70))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.23.0 ([466d380](https://github.com/big-unibo/explain/commit/466d3800052ead84b745be6abef7780e58721b44))
+* **deps:** update dependency ipykernel to v6.23.1 ([3f44c45](https://github.com/big-unibo/explain/commit/3f44c45ef631a688bcb47e5d16aade1a0cf86e91))
+* **deps:** update dependency requests to v2.30.0 ([241fb99](https://github.com/big-unibo/explain/commit/241fb99ad917a3b9fff1e84bcccf07d772a87dc7))
+* **deps:** update dependency sqlalchemy to v2.0.13 ([68508bc](https://github.com/big-unibo/explain/commit/68508bc7fd19f86f8828706a0b7cb83f27e7eb97))
+
 ## [1.1.23](https://github.com/big-unibo/explain/compare/1.1.22...1.1.23) (2023-05-03)
 
 
