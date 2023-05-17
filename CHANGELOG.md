@@ -1,3 +1,10 @@
+## [1.1.25](https://github.com/big-unibo/explain/compare/1.1.24...1.1.25) (2023-05-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.15.1 ([fb6c0de](https://github.com/big-unibo/explain/commit/fb6c0de994e3c38a888a08c2b663d62f6ee0b68a))
+
 ## [1.1.24](https://github.com/big-unibo/explain/compare/1.1.23...1.1.24) (2023-05-17)
 
 
