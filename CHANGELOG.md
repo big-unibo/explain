@@ -1,3 +1,15 @@
+## [1.1.26](https://github.com/big-unibo/explain/compare/1.1.25...1.1.26) (2023-05-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.12.0 ([9499f3c](https://github.com/big-unibo/explain/commit/9499f3c5f93aad4d82fb0608a41c5431c7919f08))
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.14 ([310ea85](https://github.com/big-unibo/explain/commit/310ea85961223ce62a78784dc2e08e599ebf9962))
+
 ## [1.1.25](https://github.com/big-unibo/explain/compare/1.1.24...1.1.25) (2023-05-17)
 
 
