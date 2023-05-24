@@ -9,6 +9,7 @@ import time
 from os import path
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 
 # SEED all random generators
 seed = 4
@@ -27,14 +28,39 @@ legendsize = 11
 markersize = 5
 
 
-def myprint(z, x='x'):
-    c = str(round(z[0], 2))
-    z = z[1:]
-    ret = c + ('' if len(z) == 0 else ('$\cdot ' + x + '$' if len(z) == 1 else '$\cdot ' + x + '^' + str(len(z)) + '$') + ('' if myprint(z, x=x).startswith('-') else '+') + myprint(z, x=x))
-    return ret
+def prop_to_df(model, component, property, prop=None):
+    if prop is None:
+        prop = []
+    for k, v in property.items():  # iterate over the properties of the component
+        prop.append([model, component, k, v])  # append them
+    if len(prop) == 0:  # if no properties
+        raise ValueError('Empty properties')
+    return pd.DataFrame(prop, columns=["model", "component", "property", "value"])
+
+
+def multiple_regression_fit(df, y_label='y', x_labels=['x']):
+    X, y = df[x_labels], df[y_label]
+    reg = LinearRegression().fit(X, y)
+    z = [reg.intercept_] + list(reg.coef_)
+    z = [round(v, 2) for v in z]
+    property = {
+        'r2': reg.score(X, y),
+        'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(X.columns, z[1:])]), z[0]),
+        'coeff': z
+    }
+    P = prop_to_df('Multireg', y_label, property)
+    print(P)
+    return df, P, None, None, None, None
 
 
 def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):  # test_size=0.33
+
+    def myprint(z, x='x'):
+        c = str(round(z[0], 2))
+        z = z[1:]
+        ret = c + ('' if len(z) == 0 else ('$\cdot ' + x + '$' if len(z) == 1 else '$\cdot ' + x + '^' + str(len(z)) + '$') + ('' if myprint(z, x=x).startswith('-') else '+') + myprint(z, x=x))
+        return ret
+
     models = {}
     # filter away the outliers with isolation forests
     # clf = IsolationForest()
@@ -111,13 +137,6 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
 
     if plt_all:
         axs2.plot(error_x, error_y)
-        # ... or plot the knee
-        # kn = KneeLocator(error_x, error_y, curve_nature="convex", curve_direction="decreasing")
-        # axs2.scatter([error_x[kn.knee]], [error_y[kn.knee]])
-        # ... or plot the relative difference
-        # axs2.plot(error_x[1:], [(x - y) / x for x, y in zip(error_y, error_y[1:])])
-        # ... or plot the slope
-        # axs2.plot(error_x[1:], [math.atan(y - x) for x, y in zip(error_y, error_y[1:])])
         axs2.set_xticks(list(range(0, r)))
         axs2.set_ylabel('$error$', fontsize=labelsize)
         axs2.set_xlabel('$degree$', fontsize=labelsize)
@@ -127,24 +146,16 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         fig.savefig('example_{}.pdf'.format(x_label))
         fig2.savefig('error_{}.pdf'.format(x_label))
 
-    # print(json.dumps(models, indent=2))
     print(argmin)
     return models[argmin], axs if not plt_all else axs[0], fig, axs2, fig2
 
 
 def fit_all(X, measure, othermeasures, r=6, kpi='score', plt_all=False):
-    if len(X) > 0:
-        prop = []
-        ax, fig, axe, fige = None, None, None, None
-        for m in othermeasures:
-            component, ax, fig, axe, fige = fit(X, r=r, kpi=kpi, x_label=m, y_label=measure, plt_all=plt_all)
-            for k, v in component.items():
-                prop.append(["Polyfit", m, k, v])
-        if len(prop) == 0:
-            raise ValueError('Empty properties with othermeasures ' + str(othermeasures))
-        return X, pd.DataFrame(prop, columns=["model", "component", "property", "value"]), ax, fig, axe, fige
-    else:
-        raise ValueError('Empty data')
+    prop = []
+    for m in othermeasures:
+        component, ax, fig, axe, fige = fit(X, r=r, kpi=kpi, x_label=m, y_label=measure, plt_all=plt_all)
+        P = prop_to_df('Polyfit', component, prop)
+    return X, P, ax, fig, axe, fige
 
 
 if __name__ == '__main__':
@@ -174,6 +185,9 @@ if __name__ == '__main__':
         X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding='cp1252')
     except Error:
         X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
+
+    if len(X) == 0:
+        raise ValueError('Empty data')
 
     X.columns = [x.lower() for x in X.columns]
     measures = [x["MEA"].lower() for x in cube["MC"]]
