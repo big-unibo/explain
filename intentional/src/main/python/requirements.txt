@@ -10,3 +10,4 @@ scikit-learn-extra==0.3.0
 scipy==1.10.1
 SQLAlchemy==2.0.15
 yellowbrick==1.5
+autopep8==2.0.2
