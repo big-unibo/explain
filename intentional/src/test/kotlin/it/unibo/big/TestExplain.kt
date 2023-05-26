@@ -35,6 +35,24 @@ class TestExplain {
         }
     }
 
+    @Test
+    fun `test models`() {
+        try {
+            var d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Polyfit")
+            var ret = ExplainExecute.execute(d, path)
+            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using CrossCorrelation")
+            ret = ExplainExecute.execute(d, path)
+            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Multireg")
+            ret = ExplainExecute.execute(d, path)
+            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Multireg, Polyfit")
+            ret = ExplainExecute.execute(d, path)
+            assertTrue(ret.second.nrow > 0)
+            assertTrue(ret.third.nrow > 0)
+        } catch (e: Exception) {
+            e.printStackTrace()
+            fail<String>(e.message)
+        }
+    }
 
     @Test
     fun testScalability() {

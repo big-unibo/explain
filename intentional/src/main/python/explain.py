@@ -10,6 +10,7 @@ from os import path
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from scipy import signal
 
 # SEED all random generators
 seed = 4
@@ -53,20 +54,31 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     return df, P, None, None, None, None
 
 
-def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):  # test_size=0.33
+def time_series_fit(df, y_label, x_labels):
+    from scipy.stats import zscore
+    prop = []
+    y, l = df[[y_label]].apply(zscore), len(df[y_label])
+    for component in x_labels:
+        correlation = signal.correlate(y, df[[component]].apply(zscore), mode="full") / l
+        abs_correlation = [np.abs(x) for x in correlation]
+        lags = signal.correlation_lags(l, l, mode="full")
+        property = {
+            "interest": np.max(abs_correlation),
+            "lag": lags[np.argmax(abs_correlation)]
+        }
+        P = prop_to_df('CrossCorrelation', component, property, prop)
+    return df, P, None, None, None, None
 
+
+def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):  # test_size=0.33
     def myprint(z, x='x'):
         c = str(round(z[0], 2))
         z = z[1:]
         ret = c + ('' if len(z) == 0 else ('$\cdot ' + x + '$' if len(z) == 1 else '$\cdot ' + x + '^' + str(len(z)) + '$') + ('' if myprint(z, x=x).startswith('-') else '+') + myprint(z, x=x))
         return ret
 
+    r = np.max([np.min([r, int(len(df) / 10)]), 2]) # apply the one-to-ten rule to choose the maximum degree
     models = {}
-    # filter away the outliers with isolation forests
-    # clf = IsolationForest()
-    # y = clf.fit_predict(df[[x_label, y_label]])
-    # df = df[y == 1]
-    # split the dataset into training and test
     if test_size is not None:
         train, test = train_test_split(df, test_size=test_size, random_state=seed)
         train = train.sort_values(by=x_label)
@@ -154,7 +166,7 @@ def fit_all(X, measure, othermeasures, r=6, kpi='score', plt_all=False):
     prop = []
     for m in othermeasures:
         component, ax, fig, axe, fige = fit(X, r=r, kpi=kpi, x_label=m, y_label=measure, plt_all=plt_all)
-        P = prop_to_df('Polyfit', component, prop)
+        P = prop_to_df('Polyfit', m, component, prop)
     return X, P, ax, fig, axe, fige
 
 
@@ -166,9 +178,11 @@ if __name__ == '__main__':
     parser.add_argument("--path", help="where to put the output", type=str)
     parser.add_argument("--file", help="the file name", type=str)
     parser.add_argument("--session_step", help="the session step", type=int)
-    parser.add_argument("--cube", help="cube")
-    parser.add_argument("--measure", help="measure to explain")
-    parser.add_argument("--execution_id", help="execution id")
+    parser.add_argument("--cube", help="cube", type=str)
+    parser.add_argument("--measure", help="measure to explain", type=str)
+    parser.add_argument("--execution_id", help="execution id", type=str)
+    parser.add_argument("--against", help="measures for comparison", nargs='?', const='', default='', type=str)
+    parser.add_argument("--using", help="models for explanation", nargs='?', const='', default='', type=str)
     args = parser.parse_args()
     my_path = args.path.replace("\"", "")
     file = args.file
@@ -177,6 +191,8 @@ if __name__ == '__main__':
     execution_id = args.execution_id
     cube = args.cube.replace("__", " ")
     cube = json.loads(cube)
+    against = "" if args.against == "" else args.against.split(",")
+    using = "" if args.using == "" else args.using.split(",")
 
     ###############################################################################
     # APPLY MODELS
@@ -190,15 +206,29 @@ if __name__ == '__main__':
         raise ValueError('Empty data')
 
     X.columns = [x.lower() for x in X.columns]
-    measures = [x["MEA"].lower() for x in cube["MC"]]
+    print(against)
+    measures = against if len(against) > 0 else [x["MEA"].lower() for x in cube["MC"]]
     if len(measures) < 2:
         raise ValueError("Not enough measures: " + str(measures))
     measures.remove(measure)
-    start = time.time()
-    X, P, ax, fig, axe, fige = fit_all(X, measure, measures, plt_all=False)
-    end_time = round((time.time() - start) * 1000)  # time is in ms
+    using = ["Polyfit", "CrossCorrelation", "Multireg"] if len(using) == 0 else using
+    P = pd.DataFrame()
+    stats = [] 
+    for model in using:
+        start = time.time()
+        if model == "Polyfit":
+            _, curP, _, _, _, _ = fit_all(X, measure, measures, plt_all=False)
+        elif model == "CrossCorrelation":
+            _, curP, _, _, _, _ = time_series_fit(X, measure, measures)
+        elif model == "Multireg":
+            _, curP, _, _, _, _ = multiple_regression_fit(X, measure, measures)
+        else:
+            raise ValueError("Unknown model: " + model)
+        end_time = round((time.time() - start) * 1000)  # time is in ms
+        P = P.append(curP)
+        stats.append([execution_id, model, end_time])
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "/../explain_time_python.csv"
     pd \
-        .DataFrame([[execution_id, end_time]], columns=["execution_id", "time_model_python"]) \
+        .DataFrame(stats, columns=["execution_id", "model", "time_model_python"]) \
         .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))

@@ -5,14 +5,12 @@ package it.unibo.antlr.gen;
 
 explain : 'with' cube=id 'explain' mc=id
              (('for' sc=clause)? 'by' gc+=id (',' gc+=id)* | 'by' gc+=id (',' gc+=id)* ('for' sc=clause)?)
-             against (',' against)*
+             ('against' against+=id (',' against+=id)*)?
+             ('using' using+=id (',' using+=id)*)?
              EOF;
 
-against : ('against' mc2=id ('degree' degree=INT)?)?;
 
 id locals[String name] : ID { $name = $ID.text; };
-
-c: cube=id;
 
 clause : condition (binary condition)*;
 
