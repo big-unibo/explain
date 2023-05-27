@@ -1,3 +1,15 @@
+## [1.1.29](https://github.com/big-unibo/explain/compare/1.1.28...1.1.29) (2023-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32 ([1ce4379](https://github.com/big-unibo/explain/commit/1ce4379df5bc98fcacbeac3671990300ff608d53))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.4.2 ([cd35376](https://github.com/big-unibo/explain/commit/cd35376c9d143b5f45531d833f8de105a209a958))
+
 ## [1.1.28](https://github.com/big-unibo/explain/compare/1.1.27...1.1.28) (2023-05-26)
 
 
