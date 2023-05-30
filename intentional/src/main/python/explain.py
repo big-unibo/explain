@@ -87,8 +87,8 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         train = df
         test = df
     # create the figures
-    fig, axs = plt.subplots(3, r, figsize=(4 * r, 3 * 3), sharey=True) if plt_all else None, None
-    fig2, axs2 = plt.subplots(1, 1, figsize=(4, 3)) if plt_all else None, None
+    fig, axs = plt.subplots(3, r, figsize=(4 * r, 3 * 3), sharey=True) if plt_all else None
+    fig2, axs2 = plt.subplots(1, 1, figsize=(4, 3)) if plt_all else None
     # arrays of errors
     error_x, error_y = [], []
     minscore, minf, mtitle, argmin = float('inf'), None, None, None
@@ -98,14 +98,15 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         color = colors[i % len(colors)]
         # plot the raw data
         if plt_all:
+            ax0, ax1, ax2 = (axs[0][i], axs[1][i], axs[2][i]) if r > 1 else (axs[0], axs[1], axs[2])
             if r > 0:
-                axs[0][i].scatter(df[x_label], df[y_label], s=m_size, c='black')
-                axs[1][i].scatter(train[x_label], train[y_label], s=m_size, c='black')
-                axs[2][i].scatter(test[x_label], test[y_label], s=m_size, c='black')
+                ax0.scatter(df[x_label], df[y_label], s=m_size, c='black')
+                ax1.scatter(train[x_label], train[y_label], s=m_size, c='black')
+                ax2.scatter(test[x_label], test[y_label], s=m_size, c='black')
             else:
-                axs[0][i].scatter(df[x_label], df[y_label], s=m_size, c='black', label='Raw')
-                axs[1][i].scatter(train[x_label], train[y_label], s=m_size, c='black', label='Raw')
-                axs[2][i].scatter(test[x_label], test[y_label], s=m_size, c='black', label='Raw')
+                ax0.scatter(df[x_label], df[y_label], s=m_size, c='black', label='Raw')
+                ax1.scatter(train[x_label], train[y_label], s=m_size, c='black', label='Raw')
+                ax2.scatter(test[x_label], test[y_label], s=m_size, c='black', label='Raw')
         # fit the model
         z = np.polyfit(train[x_label], train[y_label], i)
         f = np.poly1d(z)
@@ -113,10 +114,10 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         if plt_all:
             # ... and plot it
             x = [x for x in range(int(train[x_label].min()), int(train[x_label].max()), 1)]
-            axs[1][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
+            ax1.plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             # test it
             x = [x for x in range(int(test[x_label].min()), int(test[x_label].max()), 1)]
-            axs[2][i].plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
+            ax2.plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             # In statistics, the coefficient of determination, denoted R2 or r2 and
             # pronounced "R squared", is the proportion of the variation in the
             # dependent variable that is predictable from the independent variable.
@@ -138,14 +139,13 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
             minscore = models[m][kpi]
         if plt_all:
             x = [x for x in range(int(df[x_label].min()), int(df[x_label].max()), 1)]
-            ax0 = axs[i] if not plt_all else axs[0][i]
             ax0.plot(x, f(x), linewidth=2, label='p(' + str(i) + ')', c=color)
             ax0.set_ylabel(y_label, fontsize=labelsize)
             ax0.set_xlabel(x_label, fontsize=labelsize)
             ax0.grid(True)
-            axs[2][i].legend()
-            axs[1][i].set_title('Train', fontsize=titlesize)
-            axs[2][i].set_title('Test', fontsize=titlesize)
+            ax1.set_title('Train', fontsize=titlesize)
+            ax2.set_title('Test', fontsize=titlesize)
+            ax2.legend()
 
     if plt_all:
         axs2.plot(error_x, error_y)
