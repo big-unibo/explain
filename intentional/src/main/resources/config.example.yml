@@ -64,3 +64,39 @@ cubes:
     importmembers: false
     user: frenchelectricityext
     pwd: oracle
+  - dataMart: xe
+    factTable: ft_sales
+    synonyms:
+      - ft_sales
+    metadata: xe
+    dbms: oracle
+    ip: 127.0.0.1
+    port: 1521
+    create: false
+    importmembers: false
+    user: sales_v1
+    pwd: oracle
+  - dataMart: xe
+    factTable: ft_purchase
+    synonyms:
+      - ft_purchase
+    metadata: xe
+    dbms: oracle
+    ip: 127.0.0.1
+    port: 1521
+    create: false
+    importmembers: false
+    user: purchase_v1
+    pwd: oracle
+  - dataMart: xe
+    factTable: ft_salpurch
+    synonyms:
+      - ft_salpurch
+    metadata: xe
+    dbms: oracle
+    ip: 127.0.0.1
+    port: 1521
+    create: false
+    importmembers: false
+    user: salespurchase_v1
+    pwd: oracle

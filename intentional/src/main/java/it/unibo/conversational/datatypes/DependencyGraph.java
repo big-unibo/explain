@@ -34,7 +34,7 @@ public class DependencyGraph {
         return g;
     }
 
-    private static Graph<String, DefaultEdge> getCovidWeeklyMarDependencies() {
+    private static Graph<String, DefaultEdge> getCovidWeeklyMartDependencies() {
         final DefaultDirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         // DATE
         g.addVertex("week");
@@ -61,10 +61,13 @@ public class DependencyGraph {
             case "covidfact":
                 return getCovidMartDependencies();
             case "ft":
-                return getCovidWeeklyMarDependencies();
+                return getCovidWeeklyMartDependencies();
             case "frencheletricityft":
             case "frencheletricityft_ext":
                 return getFrenchElectDependencies();
+            case "ft_sales":
+            case "ft_purchase":
+            case "ft_salpurch":
             case "sales_fact_1997":
                 return getFoodMartDependencies();
             case "lineorder2": // ssb cube

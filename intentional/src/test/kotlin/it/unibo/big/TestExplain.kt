@@ -17,15 +17,9 @@ class TestExplain {
 
     val path = "resources/intention/output/"
 
-    @BeforeEach
-    fun before() {
-        Intention.DEBUG = true
-    }
-
-    @Test
-    fun `test cube content`() {
+    fun execute(i: String) {
         try {
-            val d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month")
+            val d = ExplainExecute.parse(i)
             val ret = ExplainExecute.execute(d, path)
             assertTrue(ret.second.nrow > 0)
             assertTrue(ret.third.nrow > 0)
@@ -35,23 +29,28 @@ class TestExplain {
         }
     }
 
+    @BeforeEach
+    fun before() {
+        Intention.DEBUG = true
+    }
+
+    @Test
+    fun `test cubes`() {
+        execute("with ft_sales explain quantity by the_month")
+        execute("with ft_salpurch explain unitcost by the_month")
+    }
+
+    @Test
+    fun `test cube content`() {
+        execute("with sales_fact_1997 explain unit_sales by the_month")
+    }
+
     @Test
     fun `test models`() {
-        try {
-            var d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Polyfit")
-            var ret = ExplainExecute.execute(d, path)
-            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using CrossCorrelation")
-            ret = ExplainExecute.execute(d, path)
-            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Multireg")
-            ret = ExplainExecute.execute(d, path)
-            d = ExplainExecute.parse("with sales_fact_1997 explain unit_sales by the_month using Multireg, Polyfit")
-            ret = ExplainExecute.execute(d, path)
-            assertTrue(ret.second.nrow > 0)
-            assertTrue(ret.third.nrow > 0)
-        } catch (e: Exception) {
-            e.printStackTrace()
-            fail<String>(e.message)
-        }
+        execute("with sales_fact_1997 explain unit_sales by the_month using Polyfit")
+        execute("with sales_fact_1997 explain unit_sales by the_month using CrossCorrelation")
+        execute("with sales_fact_1997 explain unit_sales by the_month using Multireg")
+        execute("with sales_fact_1997 explain unit_sales by the_month using Multireg, Polyfit")
     }
 
     @Test
@@ -62,16 +61,16 @@ class TestExplain {
 
         for (t in 0..5) {
             listOf(
-                "with sales explain unit_sales by product_family, the_month", // 36
-                "with sales explain unit_sales by the_date", // 323
-                "with sales explain unit_sales by product_category, the_month", // 540
-                "with sales explain unit_sales by product_subcategory, the_month", // 1224
-                "with sales explain unit_sales by product_category, the_date", // 12113
-                "with sales explain unit_sales by customer_id, the_month", // 16949
-                "with sales explain unit_sales by product_id, the_month",// 18492
-                "with sales explain unit_sales by the_date, customer_id", // 20k
-                "with sales explain unit_sales by the_date, product_id", // 77k
-                "with sales explain unit_sales by the_date, customer_id, product_id" // 87k
+                    "with sales explain unit_sales by product_family, the_month", // 36
+                    "with sales explain unit_sales by the_date", // 323
+                    "with sales explain unit_sales by product_category, the_month", // 540
+                    "with sales explain unit_sales by product_subcategory, the_month", // 1224
+                    "with sales explain unit_sales by product_category, the_date", // 12113
+                    "with sales explain unit_sales by customer_id, the_month", // 16949
+                    "with sales explain unit_sales by product_id, the_month",// 18492
+                    "with sales explain unit_sales by the_date, customer_id", // 20k
+                    "with sales explain unit_sales by the_date, product_id", // 77k
+                    "with sales explain unit_sales by the_date, customer_id, product_id" // 87k
             ).forEach { s ->
                 val d = ExplainExecute.parse(s)
                 ExplainExecute.execute(d, path)
