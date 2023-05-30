@@ -77,7 +77,7 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         ret = c + ('' if len(z) == 0 else ('$\cdot ' + x + '$' if len(z) == 1 else '$\cdot ' + x + '^' + str(len(z)) + '$') + ('' if myprint(z, x=x).startswith('-') else '+') + myprint(z, x=x))
         return ret
 
-    r = np.max([np.min([r, int(len(df) / 10)]), 2]) # apply the one-to-ten rule to choose the maximum degree
+    r = np.max([np.min([r, int(len(df) / 10) + 1]), 2]) # apply the one-to-ten rule to choose the maximum degree
     models = {}
     if test_size is not None:
         train, test = train_test_split(df, test_size=test_size, random_state=seed)
@@ -87,8 +87,10 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         train = df
         test = df
     # create the figures
-    fig, axs = plt.subplots(3, r, figsize=(4 * r, 3 * 3), sharey=True) if plt_all else None
-    fig2, axs2 = plt.subplots(1, 1, figsize=(4, 3)) if plt_all else None
+    fig, axs, fig2, axs2 = None, None, None, None
+    if plt_all:
+        fig, axs = plt.subplots(3, r, figsize=(4 * r, 3 * 3), sharey=True)
+        fig2, axs2 = plt.subplots(1, 1, figsize=(4, 3))
     # arrays of errors
     error_x, error_y = [], []
     minscore, minf, mtitle, argmin = float('inf'), None, None, None
