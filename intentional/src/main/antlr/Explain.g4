@@ -3,12 +3,16 @@ grammar Explain;
 package it.unibo.antlr.gen;
 }
 
-explain : 'with' cube=id 'explain' mc=id
+explain : 'with' cube=id 'explain' mc=measure
              (('for' sc=clause)? 'by' gc+=id (',' gc+=id)* | 'by' gc+=id (',' gc+=id)* ('for' sc=clause)?)
-             ('against' against+=id (',' against+=id)*)?
+             ('against' against+=measure (',' against+=measure)*)?
              ('using' using+=id (',' using+=id)*)?
              EOF;
 
+measure
+  : ID
+  | ('avg' | 'sum' | 'min' | 'max') '(' ID ') as ' ID
+  | ('avg' | 'sum' | 'min' | 'max') '(' ID ')';
 
 id locals[String name] : ID { $name = $ID.text; };
 

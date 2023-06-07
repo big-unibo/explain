@@ -1,13 +1,13 @@
 package it.unibo.big
 
 import it.unibo.Intention
+import it.unibo.conversational.Utils
 import it.unibo.describe.Scalability
 import it.unibo.explain.ExplainExecute
 import krangl.*
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVPrinter
-import org.junit.jupiter.api.Assertions.assertTrue
-import org.junit.jupiter.api.Assertions.fail
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.nio.file.Files
@@ -51,6 +51,20 @@ class TestExplain {
         execute("with sales_fact_1997 explain unit_sales by the_month using CrossCorrelation")
         execute("with sales_fact_1997 explain unit_sales by the_month using Multireg")
         execute("with sales_fact_1997 explain unit_sales by the_month using Multireg, Polyfit")
+    }
+
+    @Test
+    fun `test parse`() {
+        val s = "unit_sales"
+        assertEquals(s, Utils.measureName(s))
+        assertEquals(s, Utils.measureName("avg ($s)"))
+        assertEquals(s, Utils.measureName("avg (${s}foo) as  $s"))
+    }
+
+    @Test
+    fun `test paper ext`() {
+        execute("with ft_salpurch explain netrevenue by product_subcategory for the_year=1997")
+        execute("with ft_salpurch explain avg(unitprice) as unitprice by the_date against avg(unitcost)")
     }
 
     @Test

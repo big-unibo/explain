@@ -28,7 +28,7 @@ class Explain : Intention {
                 + " --path " + (if (path.contains(" ")) "\"" else "") + path.replace("\\", "/") + (if (path.contains(" ")) "\"" else "") //
                 + " --file " + filename //
                 + " --session_step " + sessionStep //
-                + " --measure " + measures.first() //
+                + " --measure " + measures.minus(against).first() //
                 + " --execution_id " + execution_id
                 + " --cube " + json.toString().replace(" ", "__")
                 + " --against " + concat(against, sep = ",")

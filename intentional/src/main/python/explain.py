@@ -50,7 +50,6 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
         'coeff': z
     }
     P = prop_to_df('Multireg', y_label, property)
-    print(P)
     return df, P, None, None, None, None
 
 
@@ -160,7 +159,6 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         fig.savefig('example_{}.pdf'.format(x_label))
         fig2.savefig('error_{}.pdf'.format(x_label))
 
-    print(argmin)
     return models[argmin], axs if not plt_all else axs[0], fig, axs2, fig2
 
 
@@ -208,11 +206,11 @@ if __name__ == '__main__':
         raise ValueError('Empty data')
 
     X.columns = [x.lower() for x in X.columns]
-    print(against)
     measures = against if len(against) > 0 else [x["MEA"].lower() for x in cube["MC"]]
-    if len(measures) < 2:
+    if measure in measures:
+        measures.remove(measure)
+    if len(measures) < 1:
         raise ValueError("Not enough measures: " + str(measures))
-    measures.remove(measure)
     using = ["Polyfit", "CrossCorrelation", "Multireg"] if len(using) == 0 else using
     P = pd.DataFrame()
     stats = [] 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -exo
 cd resources
-for file in "salespurchase_v1-2023-05-30.dmp" "sales_v1-2023-05-30.dmp" "purchase_v1-2023-05-30.dmp" "SSB_FLIGHT.DMP" "foodmart-mysql.sql" "foodmart-mysql-schema.sql" "COVID_WEEKLY.DMP" "FOODMART.DMP" "FRENCHELECTRICITY.DMP" "FRENCHELECTRICITYEXT.DMP"; do
+for file in "salespurchase_v1-2023-06-07.dmp" "sales_v1-2023-06-07.dmp" "purchase_v1-2023-06-07.dmp" "SSB_FLIGHT.DMP" "foodmart-mysql.sql" "foodmart-mysql-schema.sql" "COVID_WEEKLY.DMP" "FOODMART.DMP" "FRENCHELECTRICITY.DMP" "FRENCHELECTRICITYEXT.DMP"; do
   if [ ! -f "$file" ]; then
     curl -k -o "$file" "https://big.csr.unibo.it/projects/nosql-datasets/$file"
   fi

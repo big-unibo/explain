@@ -18,6 +18,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.*;
 import java.util.concurrent.atomic.LongAdder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Utility class.
@@ -498,5 +500,13 @@ public final class Utils {
             default:
                 throw new IllegalArgumentException(cube.getDbms() + " is not handled");
         }
+    }
+
+    public static String measureName(final String s) {
+        System.out.println(s);
+        Pattern pattern = Pattern.compile("((.+)\\((?<mea1>.+)\\)\\s*(as\\s+(?<mea2>.+))?)|(?<mea3>.+)");
+        Matcher matcher = pattern.matcher(s);
+        matcher.matches();
+        return matcher.group("mea3") != null? matcher.group("mea3") : matcher.group("mea2") != null? matcher.group("mea2") : matcher.group("mea1");
     }
 }

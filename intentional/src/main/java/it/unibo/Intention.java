@@ -24,6 +24,8 @@ import java.lang.reflect.Field;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import static it.unibo.conversational.Utils.quote;
@@ -214,9 +216,18 @@ public abstract class Intention implements IIntention {
         }).collect(Collectors.toList()));
         obj.put(quote(Utils.Type.MC.toString().toUpperCase()), measures.stream().sorted().map(t -> {
             JSONObject c = new JSONObject();
-            c.put(quote(Utils.Type.AGG.toString().toUpperCase()), quote("sum"));
-            c.put(quote(Utils.Type.MEA.toString().toUpperCase()), quote(t));
-            c.put(quote("AS"), quote(t));
+            Pattern pattern = Pattern.compile("(.+)\\((.+)\\)\\s*(as\\s+(.+))?");
+            Matcher matcher = pattern.matcher(t);
+            if (matcher.matches()) {
+                c.put(quote(Utils.Type.AGG.toString().toUpperCase()), matcher.group(1));
+                c.put(quote(Utils.Type.MEA.toString().toUpperCase()), quote(matcher.group(2)));
+                final String as = matcher.group(4);
+                c.put(quote("AS"), quote(as == null ? matcher.group(2) : as));
+            } else {
+                c.put(quote(Utils.Type.AGG.toString().toUpperCase()), quote("sum"));
+                c.put(quote(Utils.Type.MEA.toString().toUpperCase()), quote(t));
+                c.put(quote("AS"), quote(t));
+            }
             return c;
         }).collect(Collectors.toList()));
         return obj;
@@ -237,7 +248,6 @@ public abstract class Intention implements IIntention {
              return "debug";
          }
          return filename;
-//        return "debug";
     }
 
     @Override
