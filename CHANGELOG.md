@@ -1,3 +1,26 @@
+## [1.1.35](https://github.com/big-unibo/explain/compare/1.1.34...1.1.35) (2023-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20230618 ([1790482](https://github.com/big-unibo/explain/commit/17904821f2630fe031dc8a5236136e2133d97657))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.5.3 ([c0cc4a7](https://github.com/big-unibo/explain/commit/c0cc4a769f904c387f457174f6c4f5613ef9ded1))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.23.2 ([93b7c80](https://github.com/big-unibo/explain/commit/93b7c807cfb72af5c503b7a598da0e77e17b9a81))
+* **deps:** update dependency numpy to v1.25.0 ([9c99878](https://github.com/big-unibo/explain/commit/9c99878a23e468b097fe3d7c5edcd77f87e23bf7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.33 ([9fd19f2](https://github.com/big-unibo/explain/commit/9fd19f266d4669f020bdfe2398e94b5bb27ff9da))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.34 ([b76e835](https://github.com/big-unibo/explain/commit/b76e835c015149453c6079ab24e4e704a8504332))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.35 ([427d5ef](https://github.com/big-unibo/explain/commit/427d5efbd42d9f391d107056aa5327243d498326))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.37 ([9c56d91](https://github.com/big-unibo/explain/commit/9c56d91b8471826aa3ca5bdb18da38af8c27f742))
+* **deps:** update dependency sqlalchemy to v2.0.16 ([45f9662](https://github.com/big-unibo/explain/commit/45f9662cd3f763cc848e6753212e8a7347199fd2))
+
 ## [1.1.34](https://github.com/big-unibo/explain/compare/1.1.33...1.1.34) (2023-06-09)
 
 
