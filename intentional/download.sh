@@ -7,7 +7,7 @@ for file in "salespurchase_v1-2023-06-07.dmp" "sales_v1-2023-06-07.dmp" "purchas
   fi
 done
 
-if [ ! -f "$file" ]; then
+if [ ! -f "COVID_WEEKLY.DMP" ]; then
   curl -k -o COVID_WEEKLY.DMP -L https://github.com/w4bo/covid-dataset/releases/download/1.0.2/COVID_WEEKLY.DMP
 fi
 
