@@ -1,7 +1,6 @@
 package it.unibo.explain
 
 import it.unibo.Intention
-import it.unibo.conversational.database.QueryGenerator
 import it.unibo.describe.Describe.Companion.clauseToString
 import java.io.File
 import java.util.*

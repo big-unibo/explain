@@ -63,7 +63,7 @@ class TestExplain {
 
     @Test
     fun `test paper ext example1`() {
-        execute("with ft_salpurch explain netrevenue by product_subcategory for the_year=1997 using Multireg")
+        execute("with ft_salpurch explain netrevenue by product_subcategory for the_year=1997")
     }
 
     @Test

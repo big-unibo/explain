@@ -503,7 +503,6 @@ public final class Utils {
     }
 
     public static String measureName(final String s) {
-        System.out.println(s);
         Pattern pattern = Pattern.compile("((.+)\\((?<mea1>.+)\\)\\s*(as\\s+(?<mea2>.+))?)|(?<mea3>.+)");
         Matcher matcher = pattern.matcher(s);
         matcher.matches();

@@ -1,15 +1,12 @@
 package it.unibo.explain
 
-import it.unibo.Intention
 import it.unibo.antlr.gen.ExplainLexer
 import it.unibo.antlr.gen.ExplainParser
 import it.unibo.antlr.gen.ThrowingErrorListener
-import it.unibo.conversational.Utils
 import it.unibo.conversational.Utils.measureName
 import it.unibo.conversational.database.QueryGenerator
 import krangl.DataFrame
 import krangl.readCSV
-import krangl.rename
 import org.antlr.v4.runtime.ANTLRInputStream
 import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.tree.ParseTree

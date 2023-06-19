@@ -2,7 +2,6 @@ package it.unibo.conversational.database;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
-import it.unibo.conversational.Utils;
 
 import java.util.List;
 

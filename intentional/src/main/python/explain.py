@@ -59,28 +59,21 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
         'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(features, z[1:])]), z[0]),
         'coeff': z
     }
-    # high_score, nof, features, property = 0, 0, [], {}
-    # X, y = df[x_labels], df[y_label]
-    # X_train, X_test, y_train, y_test = X, X, y, y
-    # for n in range(1, len(x_labels)):
-    #     model = LinearRegression()
-    #     rfe = RFE(model, n_features_to_select=n, step=1)
-    #     X_train_rfe = rfe.fit_transform(X_train, y_train)
-    #     X_test_rfe = rfe.transform(X_test)
-    #     model.fit(X_train_rfe, y_train)
-    #     score = model.score(X_test_rfe, y_test)
-    #     if score > high_score:
-    #         print(score)
-    #         high_score = score
-    #         nof = n
-    #         features = X.columns[rfe.support_]
-    #         z = [model.intercept_] + list(model.coef_)
-    #         z = [round(v, 2) for v in z]
-    #         property = {
-    #             'r2': score,
-    #             'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(features, z[1:])]), z[0]),
-    #             'coeff': z
-    #         }
+    # Plot 3D chart
+    # fig = plt.figure()
+    # ax = plt.axes(projection='3d')
+    # A = np.arange(X[features[0]].min(), X[features[0]].max(), 100)
+    # B = np.arange(X[features[1]].min(), X[features[1]].max(), 100)
+    # A, B = np.meshgrid(A, B)
+    # C = B - A
+    # ax.plot_surface(A, B, C, rstride=1, cstride=1, color='lightblue', alpha=.5, linewidth=0, antialiased=False)
+    # ax.scatter(X[[features[0]]], X[[features[1]]], y)
+    # ax.set_xlabel("discount") # features[0]
+    # ax.set_ylabel("grossRevenue") # features[1]
+    # ax.set_zlabel("netRevenue") # y_label
+    # fig.savefig('example_{}.pdf'.format("Multireg"))
+    # fig.savefig('example_{}.svg'.format("Multireg"))
+    # fig.tight_layout()
     return df, prop_to_df('Multireg', y_label, property), None, None, None, None
 
 
@@ -97,6 +90,21 @@ def time_series_fit(df, y_label, x_labels):
             "lag": lags[np.argmax(abs_correlation)]
         }
         P = prop_to_df('CrossCorrelation', component, property, prop)
+        # Plot the line chart
+        # import matplotlib.dates as mdates
+        # import datetime as dt
+        # fig = plt.figure()
+        # ax = plt.axes()
+        # ax.plot(df["the_date"], df[component], label="unitCost")
+        # ax.plot(df["the_date"], df[y_label], label="unitPrice")
+        # ax.set_xlabel("Date")
+        # ax.legend(loc=2)
+        # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%b'))
+        # plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=30))
+        # plt.gcf().autofmt_xdate()
+        # fig.savefig('example_{}.pdf'.format("CrossCorrelation"))
+        # fig.savefig('example_{}.svg'.format("CrossCorrelation"))
+        # fig.tight_layout()
     return df, P, None, None, None, None
 
 

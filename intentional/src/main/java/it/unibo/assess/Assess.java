@@ -15,7 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import static it.unibo.conversational.Utils.*;
+import static it.unibo.conversational.Utils.toDate;
+import static it.unibo.conversational.Utils.toInterval;
 
 /**
  * Assess intentional operator.
