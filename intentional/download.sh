@@ -1,11 +1,16 @@
 #!/bin/bash
 set -exo
 cd resources
-for file in "salespurchase_v1-2023-06-07.dmp" "sales_v1-2023-06-07.dmp" "purchase_v1-2023-06-07.dmp" "SSB_FLIGHT.DMP" "foodmart-mysql.sql" "foodmart-mysql-schema.sql" "COVID_WEEKLY.DMP" "FOODMART.DMP" "FRENCHELECTRICITY.DMP" "FRENCHELECTRICITYEXT.DMP"; do
+for file in "salespurchase_v1-2023-06-07.dmp" "sales_v1-2023-06-07.dmp" "purchase_v1-2023-06-07.dmp" "SSB_FLIGHT.DMP" "foodmart-mysql.sql" "foodmart-mysql-schema.sql" "FOODMART.DMP" "FRENCHELECTRICITY.DMP" "FRENCHELECTRICITYEXT.DMP"; do
   if [ ! -f "$file" ]; then
     curl -k -o "$file" "https://big.csr.unibo.it/projects/nosql-datasets/$file"
   fi
 done
+
+if [ ! -f "$file" ]; then
+  curl -k -o COVID_WEEKLY.DMP -L https://github.com/w4bo/covid-dataset/releases/download/1.0.2/COVID_WEEKLY.DMP
+fi
+
 ls -las
 cd -
 cd libs
