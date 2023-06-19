@@ -10,6 +10,8 @@ from os import path
 from sklearn.metrics import r2_score, mean_squared_error
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from sklearn.feature_selection import RFE
+from sklearn.feature_selection import RFECV
 from scipy import signal
 
 # SEED all random generators
@@ -41,16 +43,45 @@ def prop_to_df(model, component, property, prop=None):
 
 def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     X, y = df[x_labels], df[y_label]
-    reg = LinearRegression().fit(X, y)
-    z = [reg.intercept_] + list(reg.coef_)
+    model = LinearRegression()
+    rfe = RFECV(estimator=model, step=1, cv=3)
+    rfe = rfe.fit(X, y)
+    features = X.columns[rfe.support_]
+    print(X.columns)
+    print(rfe.ranking_)
+    print(features)
+    model = LinearRegression()
+    model.fit(X[features], y)
+    z = [model.intercept_] + list(model.coef_)
     z = [round(v, 2) for v in z]
     property = {
-        'r2': reg.score(X, y),
-        'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(X.columns, z[1:])]), z[0]),
+        'r2': model.score(X[features], y),
+        'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(features, z[1:])]), z[0]),
         'coeff': z
     }
-    P = prop_to_df('Multireg', y_label, property)
-    return df, P, None, None, None, None
+    # high_score, nof, features, property = 0, 0, [], {}
+    # X, y = df[x_labels], df[y_label]
+    # X_train, X_test, y_train, y_test = X, X, y, y
+    # for n in range(1, len(x_labels)):
+    #     model = LinearRegression()
+    #     rfe = RFE(model, n_features_to_select=n, step=1)
+    #     X_train_rfe = rfe.fit_transform(X_train, y_train)
+    #     X_test_rfe = rfe.transform(X_test)
+    #     model.fit(X_train_rfe, y_train)
+    #     score = model.score(X_test_rfe, y_test)
+    #     if score > high_score:
+    #         print(score)
+    #         high_score = score
+    #         nof = n
+    #         features = X.columns[rfe.support_]
+    #         z = [model.intercept_] + list(model.coef_)
+    #         z = [round(v, 2) for v in z]
+    #         property = {
+    #             'r2': score,
+    #             'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(features, z[1:])]), z[0]),
+    #             'coeff': z
+    #         }
+    return df, prop_to_df('Multireg', y_label, property), None, None, None, None
 
 
 def time_series_fit(df, y_label, x_labels):

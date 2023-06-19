@@ -44,10 +44,9 @@ object ExplainExecute {
         // compute the query and store the result
         val timeQuery = d.writeMultidimensionalCube(path)
         d.setMeasures(d.measures.map { measureName(it) })
-        val oldAgainst = d.against.map { measureName(it) }
         d.against.clear()
-        d.against += oldAgainst
         othermeasures = othermeasures.map { measureName(it) }.toSet()
+        d.against += othermeasures.map { measureName(it) } // d.against
         L.warn("Computing models...")
         val timeModel = d.computePython(pythonPath, path, "explain.py")
         L.warn("Models computed")

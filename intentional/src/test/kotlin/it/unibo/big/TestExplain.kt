@@ -62,8 +62,12 @@ class TestExplain {
     }
 
     @Test
-    fun `test paper ext`() {
-        execute("with ft_salpurch explain netrevenue by product_subcategory for the_year=1997")
+    fun `test paper ext example1`() {
+        execute("with ft_salpurch explain netrevenue by product_subcategory for the_year=1997 using Multireg")
+    }
+
+    @Test
+    fun `test paper ext example6`() {
         execute("with ft_salpurch explain avg(unitprice) as unitprice by the_date against avg(unitcost)")
     }
 
