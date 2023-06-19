@@ -44,12 +44,12 @@ def prop_to_df(model, component, property, prop=None):
 def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     X, y = df[x_labels], df[y_label]
     model = LinearRegression()
-    rfe = RFECV(estimator=model, step=1, cv=3)
-    rfe = rfe.fit(X, y)
-    features = X.columns[rfe.support_]
-    print(X.columns)
-    print(rfe.ranking_)
-    print(features)
+    if len(x_labels) == 1:
+        features = x_labels
+    else:
+        rfe = RFECV(estimator=model, step=1, cv=3)
+        rfe = rfe.fit(X, y)
+        features = X.columns[rfe.support_]
     model = LinearRegression()
     model.fit(X[features], y)
     z = [model.intercept_] + list(model.coef_)
