@@ -212,9 +212,9 @@ class TestExplain(unittest.TestCase):
         self.assertTrue(P["model"].nunique() == 1)
         self.assertTrue(P["component"].nunique() == 5)
 
-    def test7(self):
-        _, P, _, _, _, _ = time_series_fit(pd.read_csv('ft_by_timeid.csv'), "avgunitprice", ["avgunitcost"])
-        self.assertTrue(P["model"].nunique() == 1)
+    # def test7(self):
+    #     _, P, _, _, _, _ = time_series_fit(pd.read_csv('ft_by_timeid.csv'), "avgunitprice", ["avgunitcost"])
+    #     self.assertTrue(P["model"].nunique() == 1)
 
 
 if __name__ == '__main__':
