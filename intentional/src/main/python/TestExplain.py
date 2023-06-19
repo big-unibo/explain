@@ -176,49 +176,46 @@ class TestExplain(unittest.TestCase):
         self.assertTrue(P["component"].nunique() == 2) 
         self.assertTrue(P[(P["component"] == 'Cost') & (P["property"] == "degree")]["value"].iloc[0] == 2)
 
-    def test2(self): 
-        full_foodmart_df = pd.DataFrame(self.full_foodmart, columns=["Type", "Revenue", "Quantity", "Cost"]) 
-        X, P, ax, fig, axe, fige = fit_all(full_foodmart_df, "Revenue", ["Quantity", "Cost"], plt_all=True) 
-        self.assertTrue(full_foodmart_df.equals(X), X) 
-        self.assertTrue(P["model"].nunique() == 1) 
-        self.assertTrue(P["component"].nunique() == 2) 
+    def test2(self):
+        full_foodmart_df = pd.DataFrame(self.full_foodmart, columns=["Type", "Revenue", "Quantity", "Cost"])
+        X, P, ax, fig, axe, fige = fit_all(full_foodmart_df, "Revenue", ["Quantity", "Cost"], plt_all=True)
+        self.assertTrue(full_foodmart_df.equals(X), X)
+        self.assertTrue(P["model"].nunique() == 1)
+        self.assertTrue(P["component"].nunique() == 2)
         self.assertTrue(P[(P["component"] == 'Cost') & (P["property"] == "degree")]["value"].iloc[0] == 2)
 
-    def test3(self): 
-        df = pd.read_csv("gen_cube_1000000.csv") 
-        file_path = "../../../resources/intention/explain_scalability_python.csv" 
-        for j in range(0, 3): 
-            for i in range(2, 11): 
-                start = time.time() 
-                fit_all(df, "A", ["p({})".format(x) for x in range(1, i)]) 
-                end_time = round((time.time() - start) * 1000)  # time is in ms 
-                pd \ 
-                    .DataFrame([[i - 1, end_time]], columns=["measures", "time"]) \ 
-                    .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
+    def test3(self):
+        df = pd.read_csv("gen_cube_1000000.csv")
+        file_path = "../../../resources/intention/explain_scalability_python.csv"
+        for j in range(0, 3):
+            for i in range(2, 11):
+                start = time.time()
+                fit_all(df, "A", ["p({})".format(x) for x in range(1, i)])
+                end_time = round((time.time() - start) * 1000)  # time is in ms
+                pd.DataFrame([[i - 1, end_time]], columns=["measures", "time"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
 
-    def test4(self): 
-        X, P, ax, fig, axe, fige = multiple_regression_fit(self.full_foodmart_df, "Revenue", ["Quantity", "Cost"]) 
-        self.assertTrue(self.full_foodmart_df.equals(X), X) 
-        self.assertTrue(P["model"].nunique() == 1) 
+    def test4(self):
+        X, P, ax, fig, axe, fige = multiple_regression_fit(self.full_foodmart_df, "Revenue", ["Quantity", "Cost"])
+        self.assertTrue(self.full_foodmart_df.equals(X), X)
+        self.assertTrue(P["model"].nunique() == 1)
         self.assertTrue(P["component"].nunique() == 1)
 
-    def test5(self): 
-        X, P, ax, fig, axe, fige = multiple_regression_fit(self.full_foodmart_df, "Revenue", ["Cost"]) 
-        self.assertTrue(self.full_foodmart_df.equals(X), X) 
-        self.assertTrue(P["model"].nunique() == 1) 
+    def test5(self):
+        X, P, ax, fig, axe, fige = multiple_regression_fit(self.full_foodmart_df, "Revenue", ["Cost"])
+        self.assertTrue(self.full_foodmart_df.equals(X), X)
+        self.assertTrue(P["model"].nunique() == 1)
         self.assertTrue(P["component"].nunique() == 1)
 
-    def test6(self): 
-        X, P, ax, fig, axe, fige = time_series_fit(self.time_series_df, "t1", ["t0", "t1", "t2", "rnd", "lin"]) 
-        self.assertTrue(self.time_series_df.equals(X), X) 
-        self.assertTrue(P["model"].nunique() == 1) 
+    def test6(self):
+        X, P, ax, fig, axe, fige = time_series_fit(self.time_series_df, "t1", ["t0", "t1", "t2", "rnd", "lin"])
+        self.assertTrue(self.time_series_df.equals(X), X)
+        self.assertTrue(P["model"].nunique() == 1)
         self.assertTrue(P["component"].nunique() == 5)
- 
-   def test5(self): 
-       # _, P, _, _, _, _ = time_series_fit(pd.read_csv('dt_time.csv'), "noise_unitprice", ["noise_unitcost"]) 
-       _, P, _, _, _, _ = time_series_fit(pd.read_csv('ft_by_timeid.csv'), "avgunitprice", ["avgunitcost"]) 
-       # print(P) 
-       self.assertTrue(P["model"].nunique() == 1)
+
+    def test7(self):
+        _, P, _, _, _, _ = time_series_fit(pd.read_csv('ft_by_timeid.csv'), "avgunitprice", ["avgunitcost"])
+        self.assertTrue(P["model"].nunique() == 1)
+
 
 if __name__ == '__main__':
     unittest.main()
