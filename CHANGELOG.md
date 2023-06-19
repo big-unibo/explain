@@ -1,3 +1,97 @@
+## [1.1.35](https://github.com/big-unibo/explain/compare/1.1.34...1.1.35) (2023-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20230618 ([1790482](https://github.com/big-unibo/explain/commit/17904821f2630fe031dc8a5236136e2133d97657))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.5.3 ([c0cc4a7](https://github.com/big-unibo/explain/commit/c0cc4a769f904c387f457174f6c4f5613ef9ded1))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.23.2 ([93b7c80](https://github.com/big-unibo/explain/commit/93b7c807cfb72af5c503b7a598da0e77e17b9a81))
+* **deps:** update dependency numpy to v1.25.0 ([9c99878](https://github.com/big-unibo/explain/commit/9c99878a23e468b097fe3d7c5edcd77f87e23bf7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.33 ([9fd19f2](https://github.com/big-unibo/explain/commit/9fd19f266d4669f020bdfe2398e94b5bb27ff9da))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.34 ([b76e835](https://github.com/big-unibo/explain/commit/b76e835c015149453c6079ab24e4e704a8504332))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.35 ([427d5ef](https://github.com/big-unibo/explain/commit/427d5efbd42d9f391d107056aa5327243d498326))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.37 ([9c56d91](https://github.com/big-unibo/explain/commit/9c56d91b8471826aa3ca5bdb18da38af8c27f742))
+* **deps:** update dependency sqlalchemy to v2.0.16 ([45f9662](https://github.com/big-unibo/explain/commit/45f9662cd3f763cc848e6753212e8a7347199fd2))
+
+## [1.1.34](https://github.com/big-unibo/explain/compare/1.1.33...1.1.34) (2023-06-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.0.1-jre ([97a6b03](https://github.com/big-unibo/explain/commit/97a6b0373f1767a835b4bc003c60320b44f2c438))
+
+## [1.1.33](https://github.com/big-unibo/explain/compare/1.1.32...1.1.33) (2023-06-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.13.0 ([41ecae9](https://github.com/big-unibo/explain/commit/41ecae9b3157758370f06211ee7293f1a857f71e))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.28 ([1ced4a9](https://github.com/big-unibo/explain/commit/1ced4a9c30691c30bb231c0b3350eca871761bc7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.30 ([0ebd708](https://github.com/big-unibo/explain/commit/0ebd7089bf8b08360dd2d323523288f877b8e1fc))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.32 ([2c0bb12](https://github.com/big-unibo/explain/commit/2c0bb12792cdf7e9927af361cd17c5ae24d147b5))
+
+## [1.1.32](https://github.com/big-unibo/explain/compare/1.1.31...1.1.32) (2023-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.1 ([211d22b](https://github.com/big-unibo/explain/commit/211d22b379f1c74fe8df5a5cbda88469466348fb))
+
+## [1.1.31](https://github.com/big-unibo/explain/compare/1.1.30...1.1.31) (2023-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.15.2 ([aab6814](https://github.com/big-unibo/explain/commit/aab68145220e027a93b471a58fe4c7649cced438))
+
+## [1.1.30](https://github.com/big-unibo/explain/compare/1.1.29...1.1.30) (2023-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.15.2 ([171dc1b](https://github.com/big-unibo/explain/commit/171dc1b744a6182c773c62f3d9adee55e20b092b))
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.27 ([d5738af](https://github.com/big-unibo/explain/commit/d5738afa8faf301d3e513b24c405a02a8036ab09))
+
+## [1.1.29](https://github.com/big-unibo/explain/compare/1.1.28...1.1.29) (2023-05-27)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32 ([1ce4379](https://github.com/big-unibo/explain/commit/1ce4379df5bc98fcacbeac3671990300ff608d53))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.4.2 ([cd35376](https://github.com/big-unibo/explain/commit/cd35376c9d143b5f45531d833f8de105a209a958))
+
+## [1.1.28](https://github.com/big-unibo/explain/compare/1.1.27...1.1.28) (2023-05-26)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.github.doyaaaaaken:kotlin-csv-jvm to v1.9.1 ([4fa6f84](https://github.com/big-unibo/explain/commit/4fa6f84bc5bc5d50ecadd5e95214625fbb146b3e))
+
+
+### Dependency updates
+
+* **deps:** update dependency requests to v2.31.0 ([1e85d2d](https://github.com/big-unibo/explain/commit/1e85d2dd8f2957fa329ee730ff0b9e1cd6f04a04))
+
 ## [1.1.27](https://github.com/big-unibo/explain/compare/1.1.26...1.1.27) (2023-05-22)
 
 
