@@ -209,6 +209,25 @@ def fit_all(X, measure, othermeasures, r=6, kpi='score', plt_all=False):
     return X, P, ax, fig, axe, fige
 
 
+def run(X, measure, measures, using, execution_id=-1):
+    P = pd.DataFrame()
+    stats = []
+    for model in using:
+        start = time.time()
+        if model == "Polyfit":
+            _, curP, _, _, _, _ = fit_all(X, measure, measures, plt_all=False)
+        elif model == "CrossCorrelation":
+            _, curP, _, _, _, _ = time_series_fit(X, measure, measures)
+        elif model == "Multireg":
+            _, curP, _, _, _, _ = multiple_regression_fit(X, measure, measures)
+        else:
+            raise ValueError("Unknown model: " + model)
+        end_time = round((time.time() - start) * 1000)  # time is in ms
+        P = P.append(curP)
+        stats.append([execution_id, model, end_time])
+    return P, stats
+
+
 if __name__ == '__main__':
     ###############################################################################
     # PARAMETERS SETUP
@@ -251,21 +270,7 @@ if __name__ == '__main__':
     if len(measures) < 1:
         raise ValueError("Not enough measures: " + str(measures))
     using = ["Polyfit", "CrossCorrelation", "Multireg"] if len(using) == 0 else using
-    P = pd.DataFrame()
-    stats = [] 
-    for model in using:
-        start = time.time()
-        if model == "Polyfit":
-            _, curP, _, _, _, _ = fit_all(X, measure, measures, plt_all=False)
-        elif model == "CrossCorrelation":
-            _, curP, _, _, _, _ = time_series_fit(X, measure, measures)
-        elif model == "Multireg":
-            _, curP, _, _, _, _ = multiple_regression_fit(X, measure, measures)
-        else:
-            raise ValueError("Unknown model: " + model)
-        end_time = round((time.time() - start) * 1000)  # time is in ms
-        P = P.append(curP)
-        stats.append([execution_id, model, end_time])
+    P, stats = run(X, measure, measures, using, execution_id)
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "/../explain_time_python.csv"
     pd \
