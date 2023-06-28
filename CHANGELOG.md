@@ -1,3 +1,18 @@
+## [1.1.36](https://github.com/big-unibo/explain/compare/1.1.35...1.1.36) (2023-06-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.2 ([9520f5f](https://github.com/big-unibo/explain/commit/9520f5fe0b64057e44ebb6f1c72364c761f4300e))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.23.3 ([befa45f](https://github.com/big-unibo/explain/commit/befa45f10ae1ed46b25264ff90919646fba8fcc4))
+* **deps:** update dependency scipy to v1.11.0 ([4c5fe50](https://github.com/big-unibo/explain/commit/4c5fe504a4a9ec2639c99daf7d3a2a2fbd555a3b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.38 ([886ce4c](https://github.com/big-unibo/explain/commit/886ce4cccc94195231f859e64a68438a1c11eac8))
+* **deps:** update dependency sqlalchemy to v2.0.17 ([67c9cd6](https://github.com/big-unibo/explain/commit/67c9cd6f8a5bd95b291ade0b822c325fe76c0bff))
+
 ## [1.1.35](https://github.com/big-unibo/explain/compare/1.1.34...1.1.35) (2023-06-18)
 
 
