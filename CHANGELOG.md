@@ -1,3 +1,15 @@
+## [1.1.37](https://github.com/big-unibo/explain/compare/1.1.36...1.1.37) (2023-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.1.0-jre ([be1eae4](https://github.com/big-unibo/explain/commit/be1eae49412521a7ad9e771b45201161c722a5d3))
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.11.1 ([7e66f22](https://github.com/big-unibo/explain/commit/7e66f228a5aacff42cf24bada848f09e2ad684cf))
+
 ## [1.1.36](https://github.com/big-unibo/explain/compare/1.1.35...1.1.36) (2023-06-28)
 
 
