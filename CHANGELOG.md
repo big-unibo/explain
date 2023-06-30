@@ -1,3 +1,16 @@
+## [1.1.38](https://github.com/big-unibo/explain/compare/1.1.37...1.1.38) (2023-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.1.1-jre ([08e07c8](https://github.com/big-unibo/explain/commit/08e07c830206d8b0fb8aed5ad5ff7e96104ebefa))
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.2 ([8186127](https://github.com/big-unibo/explain/commit/81861273f68683aaa7342a40b33ec90e75eec72f))
+* **deps:** update dependency scikit-learn to v1.3.0 ([3b8e7f3](https://github.com/big-unibo/explain/commit/3b8e7f34be651915170d9b31cf545456a7a80e7e))
+
 ## [1.1.37](https://github.com/big-unibo/explain/compare/1.1.36...1.1.37) (2023-06-30)
 
 
