@@ -77,19 +77,28 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     return df, prop_to_df('Multireg', y_label, property), None, None, None, None
 
 
-def time_series_fit(df, y_label, x_labels):
+def time_series_fit(df, y_label, x_labels, max_lag=365):
     from scipy.stats import zscore
     prop = []
-    y, l = df[[y_label]].apply(zscore), len(df[y_label])
-    for component in x_labels:
-        correlation = signal.correlate(y, df[[component]].apply(zscore), mode="full") / l
-        abs_correlation = [np.abs(x) for x in correlation]
-        lags = signal.correlation_lags(l, l, mode="full")
+    lagged_correlation = pd.DataFrame.from_dict({x: [df[y_label].corr(shift) for t in range(-max_lag, max_lag) if (shift := df[x].shift(t)).count() > 2] for x in x_labels})
+    for x in lagged_correlation.columns:
+        amax = lagged_correlation[x].abs().idxmax(skipna=True)
         property = {
-            "interest": np.max(abs_correlation),
-            "lag": lags[np.argmax(abs_correlation)]
+            "interest": lagged_correlation[x].at[amax],
+            "lag": amax - int(len(lagged_correlation) / 2)
         }
-        P = prop_to_df('CrossCorrelation', component, property, prop)
+        P = prop_to_df('CrossCorrelation', x, property, prop)
+    # prop = []
+    # y, l, mean = df[[y_label]].apply(zscore), len(df[y_label]), df[y_label].mean()
+    # for component in x_labels:
+        # correlation = signal.correlate(y, df[[component]].apply(zscore), mode="full") / l
+        # abs_correlation = [np.abs(x) for x in correlation]
+        # lags = signal.correlation_lags(l, l, mode="full")
+        # property = {
+        #     "interest": np.max(abs_correlation),
+        #     "lag": lags[np.argmax(abs_correlation)]
+        # }
+        # P = prop_to_df('CrossCorrelation', component, property, prop)
         # Plot the line chart
         # import matplotlib.dates as mdates
         # import datetime as dt
@@ -105,6 +114,9 @@ def time_series_fit(df, y_label, x_labels):
         # fig.savefig('example_{}.pdf'.format("CrossCorrelation"))
         # fig.savefig('example_{}.svg'.format("CrossCorrelation"))
         # fig.tight_layout()
+    # print(P)
+    # import sys
+    # sys.exit
     return df, P, None, None, None, None
 
 
