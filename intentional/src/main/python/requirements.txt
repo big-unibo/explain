@@ -11,3 +11,4 @@ scipy==1.10.1
 SQLAlchemy==2.0.16
 yellowbrick==1.5
 autopep8==2.0.2
+pycorrelate==0.3

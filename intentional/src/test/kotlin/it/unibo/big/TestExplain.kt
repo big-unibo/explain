@@ -72,12 +72,17 @@ class TestExplain {
     }
 
     @Test
+    fun `test paper ext example`() {
+        execute("with ft_salpurch explain discount by the_month")
+    }
+
+    @Test
     fun testScalability() {
         val writer = Files.newBufferedWriter(Paths.get("resources/intention/explain_time.csv"))
         val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
         var first = true
 
-        for (t in 0..5) {
+        for (t in 0..9) {
             listOf(
                     "with sales explain unit_sales by product_family, the_month", // 36
                     "with sales explain unit_sales by the_date", // 323
@@ -85,7 +90,7 @@ class TestExplain {
                     "with sales explain unit_sales by product_subcategory, the_month", // 1224
                     "with sales explain unit_sales by product_category, the_date", // 12113
                     "with sales explain unit_sales by customer_id, the_month", // 16949
-                    "with sales explain unit_sales by product_id, the_month",// 18492
+                    "with sales explain unit_sales by product_id, the_month", // 18492
                     "with sales explain unit_sales by the_date, customer_id", // 20k
                     "with sales explain unit_sales by the_date, product_id", // 77k
                     "with sales explain unit_sales by the_date, customer_id, product_id" // 87k

@@ -55,7 +55,7 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     z = [model.intercept_] + list(model.coef_)
     z = [round(v, 2) for v in z]
     property = {
-        'r2': model.score(X[features], y),
+        'interest': model.score(X[features], y),
         'equation': '{}={}+{}'.format(y_label, '+'.join([str(v) + "$\cdot$" + str(k) for k, v in zip(features, z[1:])]), z[0]),
         'coeff': z
     }
@@ -78,27 +78,28 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
 
 
 def time_series_fit(df, y_label, x_labels, max_lag=365):
-    from scipy.stats import zscore
-    prop = []
-    lagged_correlation = pd.DataFrame.from_dict({x: [df[y_label].corr(shift) for t in range(-max_lag, max_lag) if (shift := df[x].shift(t)).count() > 2] for x in x_labels})
-    for x in lagged_correlation.columns:
-        amax = lagged_correlation[x].abs().idxmax(skipna=True)
-        property = {
-            "interest": lagged_correlation[x].at[amax],
-            "lag": amax - int(len(lagged_correlation) / 2)
-        }
-        P = prop_to_df('CrossCorrelation', x, property, prop)
     # prop = []
-    # y, l, mean = df[[y_label]].apply(zscore), len(df[y_label]), df[y_label].mean()
-    # for component in x_labels:
-        # correlation = signal.correlate(y, df[[component]].apply(zscore), mode="full") / l
-        # abs_correlation = [np.abs(x) for x in correlation]
-        # lags = signal.correlation_lags(l, l, mode="full")
-        # property = {
-        #     "interest": np.max(abs_correlation),
-        #     "lag": lags[np.argmax(abs_correlation)]
-        # }
-        # P = prop_to_df('CrossCorrelation', component, property, prop)
+    # lagged_correlation = pd.DataFrame.from_dict({x: [df[y_label].corr(shift) for t in range(-max_lag, max_lag) if (shift := df[x].shift(t)).count() > 2] for x in x_labels})
+    # for x in lagged_correlation.columns:
+    #     amax = lagged_correlation[x].abs().idxmax(skipna=True)
+    #     property = {
+    #         "interest": lagged_correlation[x].at[amax],
+    #         "lag": amax - int(len(lagged_correlation) / 2)
+    #     }
+    #     P = prop_to_df('CrossCorrelation', x, property, prop)
+    prop = []
+    y, l = df[y_label] - df[y_label].mean(), len(df[y_label])
+    var, lags = np.sum(y ** 2), signal.correlation_lags(l, l, mode="full") # the possible lags
+    for component in x_labels:
+        x = df[component] - df[component].mean()
+        cc = signal.correlate(y, x, mode="full", method="auto")
+        norm_cc = cc / np.sqrt(np.sum(x ** 2) * var)
+        abs_cc = np.abs(norm_cc)
+        property = {
+            "interest": np.max(abs_cc),
+            "lag": lags[np.argmax(abs_cc)]
+        }
+        P = prop_to_df('CrossCorrelation', component, property, prop)
         # Plot the line chart
         # import matplotlib.dates as mdates
         # import datetime as dt
@@ -114,13 +115,10 @@ def time_series_fit(df, y_label, x_labels, max_lag=365):
         # fig.savefig('example_{}.pdf'.format("CrossCorrelation"))
         # fig.savefig('example_{}.svg'.format("CrossCorrelation"))
         # fig.tight_layout()
-    # print(P)
-    # import sys
-    # sys.exit
     return df, P, None, None, None, None
 
 
-def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):  # test_size=0.33
+def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y', plt_all=False):
     def myprint(z, x='x'):
         c = str(round(z[0], 2))
         z = z[1:]
@@ -177,7 +175,7 @@ def fit(df, r=5, kpi='score', m_size=1, test_size=0.33, x_label='x', y_label='y'
         interest = r2_score(test[y_label], test_values)
         mse = mean_squared_error(test[y_label], test_values)
         models[m] = {
-            'r2': interest,
+            'interest': interest,
             'mse': mse,
             'score': mse * len(test) / (len(test) - i - 1),
             'degree': i,
