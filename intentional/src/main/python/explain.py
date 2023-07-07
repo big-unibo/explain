@@ -47,9 +47,12 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
     if len(x_labels) == 1:
         features = x_labels
     else:
+        # while len(x_labels) > 1:
+        #     RFE(model, n_features_to_select=len(x_labels) - 1, step=1)
         rfe = RFECV(estimator=model, step=1, cv=3)
         rfe = rfe.fit(X, y)
         features = X.columns[rfe.support_]
+        # print(rfe.ranking_)
     model = LinearRegression()
     model.fit(X[features], y)
     z = [model.intercept_] + list(model.coef_)
@@ -78,15 +81,6 @@ def multiple_regression_fit(df, y_label='y', x_labels=['x']):
 
 
 def time_series_fit(df, y_label, x_labels, max_lag=365):
-    # prop = []
-    # lagged_correlation = pd.DataFrame.from_dict({x: [df[y_label].corr(shift) for t in range(-max_lag, max_lag) if (shift := df[x].shift(t)).count() > 2] for x in x_labels})
-    # for x in lagged_correlation.columns:
-    #     amax = lagged_correlation[x].abs().idxmax(skipna=True)
-    #     property = {
-    #         "interest": lagged_correlation[x].at[amax],
-    #         "lag": amax - int(len(lagged_correlation) / 2)
-    #     }
-    #     P = prop_to_df('CrossCorrelation', x, property, prop)
     prop = []
     y, l = df[y_label] - df[y_label].mean(), len(df[y_label])
     var, lags = np.sum(y ** 2), signal.correlation_lags(l, l, mode="full") # the possible lags
