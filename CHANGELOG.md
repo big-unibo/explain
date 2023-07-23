@@ -1,3 +1,31 @@
+## [1.1.39](https://github.com/big-unibo/explain/compare/1.1.38...1.1.39) (2023-07-23)
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.0 ([bddb834](https://github.com/big-unibo/explain/commit/bddb834950712fac79fc0bd574d057955be10706))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.4.3 ([c82157d](https://github.com/big-unibo/explain/commit/c82157d4d09e97f996410103d4fd72433a165785))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.24.0 ([f55c5e9](https://github.com/big-unibo/explain/commit/f55c5e92fdea3c26367be38a66fb869ac6d10023))
+* **deps:** update dependency matplotlib to v3.7.2 ([3f85b10](https://github.com/big-unibo/explain/commit/3f85b10a0972905643c9b36640534bdad2e88ce2))
+* **deps:** update dependency notebook to v7 ([0c5f37e](https://github.com/big-unibo/explain/commit/0c5f37e2a21f9b56ce2e08d48149f9178744cf26))
+* **deps:** update dependency numpy to v1.25.1 ([4cbffa2](https://github.com/big-unibo/explain/commit/4cbffa2ce460740af918b8dd32fe6f8b8e01a9d2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.39 ([a1d023e](https://github.com/big-unibo/explain/commit/a1d023ed639fed30fce94050216734b8bc684c6e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.40 ([1d513b7](https://github.com/big-unibo/explain/commit/1d513b70313d175ef3e1e7e534f83f48cca1194e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.41 ([2731027](https://github.com/big-unibo/explain/commit/2731027b3555ec1ca762e4ee40effd0919f0c5ff))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.42 ([7b82e15](https://github.com/big-unibo/explain/commit/7b82e15b77f5eb67308c0978ee5f66abb106ee30))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.43 ([a3e8c58](https://github.com/big-unibo/explain/commit/a3e8c5828684e9a07bd479efe326f33802c0cc85))
+* **deps:** update dependency sqlalchemy to v2.0.18 ([ac45204](https://github.com/big-unibo/explain/commit/ac45204b024f0603797b67bc70434029bbb2495d))
+* **deps:** update dependency sqlalchemy to v2.0.19 ([68c72f4](https://github.com/big-unibo/explain/commit/68c72f456a4905564be5a2e00fae2379a0ae2ebe))
+* **deps:** update node.js to 18.17 ([a6b8b59](https://github.com/big-unibo/explain/commit/a6b8b59a312e25e611cb39721c25a001aaec28d5))
+
 ## [1.1.38](https://github.com/big-unibo/explain/compare/1.1.37...1.1.38) (2023-06-30)
 
 
