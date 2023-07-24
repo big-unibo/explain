@@ -1,3 +1,10 @@
+## [1.1.40](https://github.com/big-unibo/explain/compare/1.1.39...1.1.40) (2023-07-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.opencsv:opencsv to v5.8 ([b99336f](https://github.com/big-unibo/explain/commit/b99336ffbae4e0efcbfa76ce95a5872d5859b3e5))
+
 ## [1.1.39](https://github.com/big-unibo/explain/compare/1.1.38...1.1.39) (2023-07-23)
 
 
