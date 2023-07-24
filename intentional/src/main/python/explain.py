@@ -89,9 +89,11 @@ def time_series_fit(df, y_label, x_labels, max_lag=365):
         cc = signal.correlate(y, x, mode="full", method="auto")
         norm_cc = cc / np.sqrt(np.sum(x ** 2) * var)
         abs_cc = np.abs(norm_cc)
+        best_lag = lags[np.argmax(abs_cc)]
         property = {
             "interest": np.max(abs_cc),
-            "lag": lags[np.argmax(abs_cc)]
+            "lag": best_lag,
+            "r2": r2_score(df[y_label], df[component].reindex(index=np.roll(df.index, best_lag)))
         }
         P = prop_to_df('CrossCorrelation', component, property, prop)
         # Plot the line chart
