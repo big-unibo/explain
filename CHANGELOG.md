@@ -1,3 +1,78 @@
+## [1.1.40](https://github.com/big-unibo/explain/compare/1.1.39...1.1.40) (2023-07-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.opencsv:opencsv to v5.8 ([b99336f](https://github.com/big-unibo/explain/commit/b99336ffbae4e0efcbfa76ce95a5872d5859b3e5))
+
+## [1.1.39](https://github.com/big-unibo/explain/compare/1.1.38...1.1.39) (2023-07-23)
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.0 ([bddb834](https://github.com/big-unibo/explain/commit/bddb834950712fac79fc0bd574d057955be10706))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.4.3 ([c82157d](https://github.com/big-unibo/explain/commit/c82157d4d09e97f996410103d4fd72433a165785))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.24.0 ([f55c5e9](https://github.com/big-unibo/explain/commit/f55c5e92fdea3c26367be38a66fb869ac6d10023))
+* **deps:** update dependency matplotlib to v3.7.2 ([3f85b10](https://github.com/big-unibo/explain/commit/3f85b10a0972905643c9b36640534bdad2e88ce2))
+* **deps:** update dependency notebook to v7 ([0c5f37e](https://github.com/big-unibo/explain/commit/0c5f37e2a21f9b56ce2e08d48149f9178744cf26))
+* **deps:** update dependency numpy to v1.25.1 ([4cbffa2](https://github.com/big-unibo/explain/commit/4cbffa2ce460740af918b8dd32fe6f8b8e01a9d2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.39 ([a1d023e](https://github.com/big-unibo/explain/commit/a1d023ed639fed30fce94050216734b8bc684c6e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.40 ([1d513b7](https://github.com/big-unibo/explain/commit/1d513b70313d175ef3e1e7e534f83f48cca1194e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.41 ([2731027](https://github.com/big-unibo/explain/commit/2731027b3555ec1ca762e4ee40effd0919f0c5ff))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.42 ([7b82e15](https://github.com/big-unibo/explain/commit/7b82e15b77f5eb67308c0978ee5f66abb106ee30))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.43 ([a3e8c58](https://github.com/big-unibo/explain/commit/a3e8c5828684e9a07bd479efe326f33802c0cc85))
+* **deps:** update dependency sqlalchemy to v2.0.18 ([ac45204](https://github.com/big-unibo/explain/commit/ac45204b024f0603797b67bc70434029bbb2495d))
+* **deps:** update dependency sqlalchemy to v2.0.19 ([68c72f4](https://github.com/big-unibo/explain/commit/68c72f456a4905564be5a2e00fae2379a0ae2ebe))
+* **deps:** update node.js to 18.17 ([a6b8b59](https://github.com/big-unibo/explain/commit/a6b8b59a312e25e611cb39721c25a001aaec28d5))
+
+## [1.1.38](https://github.com/big-unibo/explain/compare/1.1.37...1.1.38) (2023-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.1.1-jre ([08e07c8](https://github.com/big-unibo/explain/commit/08e07c830206d8b0fb8aed5ad5ff7e96104ebefa))
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.2 ([8186127](https://github.com/big-unibo/explain/commit/81861273f68683aaa7342a40b33ec90e75eec72f))
+* **deps:** update dependency scikit-learn to v1.3.0 ([3b8e7f3](https://github.com/big-unibo/explain/commit/3b8e7f34be651915170d9b31cf545456a7a80e7e))
+
+## [1.1.37](https://github.com/big-unibo/explain/compare/1.1.36...1.1.37) (2023-06-30)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.1.0-jre ([be1eae4](https://github.com/big-unibo/explain/commit/be1eae49412521a7ad9e771b45201161c722a5d3))
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.11.1 ([7e66f22](https://github.com/big-unibo/explain/commit/7e66f228a5aacff42cf24bada848f09e2ad684cf))
+
+## [1.1.36](https://github.com/big-unibo/explain/compare/1.1.35...1.1.36) (2023-06-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.2 ([9520f5f](https://github.com/big-unibo/explain/commit/9520f5fe0b64057e44ebb6f1c72364c761f4300e))
+
+
+### Dependency updates
+
+* **deps:** update dependency ipykernel to v6.23.3 ([befa45f](https://github.com/big-unibo/explain/commit/befa45f10ae1ed46b25264ff90919646fba8fcc4))
+* **deps:** update dependency scipy to v1.11.0 ([4c5fe50](https://github.com/big-unibo/explain/commit/4c5fe504a4a9ec2639c99daf7d3a2a2fbd555a3b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.38 ([886ce4c](https://github.com/big-unibo/explain/commit/886ce4cccc94195231f859e64a68438a1c11eac8))
+* **deps:** update dependency sqlalchemy to v2.0.17 ([67c9cd6](https://github.com/big-unibo/explain/commit/67c9cd6f8a5bd95b291ade0b822c325fe76c0bff))
+
 ## [1.1.35](https://github.com/big-unibo/explain/compare/1.1.34...1.1.35) (2023-06-18)
 
 

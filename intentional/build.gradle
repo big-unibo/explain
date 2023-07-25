@@ -66,7 +66,7 @@ dependencies {
     antlr "org.antlr:antlr4:4.13.0"
     // servlet
     implementation 'javax:javaee-api:8.0.1'
-    implementation 'io.ktor:ktor-server-servlet:2.3.1'
+    implementation 'io.ktor:ktor-server-servlet:2.3.2'
     // kotlin
     implementation "com.github.holgerbrandl:krangl:0.18.4"
     implementation 'io.github.cdimascio:dotenv-kotlin:6.4.1'
@@ -82,15 +82,15 @@ dependencies {
     implementation 'org.slf4j:slf4j-api:2.0.7'
     implementation 'org.slf4j:slf4j-log4j12:2.0.7'
     implementation 'org.json:json:20230618'
-    implementation 'com.google.guava:guava:32.0.1-jre'
-    implementation 'com.opencsv:opencsv:5.7.1'
+    implementation 'com.google.guava:guava:32.1.1-jre'
+    implementation 'com.opencsv:opencsv:5.8'
     implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.15.2'
     implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
     implementation 'com.oracle.ojdbc:ojdbc8:19.3.0.0'
     implementation 'org.jooq:jool:0.9.15'
     // Test
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.3'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 }
 
 generateGrammarSource {

@@ -1,8 +1,8 @@
 {
   "devDependencies": {
-    "semantic-release-preconfigured-conventional-commits": "1.1.37"
+    "semantic-release-preconfigured-conventional-commits": "1.1.43"
   },
   "engines": {
-    "node": "18.16"
+    "node": "18.17"
   }
 }
