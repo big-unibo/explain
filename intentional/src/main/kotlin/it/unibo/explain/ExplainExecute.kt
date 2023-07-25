@@ -1,13 +1,12 @@
 package it.unibo.explain
 
-import it.unibo.Intention
 import it.unibo.antlr.gen.ExplainLexer
 import it.unibo.antlr.gen.ExplainParser
 import it.unibo.antlr.gen.ThrowingErrorListener
+import it.unibo.conversational.Utils.measureName
 import it.unibo.conversational.database.QueryGenerator
 import krangl.DataFrame
 import krangl.readCSV
-import krangl.rename
 import org.antlr.v4.runtime.ANTLRInputStream
 import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.tree.ParseTree
@@ -34,10 +33,17 @@ object ExplainExecute {
     @JvmOverloads
     @Throws(Exception::class)
     fun execute(d: Explain, path: String, pythonPath: String = "src/main/python/"): Triple<JSONObject, DataFrame, DataFrame> {
-        val allmeasures = QueryGenerator.getMeasures(d.cube)
-        val othermeasures = allmeasures.minus(d.measures.first())
+        // get the other measures to explain
+        var othermeasures = if (d.against.isEmpty()) { QueryGenerator.getMeasures(d.cube) } else { d.against }
+        // omit the measure to be explained
+        othermeasures = othermeasures.filter { !measureName(it).equals(measureName(d.measures.first())) }.toSet()
         d.addMeasures(*othermeasures.toTypedArray())
+        // compute the query and store the result
         val timeQuery = d.writeMultidimensionalCube(path)
+        d.setMeasures(d.measures.map { measureName(it) })
+        d.against.clear()
+        othermeasures = othermeasures.map { measureName(it) }.toSet()
+        d.against += othermeasures.map { measureName(it) } // d.against
         L.warn("Computing models...")
         val timeModel = d.computePython(pythonPath, path, "explain.py")
         L.warn("Models computed")

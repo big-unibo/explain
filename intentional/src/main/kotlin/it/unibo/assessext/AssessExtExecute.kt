@@ -10,9 +10,11 @@ import it.unibo.assess.Assess.BenchmarkType
 import it.unibo.assess.CustomAssessVisitor
 import it.unibo.conversational.database.QueryGenerator
 import it.unibo.conversational.datatypes.DependencyGraph
-import it.unibo.describe.DescribeExecute
 import it.unibo.describe.DescribeExecute.getPivot
-import krangl.*
+import krangl.DataFrame
+import krangl.mean
+import krangl.readCSV
+import krangl.summarize
 import org.antlr.v4.runtime.ANTLRInputStream
 import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.tree.ParseTree

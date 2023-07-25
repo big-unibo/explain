@@ -16,7 +16,9 @@ class CustomExplainVisitor(val explain: Explain) : ExplainBaseVisitor<JSONObject
         if (ctx.sc != null) {
             visit(ctx.sc)
         }
-        explain.addMeasures(ctx.mc.name)
+        explain.addMeasures(ctx.mc.text.lowercase())
+        explain.against += ctx.against.map { it.text.lowercase() }
+        explain.using += ctx.using.map { it.name }
         return null
     }
 

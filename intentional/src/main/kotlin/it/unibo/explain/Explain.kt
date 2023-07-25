@@ -1,7 +1,6 @@
 package it.unibo.explain
 
 import it.unibo.Intention
-import it.unibo.conversational.database.QueryGenerator
 import it.unibo.describe.Describe.Companion.clauseToString
 import java.io.File
 import java.util.*
@@ -9,6 +8,15 @@ import java.util.*
 class Explain : Intention {
     constructor(d: Intention?) : super(d, false) {}
     constructor() : super(null, false) {}
+    val against: MutableSet<String> = mutableSetOf()
+    val using: MutableSet<String> = mutableSetOf()
+
+    fun concat(c: Collection<String>, sep: String =", "): String {
+        if (c.isEmpty()) {
+            return ""
+        }
+        return c.toList().sorted().reduce { a, b -> "$a$sep$b"}
+    }
 
     override fun toPythonCommand(commandPath: String, path: String): String {
         val sessionStep = getSessionStep()
@@ -19,15 +27,19 @@ class Explain : Intention {
                 + " --path " + (if (path.contains(" ")) "\"" else "") + path.replace("\\", "/") + (if (path.contains(" ")) "\"" else "") //
                 + " --file " + filename //
                 + " --session_step " + sessionStep //
-                + " --measure " + measures.first() //
+                + " --measure " + measures.minus(against).first() //
                 + " --execution_id " + execution_id
-                + " --cube " + json.toString().replace(" ", "__"))
+                + " --cube " + json.toString().replace(" ", "__")
+                + " --against " + concat(against, sep = ",")
+                + " --using " + concat(using, sep = ","))
     }
 
     override fun toString(): String {
-        return "with $cubeSyn " +
-                "explain ${measures.reduce { a, b -> "$a, $b" }} " +
-                "by ${attributes.reduce { a, b -> "$a, $b" }} " +
-                if (clauses.isEmpty()) { "" } else { "for ${clauses.toList().map { clauseToString(it) }.reduce { a, b -> "$a and $b"} } " }
+        return "with $cubeSyn" +
+                " explain ${concat(measures)}" +
+                " by ${concat(attributes)}" +
+                if (clauses.isEmpty()) { "" } else { " for ${concat(clauses.map { clauseToString(it) }, sep = " and ")}" } +
+                " against " + if (against.isEmpty()) { measures } else { concat(against) } +
+                " using " + if (using.isEmpty()) { concat(listOf("CrossCorrelation", "Multireg", "Polyfit")) } else { concat(using) }
     }
 }
