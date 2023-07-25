@@ -25,20 +25,24 @@ Running the experiments requires the following software to be installed:
 
 Once the software is installed, execute the following code to run the tests.
 
-    cd intentional
-    chmod +x *.sh
-    bash init.sh
-    bash build.sh
-    bash download.sh
-    bash start.sh
-    bash stop.sh
+```sh
+cd intentional
+chmod +x *.sh
+bash init.sh
+bash build.sh
+bash download.sh
+bash start.sh
+bash stop.sh
+```
 
 ## Working and deploying the application
 
 - Change the necessary files (see the ones copied by `init.sh`)
 - Deploy the web application on Tomcat
 
-        ./deploy.sh
+```sh
+./deploy.sh
+```
 
 - **Remember** to `chmod -R 777` the folders `scr/main/python` and the one containing the Oracle client 
 - (If using Intellij) **Remember** to set the `LD_LIBRARY_PATH` in the run/debug configuration (see the `.env` file)
