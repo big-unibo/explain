@@ -4,7 +4,9 @@
 
 ## Research papers
 
-Please refer to the following research paper:
+Implementation of "Explaining Cube Measures Through Intentional Analytics", submitted to Elsevier's Information Systems.
+
+Please also refer to the following research paper:
 
 - Francia, Matteo, Stefano Rizzi, and Patrick Marcel. "The Whys and Wherefores of Cubes." **Proceedings of the 25th International Workshop on Design, Optimization, Languages and Analytical Processing of Big Data (DOLAP)**. 2023. URL: https://ceur-ws.org/Vol-3369/paper4.pdf
 
