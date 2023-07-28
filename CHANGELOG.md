@@ -1,3 +1,15 @@
+## [1.1.41](https://github.com/big-unibo/explain/compare/1.1.40...1.1.41) (2023-07-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.13.0 ([b2c1880](https://github.com/big-unibo/explain/commit/b2c18807c1a3bdda237eeefb8ca68fc16eb49b02))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v3.12.0 ([5741a3a](https://github.com/big-unibo/explain/commit/5741a3a23aeb8e73aa4313105189e78dc7bf7767))
+
 ## [1.1.40](https://github.com/big-unibo/explain/compare/1.1.39...1.1.40) (2023-07-24)
 
 
