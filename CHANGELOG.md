@@ -1,3 +1,16 @@
+## [1.1.43](https://github.com/big-unibo/explain/compare/1.1.42...1.1.43) (2023-08-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v32.1.2-jre ([557425b](https://github.com/big-unibo/explain/commit/557425bcb8102cbe5ceff1b9c9f0adebf1380651))
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.0.1 ([063dd97](https://github.com/big-unibo/explain/commit/063dd97ca6b22358e9d1ad42573d6e5de4882b31))
+* **deps:** update dependency numpy to v1.25.2 ([442f9db](https://github.com/big-unibo/explain/commit/442f9dbfb67f526401eacec450f1f78c47c6ee90))
+
 ## [1.1.42](https://github.com/big-unibo/explain/compare/1.1.41...1.1.42) (2023-07-30)
 
 
