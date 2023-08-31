@@ -1,3 +1,33 @@
+## [1.1.45](https://github.com/big-unibo/explain/compare/1.1.44...1.1.45) (2023-08-31)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.0.3 ([535a35b](https://github.com/big-unibo/explain/commit/535a35b7838c7fec9d26bc7f1ebda9cc6ea08edc))
+* **deps:** update dependency autopep8 to v2.0.4 ([7d061f6](https://github.com/big-unibo/explain/commit/7d061f61ff54d6e542dce414dbe18f158a1b3438))
+* **deps:** update dependency notebook to v7.0.2 ([d568967](https://github.com/big-unibo/explain/commit/d5689675b84b513f6d0bb82213952b26d621f813))
+* **deps:** update dependency notebook to v7.0.3 ([dc3564c](https://github.com/big-unibo/explain/commit/dc3564c9afd3c01e7cf7462a12b408f4388d0716))
+* **deps:** update dependency scipy to v1.11.2 ([a4fe31b](https://github.com/big-unibo/explain/commit/a4fe31b4b11edf2e2041e9afe497be98be0eaba2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.44 ([5a29f6e](https://github.com/big-unibo/explain/commit/5a29f6e9d8ff5653558f7852c37dc8496d74d096))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.46 ([0565b60](https://github.com/big-unibo/explain/commit/0565b60ed8a9ebee1e8fdabd651b320c81b6a6e0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.47 ([8413873](https://github.com/big-unibo/explain/commit/8413873ed3b544efa8d4a9afb8693d705adfccd6))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.48 ([1caa7ae](https://github.com/big-unibo/explain/commit/1caa7aebdd234b35002171302dd8fe348c30a994))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.49 ([836f3fb](https://github.com/big-unibo/explain/commit/836f3fbb7220a0a64d2070c20b1541b1e23a2b26))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.50 ([bd08321](https://github.com/big-unibo/explain/commit/bd08321b8cadae68022e3174ddfa87e7eddacaa3))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.51 ([7de0bb7](https://github.com/big-unibo/explain/commit/7de0bb7a3e857ba82ed2c10405a46601c336cb52))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.52 ([96ac1d8](https://github.com/big-unibo/explain/commit/96ac1d8e57eb1326e9f79f8eafd5d3310d319fbf))
+* **deps:** update dependency sqlalchemy to v2.0.20 ([aa68172](https://github.com/big-unibo/explain/commit/aa68172c620ea49621e2e83ae82eec15e06bc499))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.4 ([158b910](https://github.com/big-unibo/explain/commit/158b91032f145796cf746d4189410df8f8424757))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v3.6.0 ([4b1f172](https://github.com/big-unibo/explain/commit/4b1f17254622a8cfde3391af2fe971a5cb36de55))
+
 ## [1.1.44](https://github.com/big-unibo/explain/compare/1.1.43...1.1.44) (2023-08-01)
 
 
