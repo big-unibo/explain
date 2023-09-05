@@ -1,3 +1,15 @@
+## [1.1.48](https://github.com/big-unibo/explain/compare/1.1.47...1.1.48) (2023-09-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.antlr:antlr4 to v4.13.1 ([a2fd4ba](https://github.com/big-unibo/explain/commit/a2fd4ba7a36b993acf8255f0f77e9b8a4d242f21))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4 ([2cbbad5](https://github.com/big-unibo/explain/commit/2cbbad54b6581f1167bfeb6295cdec007b103314))
+
 ## [1.1.47](https://github.com/big-unibo/explain/compare/1.1.46...1.1.47) (2023-09-04)
 
 
