@@ -1,3 +1,34 @@
+## [1.1.49](https://github.com/big-unibo/explain/compare/1.1.48...1.1.49) (2023-09-24)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.7.3 ([084fd5e](https://github.com/big-unibo/explain/commit/084fd5eb96b70fdcfaafe2549feae21aa62cd512))
+* **deps:** update dependency matplotlib to v3.8.0 ([4972ba9](https://github.com/big-unibo/explain/commit/4972ba9b329c841b46a7cdcd10c1fce2a54ce9b0))
+* **deps:** update dependency notebook to v7.0.4 ([982c2a8](https://github.com/big-unibo/explain/commit/982c2a80c72de14882b856088954172dfa0a0f17))
+* **deps:** update dependency numpy to v1.26.0 ([0246790](https://github.com/big-unibo/explain/commit/0246790c4f2d6263bb31f857ec77d4b3bde7835b))
+* **deps:** update dependency scikit-learn to v1.3.1 ([d626efd](https://github.com/big-unibo/explain/commit/d626efdd8b697ce3e3ca7c49fbb458d74969120a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.54 ([f6f38c1](https://github.com/big-unibo/explain/commit/f6f38c1df4350bfb115f219732fc90a01a2c76b1))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.55 ([188ac68](https://github.com/big-unibo/explain/commit/188ac6877cdddc513f52e85206d7ddd18b8a3859))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.56 ([cee9c99](https://github.com/big-unibo/explain/commit/cee9c99fc26db3af8f916b97cf725721eb4f6ac7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.59 ([67c2726](https://github.com/big-unibo/explain/commit/67c27265c2fa72494ee75a6f3b65c4c86b99583f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.60 ([a2b65de](https://github.com/big-unibo/explain/commit/a2b65deae2366808911880087e2f8797d38eee05))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.61 ([b452ad9](https://github.com/big-unibo/explain/commit/b452ad93e73ddd1476bb0e941830412163b8c90a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.62 ([3b057ab](https://github.com/big-unibo/explain/commit/3b057aba2c012709c4c88435c9383fc56fb5379b))
+* **deps:** update dependency sqlalchemy to v2.0.21 ([625f31f](https://github.com/big-unibo/explain/commit/625f31f4ecdacb640ed4c0b5e1a6f010476ec14b))
+* **deps:** update node.js to 18.18 ([71e81ff](https://github.com/big-unibo/explain/commit/71e81ff21a7d9d57b12ee60c34b0ac4ed8b7706c))
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.5 ([52c2b8b](https://github.com/big-unibo/explain/commit/52c2b8b8a0430dfaada3381a1cd99655c364f0d1))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.0 ([7b49563](https://github.com/big-unibo/explain/commit/7b4956362cb606e92dc17db48992ea94b6bb6a20))
+* **deps:** update actions/setup-java action to v3.13.0 ([8577c5a](https://github.com/big-unibo/explain/commit/8577c5a791ab76411451b113767bd9fcbdd7a662))
+
 ## [1.1.48](https://github.com/big-unibo/explain/compare/1.1.47...1.1.48) (2023-09-05)
 
 
