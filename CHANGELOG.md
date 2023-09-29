@@ -1,3 +1,19 @@
+## [1.1.50](https://github.com/big-unibo/explain/compare/1.1.49...1.1.50) (2023-09-29)
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.11.3 ([ba5288d](https://github.com/big-unibo/explain/commit/ba5288d998adaaec6ddb1f2d014173a588e9c965))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.63 ([bb98160](https://github.com/big-unibo/explain/commit/bb981600d986d70f071a456184cc36d4df1b08e1))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.64 ([c1e873e](https://github.com/big-unibo/explain/commit/c1e873ebe068498391a75cfe8c073a27dba93337))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.65 ([2ed6aba](https://github.com/big-unibo/explain/commit/2ed6abaeb6bc100cbeb356feb1fc54fb510a5406))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.66 ([9d9c980](https://github.com/big-unibo/explain/commit/9d9c98065c8f35617632e40abaad46e6bbbc2730))
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.14.0 ([766ce08](https://github.com/big-unibo/explain/commit/766ce08327f88635990e4d08bebbf5c508d39f00))
+
 ## [1.1.49](https://github.com/big-unibo/explain/compare/1.1.48...1.1.49) (2023-09-24)
 
 
