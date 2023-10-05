@@ -1,3 +1,17 @@
+## [1.1.51](https://github.com/big-unibo/explain/compare/1.1.50...1.1.51) (2023-10-05)
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.3 ([71ac73e](https://github.com/big-unibo/explain/commit/71ac73ef4852b3b1ef7adbe8f22f4e66af39e7dd))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.67 ([e3cfb4c](https://github.com/big-unibo/explain/commit/e3cfb4c166f693b1dfef4d64f6fb6cfbeba17e2b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.68 ([1f4aaef](https://github.com/big-unibo/explain/commit/1f4aaef8aba49307e79dc8838ff193cf77f8d1c2))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.5 ([63f90ab](https://github.com/big-unibo/explain/commit/63f90abf9f0c58c7fe7c5d2cfafcc27f1d08cdcd))
+
 ## [1.1.50](https://github.com/big-unibo/explain/compare/1.1.49...1.1.50) (2023-09-29)
 
 
