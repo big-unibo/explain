@@ -1,3 +1,15 @@
+## [1.1.53](https://github.com/big-unibo/explain/compare/1.1.52...1.1.53) (2023-10-13)
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.22 ([7fdc4a2](https://github.com/big-unibo/explain/commit/7fdc4a2548b15b4dc45cfb2f639843cfa9538162))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.15.3 ([794d143](https://github.com/big-unibo/explain/commit/794d143f5531903fb1023367dedfb62aee750619))
+
 ## [1.1.52](https://github.com/big-unibo/explain/compare/1.1.51...1.1.52) (2023-10-12)
 
 
