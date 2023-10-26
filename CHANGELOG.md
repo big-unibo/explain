@@ -1,3 +1,25 @@
+## [1.1.56](https://github.com/big-unibo/explain/compare/1.1.55...1.1.56) (2023-10-26)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.0.6 ([260daa3](https://github.com/big-unibo/explain/commit/260daa3bbedb40256d270e2ed62a8bdbfe82933c))
+* **deps:** update dependency scikit-learn to v1.3.2 ([5dbace3](https://github.com/big-unibo/explain/commit/5dbace39062ff252d29cee775df4286620630f5d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.69 ([f8fe693](https://github.com/big-unibo/explain/commit/f8fe693f80c38b3cb1574dc86020261ba338535a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.70 ([c913184](https://github.com/big-unibo/explain/commit/c913184dda7767f0bca95e65e5ccf3798d66d3e0))
+* **deps:** update node.js to 20.9 ([ec4e260](https://github.com/big-unibo/explain/commit/ec4e260e40005c6c7ae916dd5aea63b7b1c03fb6))
+* **deps:** update node.js to v20 ([56d3cf0](https://github.com/big-unibo/explain/commit/56d3cf062a9844fa6e46c92155c6221e74bd73e8))
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.15.0 ([fdd69f1](https://github.com/big-unibo/explain/commit/fdd69f15f83bec634ad8756db1eefaa509a59154))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.1 ([0deebb0](https://github.com/big-unibo/explain/commit/0deebb0a0bf809c25f8e9c753af1340903337537))
+
 ## [1.1.55](https://github.com/big-unibo/explain/compare/1.1.54...1.1.55) (2023-10-15)
 
 
