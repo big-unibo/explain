@@ -1,3 +1,17 @@
+## [1.1.57](https://github.com/big-unibo/explain/compare/1.1.56...1.1.57) (2023-11-05)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.1 ([0ed4111](https://github.com/big-unibo/explain/commit/0ed4111d58fbd214e6388ed7cedc363aaf1ef6f9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.71 ([a8c791f](https://github.com/big-unibo/explain/commit/a8c791f643ac4f34d0a2f00aadfe510d5ca12bdc))
+* **deps:** update dependency sqlalchemy to v2.0.23 ([a22179e](https://github.com/big-unibo/explain/commit/a22179e28dd5d078b1b9dab896d807596a9376b3))
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.1 ([56b6989](https://github.com/big-unibo/explain/commit/56b6989d84fe0c8d0804186d0b032d8f23dbe379))
+
 ## [1.1.56](https://github.com/big-unibo/explain/compare/1.1.55...1.1.56) (2023-10-26)
 
 
