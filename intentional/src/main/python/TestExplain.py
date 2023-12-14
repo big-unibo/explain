@@ -221,16 +221,16 @@ class TestExplain(unittest.TestCase):
     #     self.assertTrue(P["model"].nunique() == 1)
 
     def test8(self):
-        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "Adult", ["Small instars"])
+        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "#Adults", ["#SmallInstars"])
         print(P)
         self.assertTrue(P["model"].nunique() == 1)
 
     def test9(self):
-        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "Small instars", ["Large instars"])
+        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "#SmallInstars", ["#LargeInstars"])
         self.assertTrue(P["model"].nunique() == 1)
 
     def test10(self):
-        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "Adult", ["Small instars", "Large instars"])
+        _, P, _, _, _, _ = time_series_fit(pd.read_csv('trend_by_species_clean.csv'), "#Adults", ["#SmallInstars", "#LargeInstars"])
         self.assertTrue(P["model"].nunique() == 1)
 
 if __name__ == '__main__':
