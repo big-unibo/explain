@@ -30,6 +30,7 @@ jobs:
       - name: Run
         run: |
           cd intentional
+          cp resources/submission-IS/students.csv resources/intention
           chmod +x *.sh
           bash init.sh
           bash build.sh
