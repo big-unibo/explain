@@ -1,3 +1,10 @@
+## [1.1.59](https://github.com/big-unibo/explain/compare/1.1.58...1.1.59) (2023-12-14)
+
+
+### Bug Fixes
+
+* **ci:** copy file ([2ebf670](https://github.com/big-unibo/explain/commit/2ebf6706fdd6ebd002a8d8d9078e053aa0584204))
+
 ## [1.1.58](https://github.com/big-unibo/explain/compare/1.1.57...1.1.58) (2023-11-07)
 
 
