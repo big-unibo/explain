@@ -1,3 +1,18 @@
+## [1.1.60](https://github.com/big-unibo/explain/compare/1.1.59...1.1.60) (2023-12-15)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.2 ([4b3a68b](https://github.com/big-unibo/explain/commit/4b3a68bdaa0fb5a0a765791033f61182c2370f94))
+* **deps:** update dependency numpy to v1.26.2 ([ad529be](https://github.com/big-unibo/explain/commit/ad529be2ec7ca8a72709dccfb8dbd4fd8982dc2d))
+* **deps:** update dependency scipy to v1.11.4 ([3de0180](https://github.com/big-unibo/explain/commit/3de018089d241366ee65e3bc36d318f42c8fb73c))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.84 ([1b392d0](https://github.com/big-unibo/explain/commit/1b392d0e16de2a7907ac18125369f06a0398f6fa))
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.15.1 ([44e7ddf](https://github.com/big-unibo/explain/commit/44e7ddf0c2388668baf81a5a79a3d4aef5dc4142))
+
 ## [1.1.59](https://github.com/big-unibo/explain/compare/1.1.58...1.1.59) (2023-12-14)
 
 
