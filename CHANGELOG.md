@@ -1,3 +1,20 @@
+## [1.1.62](https://github.com/big-unibo/explain/compare/1.1.61...1.1.62) (2023-12-16)
+
+
+### Dependency updates
+
+* **deps:** update node.js to 20.10 ([36d0b43](https://github.com/big-unibo/explain/commit/36d0b4325776d66e72e7caf047ada580abd66e58))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.16.0 ([95ec723](https://github.com/big-unibo/explain/commit/95ec7232e5c56bab4c964766fe4c63f92b6d0cc6))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.5.0 ([cc45e5a](https://github.com/big-unibo/explain/commit/cc45e5af5df8c470dd575ba2251d31bac854273f))
+
 ## [1.1.61](https://github.com/big-unibo/explain/compare/1.1.60...1.1.61) (2023-12-15)
 
 
