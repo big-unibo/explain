@@ -1,3 +1,16 @@
+## [1.1.66](https://github.com/big-unibo/explain/compare/1.1.65...1.1.66) (2023-12-19)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33 ([f4523fe](https://github.com/big-unibo/explain/commit/f4523fed8e7f56df4beea504f787d40c8b2fcf54))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4 ([9db0c25](https://github.com/big-unibo/explain/commit/9db0c25fe4db66d0b4b5e7ecc47d0c8d26883002))
+* **deps:** update actions/setup-python action to v5 ([52e28a7](https://github.com/big-unibo/explain/commit/52e28a79e10c481e0ab26dfdac83c5e482e50bdf))
+
 ## [1.1.65](https://github.com/big-unibo/explain/compare/1.1.64...1.1.65) (2023-12-17)
 
 
