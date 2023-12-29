@@ -1,3 +1,16 @@
+## [1.1.69](https://github.com/big-unibo/explain/compare/1.1.68...1.1.69) (2023-12-29)
+
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.85 ([7fe38a6](https://github.com/big-unibo/explain/commit/7fe38a65e7313403f1edb85b8135edc5a07dd4e6))
+* **deps:** update dependency sqlalchemy to v2.0.24 ([b19148b](https://github.com/big-unibo/explain/commit/b19148b91cae5bee52ff634a368267f0c8b3c094))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.slf4j:slf4j-api to v2.0.10 ([2cfb89d](https://github.com/big-unibo/explain/commit/2cfb89d446b1025458d5e59d54ac45279206108d))
+
 ## [1.1.68](https://github.com/big-unibo/explain/compare/1.1.67...1.1.68) (2023-12-24)
 
 
