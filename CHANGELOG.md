@@ -1,3 +1,16 @@
+## [1.1.71](https://github.com/big-unibo/explain/compare/1.1.70...1.1.71) (2024-01-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency numpy to v1.26.3 ([200bf52](https://github.com/big-unibo/explain/commit/200bf52128c5a9e057005d926643b2d9f42ec5df))
+* **deps:** update dependency sqlalchemy to v2.0.25 ([cfff665](https://github.com/big-unibo/explain/commit/cfff665077cbc22d0fa56b683a72a4cb1f3a1c62))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.slf4j:slf4j-log4j12 to v2.0.11 ([e4a5e5a](https://github.com/big-unibo/explain/commit/e4a5e5aee8d220e2ed214c8c8be710cd86c5e89d))
+
 ## [1.1.70](https://github.com/big-unibo/explain/compare/1.1.69...1.1.70) (2023-12-29)
 
 
