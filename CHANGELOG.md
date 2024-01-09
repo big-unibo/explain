@@ -1,3 +1,10 @@
+## [1.1.72](https://github.com/big-unibo/explain/compare/1.1.71...1.1.72) (2024-01-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.slf4j:slf4j-api to v2.0.11 ([116d098](https://github.com/big-unibo/explain/commit/116d098f443d0ef93162593ea239d9681ab90630))
+
 ## [1.1.71](https://github.com/big-unibo/explain/compare/1.1.70...1.1.71) (2024-01-08)
 
 
