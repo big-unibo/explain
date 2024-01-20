@@ -1,3 +1,17 @@
+## [1.1.73](https://github.com/big-unibo/explain/compare/1.1.72...1.1.73) (2024-01-20)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.0.7 ([933417a](https://github.com/big-unibo/explain/commit/933417a16eb20647492635bafdfc4e25bb99c113))
+* **deps:** update dependency scikit-learn to v1.4.0 ([9701cad](https://github.com/big-unibo/explain/commit/9701cad13e418a632231433f0e992609e17d9067))
+* **deps:** update node.js to 20.11 ([bdd8337](https://github.com/big-unibo/explain/commit/bdd83379cc46b3960e91a5be54218e8e5d810101))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.github.doyaaaaaken:kotlin-csv-jvm to v1.9.3 ([b0920de](https://github.com/big-unibo/explain/commit/b0920de0e848ef1c3e69f59e8380f7ab33c05111))
+
 ## [1.1.72](https://github.com/big-unibo/explain/compare/1.1.71...1.1.72) (2024-01-09)
 
 
