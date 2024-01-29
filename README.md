@@ -4,10 +4,9 @@
 
 ## Research papers
 
-Implementation of "Explaining Cube Measures Through Intentional Analytics", submitted to Elsevier's Information Systems.
+Implementation of the following research papers:
 
-Please also refer to the following research paper:
-
+- Francia, Matteo, Stefano Rizzi, and Patrick Marcel. "Explaining cube measures through Intentional Analytics." **Information Systems** 121 (2024): 102338. DOI: https://doi.org/10.1016/j.is.2023.102338
 - Francia, Matteo, Stefano Rizzi, and Patrick Marcel. "The Whys and Wherefores of Cubes." **Proceedings of the 25th International Workshop on Design, Optimization, Languages and Analytical Processing of Big Data (DOLAP)**. 2023. URL: https://ceur-ws.org/Vol-3369/paper4.pdf
 
 ## Running the tests
