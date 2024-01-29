@@ -19,14 +19,14 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.5.0
         with:
           branch: gh-pages
-          folder: web # The folder the action should deploy.
+          folder: web
       - uses: actions/setup-java@v4.0.0
         with:
           distribution: 'adopt'
-          java-version: '14' # ${{ matrix.java }}
+          java-version: '14'
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
+          python-version: '3.12'
       - name: Run
         run: |
           cd intentional
