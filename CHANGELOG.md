@@ -1,3 +1,15 @@
+## [1.1.74](https://github.com/big-unibo/explain/compare/1.1.73...1.1.74) (2024-01-31)
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.12.0 ([a018c22](https://github.com/big-unibo/explain/commit/a018c22ac6ad3c0aef263451cfc710a1af107ece))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.8 ([c1cdbf9](https://github.com/big-unibo/explain/commit/c1cdbf926ceece2956a0c325c2934260cebb08d1))
+
 ## [1.1.73](https://github.com/big-unibo/explain/compare/1.1.72...1.1.73) (2024-01-20)
 
 
