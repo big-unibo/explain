@@ -11,3 +11,5 @@ scikit-learn-extra==0.3.0
 scipy==1.12.0
 SQLAlchemy==2.0.25
 yellowbrick==1.5
+autots==0.6.10
+prophet==1.1.5
