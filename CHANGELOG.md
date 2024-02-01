@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/w4bo/predict/compare/1.0.0...1.0.1) (2024-02-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.6 ([132f07f](https://github.com/w4bo/predict/commit/132f07f00f77c4c760eb3a3419d1c1b5ba30b9be))
+
 ## 1.0.0 (2024-02-01)
 
 
