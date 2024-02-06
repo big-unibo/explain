@@ -1,3 +1,16 @@
+## [1.0.3](https://github.com/w4bo/predict/compare/1.0.2...1.0.3) (2024-02-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.4 ([05ce10c](https://github.com/w4bo/predict/commit/05ce10c1f9eb7125a7277cb2621f1161d46c6612))
+* **deps:** update dependency numpy to v1.26.4 ([00c1206](https://github.com/w4bo/predict/commit/00c120676bc1c32758c7980605260d1a88482564))
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.12 ([85dd205](https://github.com/w4bo/predict/commit/85dd20572c284fee2e30c7f9301e7ebaad7ab258))
+
 ## [1.0.2](https://github.com/w4bo/predict/compare/1.0.1...1.0.2) (2024-02-04)
 
 
