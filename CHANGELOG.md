@@ -1,3 +1,15 @@
+## [1.1.77](https://github.com/big-unibo/explain/compare/1.1.76...1.1.77) (2024-02-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.4 ([eced5db](https://github.com/big-unibo/explain/commit/eced5db8c9deeb3b84d2b890316616767d5303d8))
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.12 ([09a16b8](https://github.com/big-unibo/explain/commit/09a16b815a7bbcece33ac7372cc01d4dcbf4ac97))
+
 ## [1.1.76](https://github.com/big-unibo/explain/compare/1.1.75...1.1.76) (2024-02-04)
 
 
