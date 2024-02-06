@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/w4bo/predict/compare/1.0.3...1.0.4) (2024-02-06)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20240205 ([e516233](https://github.com/w4bo/predict/commit/e516233c129a3446a0bbd0cb6d5b036e6248884d))
+
 ## [1.0.3](https://github.com/w4bo/predict/compare/1.0.2...1.0.3) (2024-02-06)
 
 
