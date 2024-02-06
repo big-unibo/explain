@@ -1,3 +1,15 @@
+## [1.1.78](https://github.com/big-unibo/explain/compare/1.1.77...1.1.78) (2024-02-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency numpy to v1.26.4 ([9b6fc9f](https://github.com/big-unibo/explain/commit/9b6fc9f07421ab3d25da6838535b1983e99f73f1))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20240205 ([a57d712](https://github.com/big-unibo/explain/commit/a57d712d1edaa946f3f7db648c61688eefa4a59f))
+
 ## [1.1.77](https://github.com/big-unibo/explain/compare/1.1.76...1.1.77) (2024-02-06)
 
 
