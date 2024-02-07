@@ -12,6 +12,7 @@ docker-compose up --build -d
 
 ./wait-for-it.sh ${ORACLE_IP}:${ORACLE_PORT} --strict --timeout=0 -- echo "ORACLE is up"
 
+export $(echo $(cat .env | sed 's/#.*//g'| xargs) | envsubst)
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}
 
 until [ -f resources/.ready ]
