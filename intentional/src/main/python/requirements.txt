@@ -4,7 +4,7 @@ cx-Oracle==8.3.0
 notebook==7.1.0
 matplotlib==3.8.3
 numpy==1.26.4
-pandas==1.5.3
+pandas==2.2.1
 requests==2.31.0
 scikit-learn==1.4.1.post1
 scikit-learn-extra==0.3.0
