@@ -1,3 +1,26 @@
+## [1.0.5](https://github.com/w4bo/predict/compare/1.0.4...1.0.5) (2024-03-03)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.3 ([7aabf4e](https://github.com/w4bo/predict/commit/7aabf4e704011c8c4be999bf5a5136d3528bf95a))
+* **deps:** update dependency notebook to v7.0.8 ([b5f0a1b](https://github.com/w4bo/predict/commit/b5f0a1be5331cdd3e3161a4d323214ca764bcc3d))
+* **deps:** update dependency notebook to v7.1.0 ([81ff3b5](https://github.com/w4bo/predict/commit/81ff3b541b93472714838c4da3c2e69e68c2aec7))
+* **deps:** update dependency notebook to v7.1.1 ([5c6e02a](https://github.com/w4bo/predict/commit/5c6e02ad645dc1b964de4cf4a5b6ecf3009736f3))
+* **deps:** update dependency scikit-learn to v1.4.1.post1 ([933cfbe](https://github.com/w4bo/predict/commit/933cfbe2dd541c3402054dcf5f2638543dd9e6af))
+* **deps:** update dependency sqlalchemy to v2.0.26 ([7e85474](https://github.com/w4bo/predict/commit/7e85474daa74d10c272a0013b930028a47a30ef7))
+* **deps:** update dependency sqlalchemy to v2.0.27 ([d00321e](https://github.com/w4bo/predict/commit/d00321e60399869a469a95d368ec549941a3a353))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20240303 ([6def66a](https://github.com/w4bo/predict/commit/6def66afcb2d8a447074e10ff65e968e52d9c65a))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.1.0 ([8157a6a](https://github.com/w4bo/predict/commit/8157a6a4bd8069b15df30155b904563dd7a463af))
+
 ## [1.0.4](https://github.com/w4bo/predict/compare/1.0.3...1.0.4) (2024-02-06)
 
 
