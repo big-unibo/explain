@@ -1,3 +1,15 @@
+## [1.0.7](https://github.com/w4bo/predict/compare/1.0.6...1.0.7) (2024-03-10)
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.28 ([d6d3647](https://github.com/w4bo/predict/commit/d6d3647346de92e47991a39e075737cab7af37ec))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.16.2 ([9f1a22a](https://github.com/w4bo/predict/commit/9f1a22a215e269949473499c42551634e89dc08c))
+
 ## [1.0.6](https://github.com/w4bo/predict/compare/1.0.5...1.0.6) (2024-03-04)
 
 
