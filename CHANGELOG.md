@@ -1,3 +1,10 @@
+## [1.0.9](https://github.com/w4bo/predict/compare/1.0.8...1.0.9) (2024-03-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.0 ([ad73152](https://github.com/w4bo/predict/commit/ad731521143a20d9206859d942a560450609f360))
+
 ## [1.0.8](https://github.com/w4bo/predict/compare/1.0.7...1.0.8) (2024-03-10)
 
 
