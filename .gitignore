@@ -6,6 +6,7 @@ config.js
 *.DMP
 *.dmp
 *.sql
+*.svg
 *.twbr
 **/src/main/resources/assess/cube_0_*.csv
 **/src/main/python/*.csv
