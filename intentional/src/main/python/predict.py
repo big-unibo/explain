@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import pandas as pd
+from os import path
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
@@ -421,6 +422,8 @@ if __name__ == '__main__':
     X.loc[indices_to_replace, measure] = np.nan
 
     predict(X, by, measure, nullify_last=None)
+    stats = []
+    P = pd.DataFrame()
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "/../predict_time_python.csv"
     pd \
