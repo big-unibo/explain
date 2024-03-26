@@ -3,7 +3,7 @@ grammar Predict;
 package it.unibo.antlr.gen;
 }
 
-predict : 'with' cube=id 'prodict' mc=measure
+predict : 'with' cube=id 'predict' mc=measure
              (('for' sc=clause)? 'by' gc+=id (',' gc+=id)* | 'by' gc+=id (',' gc+=id)* ('for' sc=clause)?)
              ('from' against+=measure (',' against+=measure)*)?
              ('using' using+=id (',' using+=id)*)?

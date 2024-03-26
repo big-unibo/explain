@@ -33,7 +33,12 @@ class TestPredict {
 
     @Test
     fun `test models`() {
-        execute("with sales_fact_1997 predict unit_sales by the_month using univariateTS")
+        execute("with sales_fact_1997 predict unit_sales by the_date")
+    }
+
+    @Test
+    fun `test models 2`() {
+        execute("with sales_fact_1997 predict unit_sales by the_date using univariateTS")
         execute("with sales_fact_1997 predict unit_sales by the_month using multivariateTS")
         execute("with sales_fact_1997 predict unit_sales by the_month using timeDecisionTree")
         execute("with sales_fact_1997 predict unit_sales by the_month using timeRandomForest, univariateTS")

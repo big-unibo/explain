@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
-
-
 import pandas as pd
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeRegressor
@@ -15,6 +12,7 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import random
 import warnings
+import json
 from minepy import cstats
 from autots import AutoTS, load_daily
 import warnings
@@ -30,6 +28,7 @@ from sklearn.tree import plot_tree
 import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.varmax import VARMAX
 from itertools import product
+import argparse
 warnings.filterwarnings('ignore')  # .filterwarnings(action='once') 
 plt.rcParams['font.size'] = 14
 plt.rcParams['legend.fontsize'] = 10
@@ -43,10 +42,6 @@ test_size=20
 sep="!"
 n_iter = 10
 cv = 5
-
-
-# In[ ]:
-
 
 # config = dotenv_values("../../../.env")
 # out_db_params = {
@@ -70,18 +65,12 @@ cv = 5
 
 
 def get_data(columns=None, filters=None, file_name=None):
-    df = pd.read_csv(file_name) # esempio external knowledge
+    df = pd.read_csv(file_name)
     if columns is not None: df = df[columns]
     if filters is not None:
         for column, predicates in filters.items():
             df = df[df[column].apply(lambda x: x in predicates)].reset_index(drop=True)
-    if "week_in_year" in list(df.columns):
-        df["week_in_year"] = pd.to_datetime(df['week_in_year'] + '-1', format='%Y-%W-%w') 
     return df
-df = get_data(columns=["province", "week_in_year", "adults", "small_instars", "total_captures"], filters={'province': ['BO', 'RA']}, file_name='cimice-filled.csv') # esempio interest
-
-
-# In[ ]:
 
 
 def compute_mic(data, casualty_var):
@@ -102,11 +91,6 @@ def compute_mic(data, casualty_var):
     return mic_c
 
 # compute_mic(df, [target_measure] + values)
-
-
-# Decision tree (without time handled separatedly)
-
-# In[ ]:
 
 
 def compute_model(df, target_column, model, seed=seed, test_size=test_size):
@@ -151,11 +135,6 @@ def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
     model = RandomizedSearchCV(DecisionTreeRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
     return compute_model(df, target_column, model)
 
-# X, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = dtree(df.copy(deep=True), target_measure)
-
-
-# In[ ]:
-
 
 def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
     # Define hyperparameters to tune and their possible values
@@ -168,11 +147,6 @@ def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
     }
     model = RandomizedSearchCV(RandomForestRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
     return compute_model(df, target_column, model)
-
-# X, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = forest(df.copy(deep=True), target_measure)
-
-
-# In[61]:
 
 
 def mypivot(df, date_attr, column, exog, target_measure, impute=False):
@@ -194,6 +168,7 @@ def melt(df, date_attr, column, target_measure):
         df = pd.melt(df, id_vars=date_attr, value_vars=[x for x in df.columns if target_measure in x], var_name=column, value_name=target_measure)
         df[column] = df[column].apply(lambda x: x.replace(f"{target_measure}{sep}", ""))
     return df
+
 
 def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i=0, figtitle=''):
     # fig.suptitle("" + figtitle + "")
@@ -224,6 +199,7 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
         #         axs[i + j].legend(bbox_to_anchor=(0.35, 1.18, 0.3, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=3)
     fig.tight_layout()
 
+
 def save(fig, figtitle, target_measure):
     fig.tight_layout()
     for ext in ["svg", "pdf"]: fig.savefig(f"{figtitle}_{target_measure}.{ext}")
@@ -245,10 +221,6 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
     return melt(df, date_attr, column, target_measure)
 
 
-# In[62]:
-
-
-import pandas as pd
 def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     # Create a separate dataframe for rows with missing values in the target column
     mydf = df
@@ -303,9 +275,6 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2
 
 
-# In[63]:
-
-
 def varmax(df, date_attr, target_measure, test_size=test_size):
     # Create a separate dataframe for rows with missing values in the target column
     exog = [x for x in df.columns if target_measure.split(sep)[0] not in x and x != date_attr]
@@ -352,9 +321,6 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
     return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices], best_r2
 
 
-# In[64]:
-
-
 def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, test_size=test_size):
     targets = [x for x in df.columns if sep in x and target_measure in x]
     fig, axs = plt.subplots(len(targets), 2, figsize=(8, 1 + 3*len(targets)), sharex=False, sharey=False)  # Create a figure and subplots
@@ -368,18 +334,21 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     return melt(df, date_attr, column, target_measure)
 
 
-# adf = multi_timeseries(mydf, date_attr, column, target_measure, varmax, figtitle="multivariateTS")
-
-
-# In[65]:
-
-
 def predict(df, by, target_measure, nullify_last=None):
     date_attr = [x for x in by if "week" in x or "date" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
     else:
         date_attr = date_attr[0] # keep only one date attribute
+        if "week" in date_attr:
+            df[date_attr] = pd.to_datetime(df[date_attr] + '-1', format='%Y-%W-%w')
+        elif "month" in date_attr:
+            df[date_attr] = pd.to_datetime(df[date_attr] + '-01', format='%Y-%m-%d')
+        elif "year" in date_attr:
+            df[date_attr] = pd.to_datetime(df[date_attr] + '-01-01', format='%Y-%m-%d')
+        else:
+            df[date_attr] = pd.to_datetime(df[date_attr])
+
     column = [x for x in by if x != date_attr]
     if len(column) == 0:
         column = None
@@ -406,30 +375,54 @@ def predict(df, by, target_measure, nullify_last=None):
     print(f"randomForest. R2={value}")
 
 
-# In[66]:
+if __name__ == '__main__':
+    ###############################################################################
+    # PARAMETERS SETUP
+    ###############################################################################
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--path", help="where to put the output", type=str)
+    parser.add_argument("--file", help="the file name", type=str)
+    parser.add_argument("--session_step", help="the session step", type=int)
+    parser.add_argument("--cube", help="cube", type=str)
+    parser.add_argument("--measure", help="target measure to predict", type=str)
+    parser.add_argument("--execution_id", help="execution id", type=str)
+    parser.add_argument("--using", help="models for prediction", nargs='?', const='', default='', type=str)
+    args = parser.parse_args()
+    my_path = args.path.replace("\"", "")
+    file = args.file
+    measure = args.measure
+    session_step = args.session_step
+    execution_id = args.execution_id
+    cube = args.cube.replace("__", " ")
+    cube = json.loads(cube)
+    using = "" if args.using == "" else args.using.split(",")
 
+    ###############################################################################
+    # APPLY MODELS
+    ###############################################################################
+    try:
+        X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding='cp1252')
+    except Error:
+        X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
 
-df = get_data(columns=["week_in_year", "avgadults", "avgsmall_instars", "avgcum_degree_days"], file_name='cimice-week.csv')
-predict(df, ["week_in_year"], "avgadults", nullify_last=0)
+    if len(X) == 0:
+        raise ValueError('Empty data')
 
+    X.columns = [x.lower() for x in X.columns]
+    by = [x.lower() for x in cube["GC"]]
+    using = ["univariateTS", "multivariateTS", "timeDecisionTree", "timeRandomForest", "decisionTree", "randomForest"] if len(using) == 0 else using
+    # P, stats = run(X, measure, measures, using, execution_id)
 
-# In[67]:
+    # Set a seed for reproducibility
+    np.random.seed(0)
+    # Define the indices to replace with random values
+    indices_to_replace = np.random.randint(1, len(X), size=5)
+    # Set random values at specified indices in column 'B'
+    X.loc[indices_to_replace, measure] = np.nan
 
-
-df = get_data(columns=["week_in_year", "avgadults", "avgsmall_instars"], file_name='cimice-week.csv')
-predict(df, ["week_in_year"], "avgadults", nullify_last=0)
-
-
-# In[68]:
-
-
-df = get_data(columns=["week_in_year", "province", "adults", "small_instars", "total_captures"], filters={'province': ['BO', 'RA']}, file_name='cimice-filled.csv')
-predict(df, ["week_in_year", "province"], "adults", nullify_last=5)
-
-
-# In[69]:
-
-
-df = get_data(columns=["week_in_year", "province", "adults", "small_instars", "total_captures"], filters={'province': ['BO']}, file_name='cimice-filled.csv')
-predict(df, ["week_in_year", "province"], "adults", nullify_last=5)
-
+    predict(X, by, measure, nullify_last=None)
+    P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
+    file_path = my_path + "/../predict_time_python.csv"
+    pd \
+        .DataFrame(stats, columns=["execution_id", "model", "time_model_python"]) \
+        .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))

@@ -45,7 +45,7 @@ object PredictExecute {
         othermeasures = othermeasures.map { measureName(it) }.toSet()
         d.against += othermeasures.map { measureName(it) } // d.against
         L.warn("Computing models...")
-        val timeModel = d.computePython(pythonPath, path, "explain.py")
+        val timeModel = d.computePython(pythonPath, path, "predict.py")
         L.warn("Models computed")
         d.measures.removeIf { othermeasures.contains(it) }
         d.statistics["intention"] = d.toString()

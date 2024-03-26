@@ -30,13 +30,12 @@ class Predict : Intention {
                 + " --measure " + measures.minus(against).first() //
                 + " --execution_id " + execution_id
                 + " --cube " + json.toString().replace(" ", "__")
-                + " --against " + concat(against, sep = ",")
                 + " --using " + concat(using, sep = ","))
     }
 
     override fun toString(): String {
         return "with $cubeSyn" +
-                " explain ${concat(measures)}" +
+                " predict ${concat(measures)}" +
                 " by ${concat(attributes)}" +
                 if (clauses.isEmpty()) { "" } else { " for ${concat(clauses.map { clauseToString(it) }, sep = " and ")}" } +
                 " against " + if (against.isEmpty()) { measures } else { concat(against) } +
