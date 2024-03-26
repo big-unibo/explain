@@ -9,6 +9,5 @@ services:
       - ORACLE_ALLOW_REMOTE=true
     ports:
       - "${ORACLE_PORT}:${ORACLE_PORT}"
-      - 5500:5500
     volumes:
       - ./resources/:/data
