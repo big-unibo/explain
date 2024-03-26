@@ -8,6 +8,6 @@ services:
       - ORACLE_DISABLE_ASYNCH_IO=true
       - ORACLE_ALLOW_REMOTE=true
     ports:
-      - "${ORACLE_PORT}:${ORACLE_PORT}"
+      - "${ORACLE_PORT}:1521"
     volumes:
       - ./resources/:/data

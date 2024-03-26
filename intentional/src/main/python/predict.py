@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import random
 import warnings
+import time
 import json
 from minepy import cstats
 from autots import AutoTS, load_daily
@@ -35,8 +36,8 @@ plt.rcParams['font.size'] = 14
 plt.rcParams['legend.fontsize'] = 10
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
-plt.rcParams["font.family"] = "serif"
-plt.rcParams["font.serif"] = ["Times New Roman"]
+# plt.rcParams["font.family"] = "serif"
+# plt.rcParams["font.serif"] = ["Times New Roman"]
 seed=42
 random.seed(seed)
 test_size=20
@@ -61,10 +62,6 @@ cv = 5
 
 
 # Get the query
-
-# In[ ]:
-
-
 def get_data(columns=None, filters=None, file_name=None):
     df = pd.read_csv(file_name)
     if columns is not None: df = df[columns]
@@ -160,7 +157,7 @@ def mypivot(df, date_attr, column, exog, target_measure, impute=False):
         df.columns = [f'{x}{sep}ALL' if x != date_attr else x for x in df.columns]
     if impute:
         for x in [x for x in df.columns if target_measure not in x and df[x].isnull().any()]:
-            df[x] = df[x].fillna(method='ffill').fillna(method='bfill') # df[x].fillna(df[x].median()) #  
+            df[x] = df[x].fillna(method='ffill').fillna(method='bfill')
     return df[[x for x in df.columns if "index" not in x]]
 
 def melt(df, date_attr, column, target_measure):
@@ -212,14 +209,16 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
     fig, axs = plt.subplots(len(actual_targets), 2, figsize=(8, 1 + 3*len(actual_targets)), sharex=False, sharey=False)  # Create a figure and subplots
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
+    P = pd.DataFrame()
     for c in actual_targets:
         cdf = df.drop(columns=[x for x in targets if x != c], axis=1)  # drop the wrong target measures 
         cdf = df.drop(columns=[x for x in df.columns if sep in x and c.split(sep)[1] not in x], axis=1)  # drop the wrong slices 
         cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
+        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], 'interest', value]], columns=["model", "component", "property", "value"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
-    return melt(df, date_attr, column, target_measure)
+    return melt(df, date_attr, column, target_measure), P
 
 
 def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
@@ -328,14 +327,15 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
     df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
+    P = pd.DataFrame([['multivariateTS', 'ALL', 'interest', value]], columns=["model", "component", "property", "value"])
     for c in targets:
         plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
-    return melt(df, date_attr, column, target_measure)
+    return melt(df, date_attr, column, target_measure), P
 
 
-def predict(df, by, target_measure, nullify_last=None):
+def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
     date_attr = [x for x in by if "week" in x or "date" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
@@ -348,33 +348,66 @@ def predict(df, by, target_measure, nullify_last=None):
         elif "year" in date_attr:
             df[date_attr] = pd.to_datetime(df[date_attr] + '-01-01', format='%Y-%m-%d')
         else:
-            df[date_attr] = pd.to_datetime(df[date_attr])
+            df[date_attr] = pd.to_datetime(df[date_attr], format='%Y-%m-%d')
 
     column = [x for x in by if x != date_attr]
     if len(column) == 0:
         column = None
     else:
         column = column[0]
-    values = [x for x in df.columns if x not in by] # [target_measure, date_attr]
+
+    values = [x for x in df.columns if x not in by]
     print(f"date_attr: {date_attr}, column: {column}, values: {values}")
+
+    P = pd.DataFrame()
+    stats = []
+
+    # Time aware
     if date_attr is not None:
+        # Pivot
+        start = time.time()
         pdf = mypivot(df.copy(deep=True), date_attr, column, values, target_measure, impute=True)
+        end_time = round((time.time() - start) * 1000)  # time is in ms
+        stats.append([execution_id, "pivot", end_time])
+        pdf.info()
+        # Add null values in the end, if necessary
         if nullify_last is not None:
             for x in [x for x in pdf.columns if target_measure in x]:
                 for i in range(nullify_last): pdf.loc[len(pdf) - (i + 1), x] = np.nan
-        # pdf.info()
-        test_size = round(len(pdf) * 0.2)
-        timeseries(pdf.copy(deep=True), date_attr, column, target_measure, sarimax, figtitle="univariateTS", test_size=test_size)
-        timeseries(pdf.copy(deep=True), date_attr, column, target_measure, forest, figtitle="timeRandomForest", test_size=test_size)
-        timeseries(pdf.copy(deep=True), date_attr, column, target_measure, dtree, figtitle="timeDecisionTree", test_size=test_size)
-        if column is not None and df[column].nunique() > 1:
-            multi_timeseries(pdf, date_attr, column, target_measure, varmax, figtitle="multivariateTS", test_size=test_size)
-    test_size = round(len(df) * 0.2)
-    _, _, _, _, _, _, _, _, value = dtree(df.copy(deep=True), target_measure, test_size=test_size)
-    print(f"decisionTree. R2={value}")
-    _, _, _, _, _, _, _, _, value = forest(df.copy(deep=True), target_measure, test_size=test_size)
-    print(f"randomForest. R2={value}")
 
+        test_pivot_size = round(len(pdf) * 0.2)
+        for model in using:
+            alg = None
+            start = time.time()
+            if model == "univariateTS": alg=sarimax
+            elif model == "timeRandomForest": alg=forest
+            elif model == "timeDecisionTree": alg=dtree
+            if alg is not None:
+                _, Q = timeseries(pdf.copy(deep=True), date_attr, column, target_measure, alg, figtitle=model, test_size=test_pivot_size)
+                end_time = round((time.time() - start) * 1000)  # time is in ms
+                P = pd.concat([P, Q], ignore_index=True)
+                stats.append([execution_id, model, end_time])
+            if model == "multivariateTS" and column is not None and df[column].nunique() > 1:
+                _, Q = multi_timeseries(pdf.copy(deep=True), date_attr, column, target_measure, varmax, figtitle=model, test_size=test_pivot_size)
+                end_time = round((time.time() - start) * 1000)  # time is in ms
+                P = pd.concat([P, Q], ignore_index=True)
+                stats.append([execution_id, model, end_time])
+
+    # Time agnostic
+    test_size = round(len(df) * 0.2)
+    for model in using:
+        alg = None
+        start = time.time()
+        if model == "decisionTree": alg=dtree
+        elif model == "randomForest": alg=forest
+        if alg is not None:
+            _, _, _, _, _, _, _, _, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
+            P = pd.concat([P, pd.DataFrame([[model, 'ALL', 'interest', value]], columns=["model", "component", "property", "value"])], ignore_index=True)
+            end_time = round((time.time() - start) * 1000)  # time is in ms
+            stats.append([execution_id, model, end_time])
+            print(f"{model}. R2={value}")
+
+    return P, stats
 
 if __name__ == '__main__':
     ###############################################################################
@@ -421,9 +454,8 @@ if __name__ == '__main__':
     # Set random values at specified indices in column 'B'
     X.loc[indices_to_replace, measure] = np.nan
 
-    predict(X, by, measure, nullify_last=None)
-    stats = []
-    P = pd.DataFrame()
+    P, stats = predict(X, by, measure, nullify_last=None, using=using)
+
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "/../predict_time_python.csv"
     pd \
