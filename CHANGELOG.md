@@ -1,3 +1,23 @@
+## [1.0.12](https://github.com/w4bo/predict/compare/1.0.11...1.0.12) (2024-03-29)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.0 ([d5e07e4](https://github.com/w4bo/predict/commit/d5e07e43e2327f52d9cd09a78da1c99ebb59a3f5))
+* **deps:** update dependency notebook to v7.1.2 ([da9f602](https://github.com/w4bo/predict/commit/da9f6021b3c71cf611d669ca5e21186efb4f8e52))
+* **deps:** update dependency sqlalchemy to v2.0.29 ([2252fc6](https://github.com/w4bo/predict/commit/2252fc693ea5102b4be8fc114a5f7903744cb245))
+* **deps:** update node.js to 20.12 ([9fc6897](https://github.com/w4bo/predict/commit/9fc689795d05a8cbd0b1923d09767fd4e5aaadd9))
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.16.0 ([1d86d82](https://github.com/w4bo/predict/commit/1d86d82e2ec5a22d29877725921001aa961733a6))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.1 ([2d0d7fc](https://github.com/w4bo/predict/commit/2d0d7fc4692448edcf9bd5f8d0c8ea60f7383b75))
+
 ## [1.0.11](https://github.com/w4bo/predict/compare/1.0.10...1.0.11) (2024-03-14)
 
 
