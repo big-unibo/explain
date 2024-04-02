@@ -1,3 +1,10 @@
+## [1.1.81](https://github.com/big-unibo/explain/compare/1.1.80...1.1.81) (2024-04-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.9 ([baf112f](https://github.com/big-unibo/explain/commit/baf112f8ac118241fd7b24d9fbdbcfa5a9c051a8))
+
 ## [1.1.80](https://github.com/big-unibo/explain/compare/1.1.79...1.1.80) (2024-04-02)
 
 
