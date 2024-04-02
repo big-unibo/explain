@@ -1,3 +1,22 @@
+## [1.1.79](https://github.com/big-unibo/explain/compare/1.1.78...1.1.79) (2024-04-02)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.3 ([524bf7c](https://github.com/big-unibo/explain/commit/524bf7cb17106ffab9f4dcf8ee4ae509b125244e))
+* **deps:** update dependency notebook to v7.0.8 ([7a487a8](https://github.com/big-unibo/explain/commit/7a487a832ddc10d83a5604cd00620688b5bc6df3))
+* **deps:** update dependency notebook to v7.1.0 ([a72b413](https://github.com/big-unibo/explain/commit/a72b4130d7f3238b370129172739958181cac72b))
+* **deps:** update dependency notebook to v7.1.2 ([3a5d637](https://github.com/big-unibo/explain/commit/3a5d637d845dba35697dcd24827aa1c2f9e1721e))
+* **deps:** update dependency scikit-learn to v1.4.1.post1 ([c4c6d74](https://github.com/big-unibo/explain/commit/c4c6d747ed41434b618c61f0db216e5a30d661e9))
+* **deps:** update dependency sqlalchemy to v2.0.26 ([d48d3d4](https://github.com/big-unibo/explain/commit/d48d3d4cf2a3935467788c158c5196728e5bc847))
+* **deps:** update dependency sqlalchemy to v2.0.27 ([f90411e](https://github.com/big-unibo/explain/commit/f90411ef41f7daa7900ad67c134f35d05871c95d))
+* **deps:** update dependency sqlalchemy to v2.0.29 ([e81818e](https://github.com/big-unibo/explain/commit/e81818e90a71dd19af6011f00392dc12dd7d8358))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.16.2 ([7c94c08](https://github.com/big-unibo/explain/commit/7c94c08df3f7a49b94d1635c213501e76e570857))
+
 ## [1.1.78](https://github.com/big-unibo/explain/compare/1.1.77...1.1.78) (2024-02-06)
 
 
