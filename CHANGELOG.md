@@ -1,3 +1,16 @@
+## [1.1.82](https://github.com/big-unibo/explain/compare/1.1.81...1.1.82) (2024-04-03)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.0 ([77087fa](https://github.com/big-unibo/explain/commit/77087fa6cd2a55c930cc3f737899cab032f55502))
+* **deps:** update node.js to 20.12 ([bb58eb0](https://github.com/big-unibo/explain/commit/bb58eb0a3f0d1c97428210a2a37226d98fce4c43))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.0 ([71cdcf7](https://github.com/big-unibo/explain/commit/71cdcf7e34f73dbf86b27912dcd1f22abfa0549e))
+
 ## [1.1.81](https://github.com/big-unibo/explain/compare/1.1.80...1.1.81) (2024-04-02)
 
 
