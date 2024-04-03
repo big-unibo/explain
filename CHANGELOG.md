@@ -1,3 +1,20 @@
+## [1.1.83](https://github.com/big-unibo/explain/compare/1.1.82...1.1.83) (2024-04-03)
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.13.0 ([fb76222](https://github.com/big-unibo/explain/commit/fb76222272bce2a36833ffe9f44528ac5be47dbc))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.17.0 ([00ed826](https://github.com/big-unibo/explain/commit/00ed8262e398cb99fef55d5a1f2ad10e7752d1b0))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.1 ([1c1b8e4](https://github.com/big-unibo/explain/commit/1c1b8e43b064bf9411a54a3cce7ea2c35c49f357))
+
 ## [1.1.82](https://github.com/big-unibo/explain/compare/1.1.81...1.1.82) (2024-04-03)
 
 
