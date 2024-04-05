@@ -11,9 +11,9 @@ if [ ! -f "COVID_WEEKLY.DMP" ]; then
   curl -k -o COVID_WEEKLY.DMP -L https://github.com/w4bo/covid-dataset/releases/download/1.0.2/COVID_WEEKLY.DMP
 fi
 
-for file in "measurement-dfm_20240405T124928.dmp" "cimice-dfm_20240405T124928.dmp"; do
+for file in "measurement-dfm_20240405T153047.dmp" "cimice-dfm_20240405T153047.dmp"; do
   if [ ! -f "$file" ]; then
-    curl -k -o "$file" -L "https://github.com/w4bo/dataset-watering/releases/download/1.0.4/$file"
+    curl -k -o "$file" -L "https://github.com/w4bo/dataset-watering/releases/download/1.0.5/$file"
   fi
 done
 ls -las
