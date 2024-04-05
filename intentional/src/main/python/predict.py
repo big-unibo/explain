@@ -92,6 +92,7 @@ def compute_mic(data, casualty_var):
 
 
 def compute_model(df, target_column, model, seed=seed, test_size=test_size):
+    print(f"compute_model test_size: {test_size}, len(df): {len(df)}")
     df_enc = df.copy(deep=True)
     # One-hot encode object columns
     object_columns = list(df.select_dtypes(include=['object']).columns)
@@ -123,6 +124,7 @@ def compute_model(df, target_column, model, seed=seed, test_size=test_size):
 
 
 def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
+    print(f"dtree test_size: {test_size}")
     # Define the hyperparameters you want to search through
     param_grid = {
         'max_depth': [2, 3, 4, 5],
@@ -131,7 +133,7 @@ def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
         'random_state': [seed] 
     }
     model = RandomizedSearchCV(DecisionTreeRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
-    return compute_model(df, target_column, model)
+    return compute_model(df, target_column, model, test_size=test_size)
 
 
 def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
@@ -144,7 +146,7 @@ def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
         'random_state': [seed] 
     }
     model = RandomizedSearchCV(RandomForestRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
-    return compute_model(df, target_column, model)
+    return compute_model(df, target_column, model, test_size=test_size)
 
 
 def mypivot(df, date_attr, column, exog, target_measure, impute=False):
@@ -204,6 +206,7 @@ def save(fig, figtitle, target_measure):
     
 
 def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test_size=test_size):
+    print(f"timeseries test_size: {test_size}")
     targets = [x for x in df.columns if sep in x and target_measure in x]
     actual_targets = [c for c in targets if df[c].isnull().any()]
     fig, axs = plt.subplots(len(actual_targets), 2, figsize=(8, 1 + 3*len(actual_targets)), sharex=False, sharey=False)  # Create a figure and subplots
@@ -285,12 +288,11 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
     missing_indices = df[df.isnull().any(axis=1)].index
     df = df.dropna()
     X_train, Y_train, X_test, Y_test = df[exog][:-test_size+1], df[endo][:-test_size+1], df[exog][-test_size:], df[endo][-test_size:]
-    Y_pred = None
     param_space = {
         'p1': [1, 2, 3],
         'p2': [1, 2, 3]
     }
-    best_r2, best_hp, best_Y_pred = float('-inf'), {}, None
+    Y_pred, forecast, best_r2, best_hp, best_Y_pred = None, None, float('-inf'), {}, None
     random.seed(seed)
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
         try:
@@ -318,7 +320,7 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
         all_values[endo] = all_values[endo].fillna(forecast)
     except Exception as e:
         print(f"varmax({c_hp}) - predicting: {e}")
-    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices], best_r2
+    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices] if forecast is not None else None, best_r2
 
 
 def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, test_size=test_size):
@@ -329,7 +331,8 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
     P = pd.DataFrame([['multivariateTS', 'ALL', 'interest', value]], columns=["model", "component", "property", "value"])
     for c in targets:
-        plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
+        if missing_values_df is not None:
+            plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
     return melt(df, date_attr, column, target_measure), P
@@ -369,13 +372,14 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         pdf = mypivot(df.copy(deep=True), date_attr, column, values, target_measure, impute=True)
         end_time = round((time.time() - start) * 1000)  # time is in ms
         stats.append([execution_id, "pivot", end_time])
-        pdf.info()
+        # pdf.info()
         # Add null values in the end, if necessary
         if nullify_last is not None:
             for x in [x for x in pdf.columns if target_measure in x]:
                 for i in range(nullify_last): pdf.loc[len(pdf) - (i + 1), x] = np.nan
 
         test_pivot_size = round(len(pdf) * 0.2)
+        print(f"test_pivot_size: {test_pivot_size}")
         for model in using:
             alg = None
             start = time.time()
@@ -395,6 +399,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
 
     # Time agnostic
     test_size = round(len(df) * 0.2)
+    print(f"tests_size: {test_size}")
     for model in using:
         alg = None
         start = time.time()

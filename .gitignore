@@ -5,9 +5,11 @@ config.yml
 config.js
 *.DMP
 *.dmp
-*.sql
-*.svg
-*.twbr
+**/*.pdf
+**/*.sql
+!**/f01*.sql
+**/*.svg
+**/*.twbr
 **/src/main/resources/assess/cube_0_*.csv
 **/src/main/python/*.csv
 **/src/main/python/*.pdf

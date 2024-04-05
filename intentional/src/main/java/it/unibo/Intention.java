@@ -282,19 +282,31 @@ public abstract class Intention implements IIntention {
      * @throws Exception in case of error
      */
     public long writeMultidimensionalCube(final String path) throws Exception {
-        return writeMultidimensionalCube(path, getJSON(), "");
+        return writeMultidimensionalCube(path, getJSON(), "", false);
     }
 
     /**
      * Write a cube to file
      *
-     * @param path      where to write
-     * @param json      what will be transformed into query
-     * @param qualifier file qualifier
+     * @param path                where to write the cube
+     * @param generateMissingData whether missing data should be generated to fill cube sparsity
      * @throws Exception in case of error
      */
-    public long writeMultidimensionalCube(final String path, final JSONObject json, final String qualifier) throws Exception {
-        return writeMultidimensionalCube(path, Utils.createQuery(cube, json), qualifier);
+    public long writeMultidimensionalCube(final String path, final boolean generateMissingData) throws Exception {
+        return writeMultidimensionalCube(path, getJSON(), "", generateMissingData);
+    }
+
+    /**
+     * Write a cube to file
+     *
+     * @param path                where to write
+     * @param json                what will be transformed into query
+     * @param qualifier           file qualifier
+     * @param generateMissingData whether missing data should be generated to fill cube sparsity
+     * @throws Exception in case of error
+     */
+    public long writeMultidimensionalCube(final String path, final JSONObject json, final String qualifier, final boolean generateMissingData) throws Exception {
+        return writeMultidimensionalCube(path, Utils.createQuery(cube, json, generateMissingData), qualifier);
     }
 
     private String replaceQuantifiers(final String s) {

@@ -39,7 +39,7 @@ object PredictExecute {
         othermeasures = othermeasures.filter { !measureName(it).equals(measureName(d.measures.first())) && !measureName(it).contains("json") }.toSet()
         d.addMeasures(*othermeasures.toTypedArray())
         // compute the query and store the result
-        val timeQuery = d.writeMultidimensionalCube(path)
+        val timeQuery = d.writeMultidimensionalCube(path, true)
         d.setMeasures(d.measures.map { measureName(it) })
         d.against.clear()
         othermeasures = othermeasures.map { measureName(it) }.toSet()

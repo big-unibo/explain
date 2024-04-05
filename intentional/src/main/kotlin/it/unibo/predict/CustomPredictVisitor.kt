@@ -3,6 +3,7 @@ package it.unibo.predict
 import it.unibo.antlr.gen.PredictBaseVisitor
 import it.unibo.antlr.gen.PredictParser
 import it.unibo.antlr.gen.PredictParser.PredictContext
+import org.antlr.v4.runtime.Token
 import org.apache.commons.lang3.tuple.Triple
 import org.json.JSONObject
 import java.util.stream.Collectors
@@ -23,8 +24,10 @@ class CustomPredictVisitor(val explain: Predict) : PredictBaseVisitor<JSONObject
     }
 
     override fun visitCondition(ctx: PredictParser.ConditionContext): JSONObject? {
+        val op: Token? = ctx.`in`?: ctx.between
+        val text: String = if (op != null) op.text else ctx.op.text
         explain.addClause(
-            Triple.of(ctx.attr.text, if (ctx.op == null) ctx.`in`.text else ctx.op.text, ctx.`val`.stream().map { obj: PredictParser.ValueContext -> obj.text }.collect(Collectors.toList()))
+            Triple.of(ctx.attr.text, text, ctx.`val`.stream().map { obj: PredictParser.ValueContext -> obj.text }.collect(Collectors.toList()))
         )
         return null
     }

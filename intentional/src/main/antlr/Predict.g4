@@ -20,7 +20,8 @@ clause : condition (binary condition)*;
 
 condition
   : attr=ID op=comparator val+=value
-  | attr=ID in=IN '(' val+=value (',' val+=value)* ')';
+  | attr=ID in=IN '(' val+=value (',' val+=value)* ')'
+  | attr=ID between=BETWEEN '[' val+=value + ',' + val+=value ']';
 
 value
   : ID
@@ -38,6 +39,7 @@ comparator
 binary: AND;
 bool: TRUE | FALSE;
 
+BETWEEN    : 'BETWEEN' | 'between';
 IN         : 'IN' | 'in';
 AND        : 'AND' | 'and'; 
 NOT        : 'NOT' | 'not';
