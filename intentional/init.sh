@@ -31,13 +31,11 @@ else
         python3 -m venv venv
     fi
 fi
-
 if [ -d venv/bin ]; then
     source venv/bin/activate
 else
     source venv/Scripts/activate
 fi
-
 pip install -r requirements.txt
 chmod -R 777 venv
 cd -
