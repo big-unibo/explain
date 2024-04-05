@@ -36,7 +36,7 @@ object PredictExecute {
         // get the other measures to explain
         var othermeasures = if (d.against.isEmpty()) { QueryGenerator.getMeasures(d.cube) } else { d.against }
         // omit the measure to be explained
-        othermeasures = othermeasures.filter { !measureName(it).equals(measureName(d.measures.first())) }.toSet()
+        othermeasures = othermeasures.filter { !measureName(it).equals(measureName(d.measures.first())) && !measureName(it).contains("json") }.toSet()
         d.addMeasures(*othermeasures.toTypedArray())
         // compute the query and store the result
         val timeQuery = d.writeMultidimensionalCube(path)

@@ -32,6 +32,16 @@ class TestPredict {
     }
 
     @Test
+    fun `test cimice`() {
+        execute("with CIMICE predict adults by week_in_year")
+    }
+
+    @Test
+    fun `test watering`() {
+        execute("with WATERING predict value by week_in_year")
+    }
+
+    @Test
     fun `test models`() {
         execute("with sales_fact_1997 predict unit_sales by the_date")
     }
