@@ -1,3 +1,10 @@
+## [1.0.14](https://github.com/w4bo/predict/compare/1.0.13...1.0.14) (2024-04-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.16.1 ([4c0b356](https://github.com/w4bo/predict/commit/4c0b3567d6a018ba912e8d9d703c275ee8d75eb8))
+
 ## [1.0.13](https://github.com/w4bo/predict/compare/1.0.12...1.0.13) (2024-04-08)
 
 
