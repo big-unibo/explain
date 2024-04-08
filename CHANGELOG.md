@@ -1,3 +1,16 @@
+## [1.0.13](https://github.com/w4bo/predict/compare/1.0.12...1.0.13) (2024-04-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.4 ([cebd491](https://github.com/w4bo/predict/commit/cebd491a141dabfbd1fc800362804dfccd0b15bd))
+* **deps:** update dependency scipy to v1.13.0 ([f6ff707](https://github.com/w4bo/predict/commit/f6ff7075180928661666d6cd9f8689b0d24c6a8b))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.10 ([ac352eb](https://github.com/w4bo/predict/commit/ac352eb97ddc0f351e084cfb5b571882227275b9))
+
 ## [1.0.12](https://github.com/w4bo/predict/compare/1.0.11...1.0.12) (2024-03-29)
 
 
