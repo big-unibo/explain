@@ -1,3 +1,15 @@
+## [1.1.86](https://github.com/big-unibo/explain/compare/1.1.85...1.1.86) (2024-04-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.4 ([3b3c1b3](https://github.com/big-unibo/explain/commit/3b3c1b3316473a57ffc859080ce9a3a63f95d9db))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.10 ([ed74ce3](https://github.com/big-unibo/explain/commit/ed74ce30886b58c0dc0c76c13764a98911cc2ddf))
+
 ## [1.1.85](https://github.com/big-unibo/explain/compare/1.1.84...1.1.85) (2024-04-04)
 
 
