@@ -1,3 +1,10 @@
+## [1.1.88](https://github.com/big-unibo/explain/compare/1.1.87...1.1.88) (2024-04-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.16.1 ([2915703](https://github.com/big-unibo/explain/commit/291570310a8924c21706762026ba97c24f26687f))
+
 ## [1.1.87](https://github.com/big-unibo/explain/compare/1.1.86...1.1.87) (2024-04-08)
 
 
