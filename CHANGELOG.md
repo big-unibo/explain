@@ -1,3 +1,15 @@
+## [1.0.15](https://github.com/w4bo/predict/compare/1.0.14...1.0.15) (2024-04-12)
+
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.4.2 ([a39de9d](https://github.com/w4bo/predict/commit/a39de9dc1f3aa6ec283b0fe64631e6222da5dada))
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.13 ([6cbd802](https://github.com/w4bo/predict/commit/6cbd80237c97dfcf56de0e4ed024af3fd0b8d808))
+
 ## [1.0.14](https://github.com/w4bo/predict/compare/1.0.13...1.0.14) (2024-04-08)
 
 
