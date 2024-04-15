@@ -217,7 +217,10 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         cdf = df.drop(columns=[x for x in targets if x != c], axis=1)  # drop the wrong target measures 
         cdf = df.drop(columns=[x for x in df.columns if sep in x and c.split(sep)[1] not in x], axis=1)  # drop the wrong slices 
         cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
-        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], 'interest', value]], columns=["model", "component", "property", "value"])], ignore_index=True)
+        P = pd.concat([P, pd.DataFrame([
+                [figtitle, c.split(sep)[1], 'interest', value],
+                [figtitle, c.split(sep)[1], 'sparsity', len(missing_values_df) / len(cdf)]
+            ], columns=["model", "component", "property", "value"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
@@ -329,7 +332,10 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
     df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
-    P = pd.DataFrame([['multivariateTS', 'ALL', 'interest', value]], columns=["model", "component", "property", "value"])
+    P = pd.DataFrame([
+                ['multivariateTS', 'ALL', 'interest', value],
+                ['multivariateTS', 'ALL', (len(missing_values_df) / len(df)) if missing_values_df is not None else -1]
+            ], columns=["model", "component", "property", "value"])
     for c in targets:
         if missing_values_df is not None:
             plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
@@ -339,7 +345,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
 
 
 def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
-    date_attr = [x for x in by if "week" in x or "date" in x or "month" in x or "year" in x]
+    date_attr = [x for x in by if "week" in x or "date" in x or "day" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
     else:
@@ -372,6 +378,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         pdf = mypivot(df.copy(deep=True), date_attr, column, values, target_measure, impute=True)
         end_time = round((time.time() - start) * 1000)  # time is in ms
         stats.append([execution_id, "pivot", end_time])
+        pdf.to_csv(my_path + file + "_" + str(session_step) + "_pdf.csv", index=False)
         # pdf.info()
         # Add null values in the end, if necessary
         if nullify_last is not None:
@@ -398,6 +405,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
                 stats.append([execution_id, model, end_time])
 
     # Time agnostic
+    df.to_csv(my_path + file + "_" + str(session_step) + "_df.csv", index=False)
     test_size = round(len(df) * 0.2)
     print(f"tests_size: {test_size}")
     for model in using:
@@ -406,8 +414,11 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         if model == "decisionTree": alg=dtree
         elif model == "randomForest": alg=forest
         if alg is not None:
-            _, _, _, _, _, _, _, _, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
-            P = pd.concat([P, pd.DataFrame([[model, 'ALL', 'interest', value]], columns=["model", "component", "property", "value"])], ignore_index=True)
+            _, _, _, _, _, _, _, missing_values_df, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
+            P = pd.concat([P, pd.DataFrame([
+                    [model, 'ALL', 'interest', value],
+                    [model, 'ALL', 'sparsity', len(missing_values_df) / len(df)]
+                ], columns=["model", "component", "property", "value"])], ignore_index=True)
             end_time = round((time.time() - start) * 1000)  # time is in ms
             stats.append([execution_id, model, end_time])
             print(f"{model}. R2={value}")
@@ -462,7 +473,7 @@ if __name__ == '__main__':
     P, stats = predict(X, by, measure, nullify_last=None, using=using)
 
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
-    file_path = my_path + "/../predict_time_python.csv"
+    file_path = my_path + "../predict_time_python.csv"
     pd \
         .DataFrame(stats, columns=["execution_id", "model", "time_model_python"]) \
         .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))

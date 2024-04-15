@@ -33,28 +33,28 @@ class TestPredict {
 
     @Test
     fun `test cimice 4`() {
-        execute("with CIMICE predict adults for month between ['2021-5', '2021-9'] and province in ('BO', 'RA') by week_in_year, province from small_instars, total_captures")
+        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] and province in ('BO', 'RA') by week, province from small_instars, total_captures")
     }
 
     @Test
     fun `test cimice 3`() {
-        execute("with CIMICE predict adults for month between ['2021-5', '2021-9'] by week_in_year, province from small_instars, total_captures")
-        // execute("with CIMICE predict adults for month between ['2021-5', '2021-9'] by week_in_year, crop_type from small_instars, total_captures")
+        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week, province from small_instars, total_captures")
+        // execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week, crop_type from small_instars, total_captures")
     }
 
     @Test
     fun `test cimice2`() {
-        execute("with CIMICE predict adults for month between ['2021-5', '2021-9'] by week_in_year from small_instars, total_captures")
+        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week from small_instars, total_captures")
     }
 
     @Test
     fun `test cimice 1`() {
-        execute("with CIMICE predict adults by week_in_year")
+        execute("with CIMICE predict adults by week")
     }
 
     @Test
     fun `test watering`() {
-        execute("with WATERING predict value by week_in_year")
+        execute("with WATERING predict value by day, field")
     }
 
     @Test

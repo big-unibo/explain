@@ -16,9 +16,11 @@ public class DependencyGraph {
     private static Graph<String, DefaultEdge> getWateringDependencies() {
         final DefaultDirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         // TIME
-        g.addVertex("date");
+        g.addVertex("day");
         g.addVertex("month");
-        g.addEdge("date", "month");
+        g.addEdge("day", "month");
+        g.addVertex("week");
+        g.addEdge("day", "week");
         g.addVertex("year");
         g.addEdge("month", "year");
         g.addVertex("all_date");
@@ -29,15 +31,20 @@ public class DependencyGraph {
         g.addVertex("all_sensor");
         g.addEdge("sensor", "all_sensor");
 
+        // CROP
+        g.addVertex("field");
+        g.addVertex("all_field");
+        g.addEdge("field", "all_field");
+
         return g;
     }
 
     private static Graph<String, DefaultEdge> getCimiceDependencies() {
         final DefaultDirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         // TIME
-        g.addVertex("week_in_year");
+        g.addVertex("week");
         g.addVertex("month");
-        g.addEdge("week_in_year", "month");
+        g.addEdge("week", "month");
         g.addVertex("year");
         g.addEdge("month", "year");
         g.addVertex("all_date");
@@ -107,7 +114,7 @@ public class DependencyGraph {
     
     public static Graph<String, DefaultEdge> getDependencies(final Cube cube) {
         switch (cube.getFactTable()) {
-            case "ft_mesurement":
+            case "ft_measurement":
                 return getWateringDependencies();
             case "cimice_ft_captures":
                 return getCimiceDependencies();
