@@ -15,8 +15,16 @@ public class DependencyGraph {
 
     private static Graph<String, DefaultEdge> getWateringDependencies() {
         final DefaultDirectedGraph<String, DefaultEdge> g = new DefaultDirectedGraph<>(DefaultEdge.class);
+        g.addVertex("type");
+        g.addVertex("measurement_type");
+        g.addEdge("type", "measurement_type");
+
         // TIME
+        g.addVertex("timestamp");
+        g.addVertex("hour");
+        g.addEdge("timestamp", "hour");
         g.addVertex("day");
+        g.addEdge("hour", "day");
         g.addVertex("month");
         g.addEdge("day", "month");
         g.addVertex("week");
@@ -26,12 +34,14 @@ public class DependencyGraph {
         g.addVertex("all_date");
         g.addEdge("year", "all_date");
 
-        // SPACE
-        g.addVertex("sensor");
-        g.addVertex("all_sensor");
-        g.addEdge("sensor", "all_sensor");
+        // AGENT
+        g.addVertex("agent");
+        g.addVertex("agent_type");
+        g.addEdge("agent", "agent_type");
+        g.addVertex("all_agent");
+        g.addEdge("agent_type", "all_agent");
 
-        // CROP
+        // FIELD
         g.addVertex("field");
         g.addVertex("all_field");
         g.addEdge("field", "all_field");

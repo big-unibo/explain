@@ -24,7 +24,7 @@ class CustomPredictVisitor(val explain: Predict) : PredictBaseVisitor<JSONObject
     }
 
     override fun visitCondition(ctx: PredictParser.ConditionContext): JSONObject? {
-        val op: Token? = ctx.`in`?: ctx.between
+        val op: Token? = ctx.`in`
         val text: String = if (op != null) op.text else ctx.op.text
         explain.addClause(
             Triple.of(ctx.attr.text, text, ctx.`val`.stream().map { obj: PredictParser.ValueContext -> obj.text }.collect(Collectors.toList()))

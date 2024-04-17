@@ -214,12 +214,16 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
     i = 0
     P = pd.DataFrame()
     for c in actual_targets:
-        cdf = df.drop(columns=[x for x in targets if x != c], axis=1)  # drop the wrong target measures 
-        cdf = df.drop(columns=[x for x in df.columns if sep in x and c.split(sep)[1] not in x], axis=1)  # drop the wrong slices 
+        endo=[x for x in targets if x != c]
+        exog=[x for x in df.columns if sep in x and c.split(sep)[1] not in x]
+        cdf = df.drop(columns=endo, axis=1)  # drop the wrong target measures
+        cdf = df.drop(columns=exog, axis=1)  # drop the wrong slices
         cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
         P = pd.concat([P, pd.DataFrame([
                 [figtitle, c.split(sep)[1], 'interest', value],
-                [figtitle, c.split(sep)[1], 'sparsity', len(missing_values_df) / len(cdf)]
+                [figtitle, c.split(sep)[1], 'sparsity', len(missing_values_df) / len(cdf)],
+                [figtitle, c.split(sep)[1], 'endo', len(endo)],
+                [figtitle, c.split(sep)[1], 'exog', len(exog)],
             ], columns=["model", "component", "property", "value"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
@@ -334,7 +338,9 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
     P = pd.DataFrame([
                 ['multivariateTS', 'ALL', 'interest', value],
-                ['multivariateTS', 'ALL', (len(missing_values_df) / len(df)) if missing_values_df is not None else -1]
+                ['multivariateTS', 'ALL', (len(missing_values_df) / len(df)) if missing_values_df is not None else -1],
+                ['multivariateTS', 'ALL', 'endo', len(targets)],
+                ['multivariateTS', 'ALL', 'exog', df.columns - 1 - len(targets)],  # -1 is for the data_attr column
             ], columns=["model", "component", "property", "value"])
     for c in targets:
         if missing_values_df is not None:
@@ -345,7 +351,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
 
 
 def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
-    date_attr = [x for x in by if "week" in x or "date" in x or "day" in x or "month" in x or "year" in x]
+    date_attr = [x for x in by if "week" in x or "hour" in x or "timestamp" in x or "date" in x or "day" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
     else:
@@ -356,6 +362,8 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
             df[date_attr] = pd.to_datetime(df[date_attr] + '-01', format='%Y-%m-%d')
         elif "year" in date_attr:
             df[date_attr] = pd.to_datetime(df[date_attr] + '-01-01', format='%Y-%m-%d')
+        elif "hour" in date_attr or "timestamp" in date_attr:
+            df[date_attr] = pd.to_datetime(df[date_attr], format='%Y-%m-%d %H:%M:%S')
         else:
             df[date_attr] = pd.to_datetime(df[date_attr], format='%Y-%m-%d')
 
@@ -437,6 +445,8 @@ if __name__ == '__main__':
     parser.add_argument("--measure", help="target measure to predict", type=str)
     parser.add_argument("--execution_id", help="execution id", type=str)
     parser.add_argument("--using", help="models for prediction", nargs='?', const='', default='', type=str)
+    parser.add_argument("--nullify", help="Percentage of values to nullify", type=float)
+
     args = parser.parse_args()
     my_path = args.path.replace("\"", "")
     file = args.file
@@ -446,34 +456,37 @@ if __name__ == '__main__':
     cube = args.cube.replace("__", " ")
     cube = json.loads(cube)
     using = "" if args.using == "" else args.using.split(",")
+    nullify = 0.0 if args.nullify is None else args.nullify
 
-    ###############################################################################
-    # APPLY MODELS
-    ###############################################################################
+    # Load the data
     try:
         X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding='cp1252')
     except Error:
         X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
-
+    # Ensure that we have enough data
     if len(X) == 0:
         raise ValueError('Empty data')
-
+    # Drop columns with all NaN values
+    X = X.dropna(axis=1, how='all')
     X.columns = [x.lower() for x in X.columns]
     by = [x.lower() for x in cube["GC"]]
     using = ["univariateTS", "multivariateTS", "timeDecisionTree", "timeRandomForest", "decisionTree", "randomForest"] if len(using) == 0 else using
-    # P, stats = run(X, measure, measures, using, execution_id)
-
     # Set a seed for reproducibility
     np.random.seed(0)
     # Define the indices to replace with random values
-    indices_to_replace = np.random.randint(1, len(X), size=5)
-    # Set random values at specified indices in column 'B'
-    X.loc[indices_to_replace, measure] = np.nan
-
+    if nullify > 0:
+        X.loc[range(len(X) - len(x) * nullify, len(X)), measure] = np.nan
+    # write stats
+    pd.DataFrame([
+            ["execution_id", "nullify", "cardinality"],
+            [execution_id, nullify, len(X)]
+        ]).to_csv(my_path + file + "_" + str(session_step) + "_stats.csv", index=False)
+    # execute the operator
     P, stats = predict(X, by, measure, nullify_last=None, using=using)
-
+    # write the statistics on the components
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "../predict_time_python.csv"
+    # write the statistics on the execution times
     pd \
         .DataFrame(stats, columns=["execution_id", "model", "time_model_python"]) \
         .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))

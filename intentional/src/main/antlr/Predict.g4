@@ -21,7 +21,7 @@ clause : condition (binary condition)*;
 condition
   : attr=ID op=comparator val+=value
   | attr=ID in=IN '(' val+=value (',' val+=value)* ')'
-  | attr=ID between=BETWEEN '[' val+=value + ',' + val+=value ']';
+  | attr=ID in=BETWEEN '[' val+=value + ',' + val+=value ']';
 
 value
   : ID
@@ -34,11 +34,13 @@ comparator
   | LE
   | EQ
   | GT
-  | LT;
+  | LT
+  | LIKE;
 
 binary: AND;
 bool: TRUE | FALSE;
 
+LIKE       : 'LIKE' | 'like';
 BETWEEN    : 'BETWEEN' | 'between';
 IN         : 'IN' | 'in';
 AND        : 'AND' | 'and'; 
@@ -53,6 +55,6 @@ EQ         : '=';
 DECIMAL    : '-'? [0-9]+ '.' [0-9]+;
 INT        : '-'? [0-9]+;
 ID
-  : '\'' [a-zA-Z0-9'_'\-'/' ]+ '\'' 
-  |      [a-zA-Z0-9'_'\-'/']+ ;
+  : '\'' [a-zA-Z0-9'_'\-'/''.'%]+ '\''
+  |      [a-zA-Z0-9'_'\-'/''.']+ ;
 WS         : [ \t\r\n]+ -> skip;
