@@ -1,3 +1,16 @@
+## [1.1.90](https://github.com/big-unibo/explain/compare/1.1.89...1.1.90) (2024-04-19)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.3 ([fc6d57c](https://github.com/big-unibo/explain/commit/fc6d57c075304e88ef400f3278c59d586e7f0d1f))
+* **deps:** update dependency scikit-learn to v1.4.2 ([6a9a27f](https://github.com/big-unibo/explain/commit/6a9a27f6f899e436c247929442421529dfd3d7cd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.7 ([df593ad](https://github.com/big-unibo/explain/commit/df593ad6390a67a63d9983191c99df2b91f99fe6))
+
 ## [1.1.89](https://github.com/big-unibo/explain/compare/1.1.88...1.1.89) (2024-04-12)
 
 
