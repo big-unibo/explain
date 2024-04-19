@@ -1,3 +1,20 @@
+## [1.0.16](https://github.com/w4bo/predict/compare/1.0.15...1.0.16) (2024-04-19)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.3 ([928bf8b](https://github.com/w4bo/predict/commit/928bf8ba9a84908fff378059dbf03419222c2024))
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.7 ([639edb0](https://github.com/w4bo/predict/commit/639edb07ab5aa5214d1a8d04ce4d55df7c7f213b))
+
+
+### Build and continuous integration
+
+* **deps:** update jamesives/github-pages-deploy-action action to v4.6.0 ([e4a60ab](https://github.com/w4bo/predict/commit/e4a60ab0d680d3e1b0c75a138b3a8115c6e077e7))
+
 ## [1.0.15](https://github.com/w4bo/predict/compare/1.0.14...1.0.15) (2024-04-12)
 
 
