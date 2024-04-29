@@ -215,13 +215,9 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         exog=[x for x in df.columns if sep in x and c.split(sep)[1] not in x]
         cdf = df.drop(columns=endo, axis=1)  # drop the wrong target measures
         cdf = df.drop(columns=exog, axis=1)  # drop the wrong slices
+        start = time.time()
         cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
-        P = pd.concat([P, pd.DataFrame([
-                [figtitle, c.split(sep)[1], 'interest', value],
-                [figtitle, c.split(sep)[1], 'sparsity', len(missing_values_df) / len(cdf)],
-                [figtitle, c.split(sep)[1], 'endo', 1],
-                [figtitle, c.split(sep)[1], 'exog', len(exog)],
-            ], columns=["model", "component", "property", "value"])], ignore_index=True)
+        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(exog), round((time.time() - start) * 1000)]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
@@ -341,13 +337,11 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     fig, axs = plt.subplots(len(targets), 2, figsize=(8, 1 + 3*len(targets)), sharex=False, sharey=False)  # Create a figure and subplots
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
+    start = time.time()
     df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
     P = pd.DataFrame([
-                ['multivariateTS', 'ALL', 'interest', value],
-                ['multivariateTS', 'ALL', (len(missing_values_df) / len(df)) if missing_values_df is not None else -1],
-                ['multivariateTS', 'ALL', 'endo', len(targets)],
-                ['multivariateTS', 'ALL', 'exog', len(df.columns) - 1 - len(targets)],  # -1 is for the data_attr column
-            ], columns=["model", "component", "property", "value"])
+            ['multivariateTS', 'ALL', value, (len(missing_values_df) / len(df)) if missing_values_df is not None else -1, len(targets), len(df.columns) - 1 - len(targets), round((time.time() - start) * 1000)],  # -1 is for the data_attr column
+        ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])
     for c in targets:
         if missing_values_df is not None:
             plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
@@ -391,7 +385,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         start = time.time()
         pdf = mypivot(df.copy(deep=True), date_attr, column, values, target_measure, impute=True)
         end_time = round((time.time() - start) * 1000)  # time is in ms
-        stats.append([execution_id, "pivot", "time", end_time])
+        stats.append([execution_id, "pivot", end_time])
         pdf.to_csv(my_path + file + "_" + session_step + "_pdf.csv", index=False)
         # pdf.info()
         # Add null values in the end, if necessary
@@ -411,7 +405,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
                 _, Q = timeseries(pdf.copy(deep=True), date_attr, column, target_measure, alg, figtitle=model, test_size=test_pivot_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
                 P = pd.concat([P, Q], ignore_index=True)
-                stats.append([execution_id, model, "time", end_time])
+                stats.append([execution_id, model, end_time])
             if model == "multivariateTS" and column is not None and df[column].nunique() > 1:
                 _, Q = multi_timeseries(pdf.copy(deep=True), date_attr, column, target_measure, varmax, figtitle=model, test_size=test_pivot_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
@@ -429,12 +423,11 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         elif model == "randomForest": alg=forest
         if alg is not None:
             _, _, _, _, _, _, _, missing_values_df, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
-            P = pd.concat([P, pd.DataFrame([
-                    [model, 'ALL', 'interest', value],
-                    [model, 'ALL', 'sparsity', -1 if missing_values_df is None else (len(missing_values_df) / len(df))]
-                ], columns=["model", "component", "property", "value"])], ignore_index=True)
             end_time = round((time.time() - start) * 1000)  # time is in ms
-            stats.append([execution_id, model, "time", end_time])
+            P = pd.concat([P,
+                        pd.DataFrame([[model, 'ALL', value, -1 if missing_values_df is None else (len(missing_values_df) / len(df)), -1, -1, end_time]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])
+                ], ignore_index=True)
+            stats.append([execution_id, model, end_time])
             print(f"{model}. R2={value}")
 
     return P, stats
@@ -483,17 +476,20 @@ if __name__ == '__main__':
     if nullify > 0:
         X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
     # write stats
-    file_path = my_path + "../predict_stats.csv"
+    file_path = my_path + "../predict_intentions.csv"
     pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
     # execute the operator
     P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id)
     # write the statistics on the components
     P.to_csv(my_path + file + "_" + session_step + "_property.csv", index=False)
     # write the statistics on the execution times
-    file_path = my_path + "../predict_time_python.csv"
-    R = pd.DataFrame(stats, columns=["execution_id", "model", "property", "value"])
-    P["execution_id"] = execution_id
-    R = pd.concat([R, P])
+    file_path = my_path + "../predict_models.csv"
+    R = pd.DataFrame(stats, columns=["execution_id", "model", "time"])
     if path.exists(file_path):
         R = pd.concat([R, pd.read_csv(file_path)])
     R.to_csv(file_path, index=False, header=True)
+    file_path = my_path + "../predict_components.csv"
+    P["execution_id"] = execution_id
+    if path.exists(file_path):
+        P = pd.concat([P, pd.read_csv(file_path)])
+    P.to_csv(file_path, index=False, header=True)
