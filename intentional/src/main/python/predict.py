@@ -44,6 +44,9 @@ test_size=20
 sep="!"
 n_iter = 10
 cv = 5
+my_path = ""
+file = ""
+session_step = ""
 
 # config = dotenv_values("../../../.env")
 # out_db_params = {
@@ -196,7 +199,7 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
 
 def save(fig, figtitle, target_measure):
     fig.tight_layout()
-    for ext in ["svg", "pdf"]: fig.savefig(f"{figtitle}_{target_measure}.{ext}")
+    for ext in ["svg", "pdf"]: fig.savefig(f"{my_path}{file}_{session_step}_{figtitle}_{target_measure}.{ext}")
     
 
 def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test_size=test_size):
@@ -388,8 +391,8 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         start = time.time()
         pdf = mypivot(df.copy(deep=True), date_attr, column, values, target_measure, impute=True)
         end_time = round((time.time() - start) * 1000)  # time is in ms
-        stats.append([execution_id, "pivot", end_time])
-        pdf.to_csv(my_path + file + "_" + str(session_step) + "_pdf.csv", index=False)
+        stats.append([execution_id, "pivot", "time", end_time])
+        pdf.to_csv(my_path + file + "_" + session_step + "_pdf.csv", index=False)
         # pdf.info()
         # Add null values in the end, if necessary
         if nullify_last is not None:
@@ -408,7 +411,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
                 _, Q = timeseries(pdf.copy(deep=True), date_attr, column, target_measure, alg, figtitle=model, test_size=test_pivot_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
                 P = pd.concat([P, Q], ignore_index=True)
-                stats.append([execution_id, model, end_time])
+                stats.append([execution_id, model, "time", end_time])
             if model == "multivariateTS" and column is not None and df[column].nunique() > 1:
                 _, Q = multi_timeseries(pdf.copy(deep=True), date_attr, column, target_measure, varmax, figtitle=model, test_size=test_pivot_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
@@ -416,7 +419,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
                 stats.append([execution_id, model, end_time])
 
     # Time agnostic
-    df.to_csv(my_path + file + "_" + str(session_step) + "_df.csv", index=False)
+    df.to_csv(my_path + file + "_" + session_step + "_df.csv", index=False)
     test_size = round(len(df) * 0.2)
     print(f"tests_size: {test_size}")
     for model in using:
@@ -431,7 +434,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
                     [model, 'ALL', 'sparsity', -1 if missing_values_df is None else (len(missing_values_df) / len(df))]
                 ], columns=["model", "component", "property", "value"])], ignore_index=True)
             end_time = round((time.time() - start) * 1000)  # time is in ms
-            stats.append([execution_id, model, end_time])
+            stats.append([execution_id, model, "time", end_time])
             print(f"{model}. R2={value}")
 
     return P, stats
@@ -454,7 +457,7 @@ if __name__ == '__main__':
     my_path = args.path.replace("\"", "")
     file = args.file
     measure = args.measure
-    session_step = args.session_step
+    session_step = str(args.session_step)
     execution_id = args.execution_id
     cube = args.cube.replace("__", " ")
     cube = json.loads(cube)
@@ -463,9 +466,9 @@ if __name__ == '__main__':
 
     # Load the data
     try:
-        X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding='cp1252')
+        X = pd.read_csv(my_path + file + "_" + session_step + ".csv", encoding='cp1252')
     except Error:
-        X = pd.read_csv(my_path + file + "_" + str(session_step) + ".csv", encoding="utf-8")
+        X = pd.read_csv(my_path + file + "_" + session_step + ".csv", encoding="utf-8")
     # Ensure that we have enough data
     if len(X) == 0:
         raise ValueError('Empty data')
@@ -480,13 +483,17 @@ if __name__ == '__main__':
     if nullify > 0:
         X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
     # write stats
-    pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(my_path + "../predict_stats.csv", index=False)
+    file_path = my_path + "../predict_stats.csv"
+    pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
     # execute the operator
     P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id)
     # write the statistics on the components
-    P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
-    file_path = my_path + "../predict_time_python.csv"
+    P.to_csv(my_path + file + "_" + session_step + "_property.csv", index=False)
     # write the statistics on the execution times
-    pd \
-        .DataFrame(stats, columns=["execution_id", "model", "time_model_python"]) \
-        .to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
+    file_path = my_path + "../predict_time_python.csv"
+    R = pd.DataFrame(stats, columns=["execution_id", "model", "property", "value"])
+    P["execution_id"] = execution_id
+    R = pd.concat([R, P])
+    if path.exists(file_path):
+        R = pd.concat([R, pd.read_csv(file_path)])
+    R.to_csv(file_path, index=False, header=True)
