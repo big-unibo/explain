@@ -72,6 +72,7 @@ def get_data(columns=None, filters=None, file_name=None):
 
 
 def compute_mic(data, casualty_var):
+    # compute_mic(df, [target_measure] + values)
     """
     Compute the MIC matrix for the given data
     :param data: input data
@@ -87,8 +88,6 @@ def compute_mic(data, casualty_var):
     ys = casualty_var
     mic_c = pd.DataFrame(mic_c, index=ys, columns=xs)
     return mic_c
-
-# compute_mic(df, [target_measure] + values)
 
 
 def compute_model(df, target_column, model, seed=seed, test_size=test_size):
@@ -229,9 +228,11 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
 def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     # Create a separate dataframe for rows with missing values in the target column
     mydf = df
+    # df.info()
     missing_values_df = df[df.isnull().any(axis=1)]
     missing_indices = missing_values_df.index
     df = df.dropna()
+    # df.info()
     exog = [x for x in df.columns if target_measure.split(sep)[0] not in x and x != date_attr]
     X_train, y_train, X_test, y_test = df[exog][:-test_size+1], df[target_measure][:-test_size+1], df[exog][-test_size:], df[target_measure][-test_size:]
     param_space = {
@@ -248,14 +249,20 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
         try:
             # Generate a random set of hyperparameters
+            print("selecting parameters...")
             c_hp = {hp: random.choice(values) for hp, values in param_space.items()}
             # Train and evaluate the model with the current set of hyperparameters
             order = (c_hp["p1"] , c_hp["p2"], c_hp["p3"]) # to tune 
             seasonal_order = (c_hp["p4"], c_hp["p5"], c_hp["p6"], c_hp["p7"]) # to tune
-            model = SARIMAX(endog=y_train, exog=X_train, order=order, seasonal_order=seasonal_order)
+            print("initializing sarimax... order={}, seasonal_order={}".format(order, seasonal_order))
+            X_train.info()
+            model = SARIMAX(endog=y_train, exog=None if X_train.empty else X_train, order=order, seasonal_order=seasonal_order)
+            print("fitting...")
             results = model.fit(iterations=100, disp=False)
-            y_pred = results.get_forecast(steps=test_size, exog=X_test).predicted_mean
+            print("forecasting...")
+            y_pred = results.get_forecast(steps=test_size, exog=None if X_test.empty else X_test).predicted_mean
             y_pred.index = y_test.index
+            print("computing R2...")
             c_r2 = r2_score(y_test, y_pred)
             # Update the best hyperparameters if the current configuration is better
             if c_r2 > best_r2:
@@ -268,16 +275,16 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     try:
         order = (best_hp["p1"], best_hp["p2"], best_hp["p3"])
         seasonal_order = (best_hp["p4"], best_hp["p5"], best_hp["p6"], best_hp["p7"])
-        model = SARIMAX(endog=df[target_measure], exog=df[exog], order=order, seasonal_order=seasonal_order)
+        model = SARIMAX(endog=df[target_measure], exog=None if df[exog].empty else df[exog], order=order, seasonal_order=seasonal_order)
         results = model.fit(iterations=100, disp=False)
-        forecast = results.get_prediction(start=missing_indices[0], end=missing_indices[-1], exog=mydf[exog].loc[missing_indices]).predicted_mean
+        forecast = results.get_prediction(start=missing_indices[0], end=missing_indices[-1], exog=None if mydf[exog].loc[missing_indices].empty else mydf[exog].loc[missing_indices]).predicted_mean
         forecast.index = mydf.loc[missing_indices[0]:missing_indices[-1]].index
         missing_values_df[target_measure] = forecast
         mydf.loc[mydf[target_measure].isnull(), target_measure] = missing_values_df[target_measure]
     except Exception as e:
-        print(f"sarimax({c_hp}) - training: {e}")
-    import sys
-    sys.exit(1)
+        print(f"sarimax({c_hp}) - predicting: {e}")
+    # import sys
+    # sys.exit(1)
     return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2
 
 
@@ -301,9 +308,9 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
         try:
             # Generate a random set of hyperparameters
             c_hp = {hp: random.choice(values) for hp, values in param_space.items()}
-            model = VARMAX(endog=Y_train, exog=X_train, order=(c_hp["p1"], c_hp["p2"]))
+            model = VARMAX(endog=Y_train, exog=None if X_train.empty else X_train, order=(c_hp["p1"], c_hp["p2"]))
             results = model.fit(iterations=100, disp=False)
-            fcst = results.get_forecast(steps=test_size, exog=X_test)
+            fcst = results.get_forecast(steps=test_size, exog=None if X_test.empty else X_test)
             Y_pred = fcst.predicted_mean
             Y_pred.index = Y_test.index
             c_r2 = r2_score(Y_test, Y_pred)
@@ -316,9 +323,9 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
             print(f"varmax({c_hp}) - predicting: {e}")
     try:
         c_hp = best_hp
-        model = VARMAX(endog=df[endo], exog=df[exog], order=(best_hp["p1"], best_hp["p2"]))
+        model = VARMAX(endog=df[endo], exog=None if df[exog].empty else df[exog], order=(best_hp["p1"], best_hp["p2"]))
         results = model.fit(iterations=100, disp=False)
-        forecast = results.get_prediction(start=missing_indices[0], end=missing_indices[-1], exog=mydf[exog].loc[missing_indices]).predicted_mean
+        forecast = results.get_prediction(start=missing_indices[0], end=missing_indices[-1], exog=None if mydf[exog].loc[missing_indices].empty else mydf[exog].loc[missing_indices]).predicted_mean
         forecast.index = all_values.loc[missing_indices[0]:missing_indices[-1]].index
         all_values[endo] = all_values[endo].fillna(forecast)
     except Exception as e:
@@ -336,7 +343,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
                 ['multivariateTS', 'ALL', 'interest', value],
                 ['multivariateTS', 'ALL', (len(missing_values_df) / len(df)) if missing_values_df is not None else -1],
                 ['multivariateTS', 'ALL', 'endo', len(targets)],
-                ['multivariateTS', 'ALL', 'exog', df.columns - 1 - len(targets)],  # -1 is for the data_attr column
+                ['multivariateTS', 'ALL', 'exog', len(df.columns) - 1 - len(targets)],  # -1 is for the data_attr column
             ], columns=["model", "component", "property", "value"])
     for c in targets:
         if missing_values_df is not None:

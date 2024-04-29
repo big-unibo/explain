@@ -39,7 +39,6 @@ class TestPredict {
     @Test
     fun `test cimice 3`() {
         execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week, province from small_instars, total_captures")
-        // execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week, crop_type from small_instars, total_captures")
     }
 
     @Test
@@ -54,7 +53,14 @@ class TestPredict {
 
     @Test
     fun `test watering`() {
-        execute("with WATERING predict value by day, field")
+        // Sensor-0.3_0_0.2
+        execute("with WATERING predict value " +
+                "by hour, agent " +
+                "for agent in ('Sensor-0.3_0_0.2', 'Sensor-0.3_0_0.4') " +
+                    "and hour between ['2020-06-06 22:00:00', '2020-06-10 22:00:00'] " + // 2020-10-06 23:00:00
+                    "and measurement_type in ('GROUND_WATER_POTENTIAL', 'GRND_WATER_G') " +
+                    "and field='Field-c9da4a553b' " +
+                "nullify 10") // for agent_type = 'Sensor-0_0_0.2' // for month between ['2022-06', '2022-09'] and
     }
 
     @Test
