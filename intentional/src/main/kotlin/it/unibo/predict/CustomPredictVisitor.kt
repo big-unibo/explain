@@ -20,6 +20,7 @@ class CustomPredictVisitor(val explain: Predict) : PredictBaseVisitor<JSONObject
         explain.addMeasures(ctx.mc.text.lowercase())
         explain.against += ctx.against.map { it.text.lowercase() }
         explain.using += ctx.using.map { it.name }
+        explain.nullify = if (ctx.nullify != null) ctx.nullify.text.toInt() else 0
         return null
     }
 

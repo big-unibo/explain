@@ -184,19 +184,14 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
     
     for j in range(2):
         title = f'{target_measure.split(sep)[1]}' + (f' (R$^2$={max(0.0, round(value, 2))})' if j == 0 else '') 
-        myFmt = DateFormatter("%Y-%W")
-        axs[i + j].tick_params(axis='x', rotation=45)
-        axs[i + j].xaxis.set_major_formatter(myFmt)
+        axs[i + j].tick_params(axis='x', rotation=90)
         axs[i + j].set_title(title)
+        if "week" in date_attr: myFmt = DateFormatter("%Y-%W")
+        elif "hour" in date_attr: myFmt = DateFormatter("%Y-%m-%d %H:%M:%S")
+        axs[i + j].xaxis.set_major_formatter(myFmt)
         axs[i + j].set_xlabel('$\\sf{' + date_attr.replace("week_in_year", "week") + '}$')
         axs[i + j].set_ylabel('$\\sf{' + target_measure.split(sep)[0].replace('avg', '') + '}$')
         axs[i + j].grid()
-        # if i == 0:
-        #     # axs[i + j].legend(ncol=3)
-        #     if j == 0:
-        #         axs[i + j].legend(bbox_to_anchor=(0, 1.18, 1, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=3)
-        #     else:
-        #         axs[i + j].legend(bbox_to_anchor=(0.35, 1.18, 0.3, 0.2), loc="lower left", mode="expand", borderaxespad=0, ncol=3)
     fig.tight_layout()
 
 
@@ -209,7 +204,7 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
     print(f"timeseries test_size: {test_size}")
     targets = [x for x in df.columns if sep in x and target_measure in x]
     actual_targets = [c for c in targets if df[c].isnull().any()]
-    fig, axs = plt.subplots(len(actual_targets), 2, figsize=(8, 1 + 3*len(actual_targets)), sharex=False, sharey=False)  # Create a figure and subplots
+    fig, axs = plt.subplots(max(1, len(actual_targets)), 2, figsize=(8, 1 + 3 * len(actual_targets)), sharex=False, sharey=False)  # Create a figure and subplots
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
     P = pd.DataFrame()
@@ -222,7 +217,7 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         P = pd.concat([P, pd.DataFrame([
                 [figtitle, c.split(sep)[1], 'interest', value],
                 [figtitle, c.split(sep)[1], 'sparsity', len(missing_values_df) / len(cdf)],
-                [figtitle, c.split(sep)[1], 'endo', len(endo)],
+                [figtitle, c.split(sep)[1], 'endo', 1],
                 [figtitle, c.split(sep)[1], 'exog', len(exog)],
             ], columns=["model", "component", "property", "value"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
@@ -281,7 +276,8 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
         mydf.loc[mydf[target_measure].isnull(), target_measure] = missing_values_df[target_measure]
     except Exception as e:
         print(f"sarimax({c_hp}) - training: {e}")
-        
+    import sys
+    sys.exit(1)
     return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2
 
 
@@ -317,7 +313,7 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
                 best_hp = dict(c_hp)
                 best_Y_pred = Y_pred
         except Exception as e:
-            print(f"varmax({c_hp}) - training: {e}")
+            print(f"varmax({c_hp}) - predicting: {e}")
     try:
         c_hp = best_hp
         model = VARMAX(endog=df[endo], exog=df[exog], order=(best_hp["p1"], best_hp["p2"]))
@@ -425,7 +421,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
             _, _, _, _, _, _, _, missing_values_df, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
             P = pd.concat([P, pd.DataFrame([
                     [model, 'ALL', 'interest', value],
-                    [model, 'ALL', 'sparsity', len(missing_values_df) / len(df)]
+                    [model, 'ALL', 'sparsity', -1 if missing_values_df is None else (len(missing_values_df) / len(df))]
                 ], columns=["model", "component", "property", "value"])], ignore_index=True)
             end_time = round((time.time() - start) * 1000)  # time is in ms
             stats.append([execution_id, model, end_time])
@@ -456,7 +452,7 @@ if __name__ == '__main__':
     cube = args.cube.replace("__", " ")
     cube = json.loads(cube)
     using = "" if args.using == "" else args.using.split(",")
-    nullify = 0.0 if args.nullify is None else args.nullify
+    nullify = 0 if args.nullify is None else args.nullify
 
     # Load the data
     try:
@@ -475,14 +471,11 @@ if __name__ == '__main__':
     np.random.seed(0)
     # Define the indices to replace with random values
     if nullify > 0:
-        X.loc[range(len(X) - len(x) * nullify, len(X)), measure] = np.nan
+        X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
     # write stats
-    pd.DataFrame([
-            ["execution_id", "nullify", "cardinality"],
-            [execution_id, nullify, len(X)]
-        ]).to_csv(my_path + file + "_" + str(session_step) + "_stats.csv", index=False)
+    pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(my_path + "../predict_stats.csv", index=False)
     # execute the operator
-    P, stats = predict(X, by, measure, nullify_last=None, using=using)
+    P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id)
     # write the statistics on the components
     P.to_csv(my_path + file + "_" + str(session_step) + "_property.csv", index=False)
     file_path = my_path + "../predict_time_python.csv"

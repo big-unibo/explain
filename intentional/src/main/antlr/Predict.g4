@@ -7,6 +7,7 @@ predict : 'with' cube=id 'predict' mc=measure
              (('for' sc=clause)? 'by' gc+=id (',' gc+=id)* | 'by' gc+=id (',' gc+=id)* ('for' sc=clause)?)
              ('from' against+=measure (',' against+=measure)*)?
              ('using' using+=id (',' using+=id)*)?
+             ('nullify' nullify=INT)?
              EOF;
 
 measure
@@ -55,6 +56,6 @@ EQ         : '=';
 DECIMAL    : '-'? [0-9]+ '.' [0-9]+;
 INT        : '-'? [0-9]+;
 ID
-  : '\'' [a-zA-Z0-9'_'\-'/''.'%]+ '\''
+  : '\'' [a-zA-Z0-9'_'\-'/''.'% :]+ '\''
   |      [a-zA-Z0-9'_'\-'/''.']+ ;
 WS         : [ \t\r\n]+ -> skip;

@@ -10,6 +10,7 @@ class Predict : Intention {
     constructor() : super(null, false) {}
     val against: MutableSet<String> = mutableSetOf()
     val using: MutableSet<String> = mutableSetOf()
+    var nullify: Int = 0
 
     fun concat(c: Collection<String>, sep: String =", "): String {
         if (c.isEmpty()) {
@@ -30,7 +31,8 @@ class Predict : Intention {
                 + " --measure " + measures.minus(against).first() //
                 + " --execution_id " + execution_id
                 + " --cube " + json.toString().replace(" ", "__")
-                + " --using " + concat(using, sep = ","))
+                + " --using " + concat(using, sep = ",")
+                + " --nullify " + nullify)
     }
 
     override fun toString(): String {
