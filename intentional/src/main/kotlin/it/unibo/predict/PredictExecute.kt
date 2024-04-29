@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.tree.ParseTree
 import org.json.JSONObject
 import org.slf4j.LoggerFactory
+import java.util.*
 
 /**
  * Predict intention in action.
@@ -32,7 +33,7 @@ object PredictExecute {
 
     @JvmOverloads
     @Throws(Exception::class)
-    fun execute(d: Predict, path: String, pythonPath: String = "src/main/python/"): Triple<JSONObject, DataFrame, DataFrame> {
+    fun execute(d: Predict, path: String, pythonPath: String = "src/main/python/", id: String = UUID.randomUUID().toString()): Triple<JSONObject, DataFrame, DataFrame> {
         // get the other measures to explain
         var othermeasures = if (d.against.isEmpty()) { QueryGenerator.getMeasures(d.cube) } else { d.against }
         // omit the measure to be explained

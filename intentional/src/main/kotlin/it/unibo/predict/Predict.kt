@@ -8,6 +8,8 @@ import java.util.*
 class Predict : Intention {
     constructor(d: Intention?) : super(d, false) {}
     constructor() : super(null, false) {}
+
+    var executionid: String = UUID.randomUUID().toString()
     val against: MutableSet<String> = mutableSetOf()
     val using: MutableSet<String> = mutableSetOf()
     var nullify: Int = 0
@@ -22,14 +24,13 @@ class Predict : Intention {
     override fun toPythonCommand(commandPath: String, path: String): String {
         val sessionStep = getSessionStep()
         val filename = getFilename()
-        val execution_id = UUID.randomUUID().toString()
-        statistics["execution_id"] = execution_id
+        statistics["execution_id"] = executionid
         return (commandPath.replace("/", File.separator) //
                 + " --path " + (if (path.contains(" ")) "\"" else "") + path.replace("\\", "/") + (if (path.contains(" ")) "\"" else "") //
                 + " --file " + filename //
                 + " --session_step " + sessionStep //
                 + " --measure " + measures.minus(against).first() //
-                + " --execution_id " + execution_id
+                + " --execution_id " + executionid
                 + " --cube " + json.toString().replace(" ", "__")
                 + " --using " + concat(using, sep = ",")
                 + " --nullify " + nullify)

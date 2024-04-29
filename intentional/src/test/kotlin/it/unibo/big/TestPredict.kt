@@ -53,18 +53,22 @@ class TestPredict {
 
     @Test
     fun `test watering`() {
-        // Sensor-0.3_0_0.2
-        listOf("", ", 'Sensor-0.3_0_0.4'", ", 'Sensor-0.3_0_%'").forEach { sensor ->
-            listOf("'2020-06-10 22:00:00'", "'2020-06-14 22:00:00'", "'2020-06-18 22:00:00'", "'2020-06-22 22:00:00'").forEach { timestamp ->
-                execute("with WATERING predict value " +
-                        "by hour, agent " +
-                        "for agent in ('Sensor-0.3_0_0.2' ${sensor}) " +
-                        "and hour between ['2020-06-06 22:00:00', ${timestamp}] " + // 2020-10-06 23:00:00
-                        "and measurement_type in ('GROUND_WATER_POTENTIAL', 'GRND_WATER_G') " +
-                        "and field='Field-c9da4a553b' " +
-                        "nullify 10") // for agent_type = 'Sensor-0_0_0.2' // for month between ['2022-06', '2022-09'] and
+        listOf(1, 2, 3).forEach { seed ->
+            var i = 0
+            listOf("", ", 'Sensor-0.3_0_0.4'", ", 'Sensor-0.3_0_0.4, 'Sensor-0.3_0_0.6'").forEach { sensor ->
+                listOf("'2020-06-10 22:00:00'", "'2020-06-14 22:00:00'", "'2020-06-18 22:00:00'", "'2020-06-22 22:00:00'").forEach { timestamp ->
+                    execute("with WATERING predict value " +
+                            "by hour, agent " +
+                            "for agent in ('Sensor-0.3_0_0.2' ${sensor}) " +
+                                "and hour between ['2020-06-06 22:00:00', ${timestamp}] " + // 2020-10-06 23:00:00
+                                "and measurement_type in ('GROUND_WATER_POTENTIAL', 'GRND_WATER_G') " +
+                                "and field='Field-c9da4a553b' " +
+                            "nullify 10 " +
+                            "executionid I${i++}") // for month between ['2022-06', '2022-09'] and
+                }
             }
         }
+
     }
 
     @Test
