@@ -182,7 +182,7 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
     
     axs[i + 1].plot(cdf[date_attr], y, c='blue')
     axs[i + 1].scatter(cdf[date_attr].loc[missing_values_df.index], missing_values_df[target_measure], label="Pred", c='darkorange')
-    axs[i + 1].set_xlim([cdf[date_attr].tail(20).min(), cdf[date_attr].tail(20).max()])
+    # axs[i + 1].set_xlim([cdf[date_attr].tail(20).min(), cdf[date_attr].tail(20).max()])
     
     for j in range(2):
         title = f'{target_measure.split(sep)[1]}' + (f' (R$^2$={max(0.0, round(value, 2))})' if j == 0 else '') 
@@ -241,7 +241,7 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
         'p4': [1, 2, 3],
         'p5': [1, 2, 3],
         'p6': [1, 2, 3],
-        'p7': [4, 7, 12],
+        'p7': [4, 7, 12, 24],
     }
     best_r2, best_hp, best_y_pred = float('-inf'), {}, None
     random.seed(seed)
@@ -474,7 +474,10 @@ if __name__ == '__main__':
     np.random.seed(0)
     # Define the indices to replace with random values
     if nullify > 0:
-        X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
+        # X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
+        nan_indices = np.random.choice(X.index, int(len(X) * nullify / 100), replace=False)
+        # Set values to NaN at those indices
+        X.loc[nan_indices, measure] = np.nan
     # write stats
     file_path = my_path + "../predict_intentions.csv"
     pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
