@@ -42,7 +42,7 @@ seed=42
 random.seed(seed)
 test_size=20
 sep="!"
-n_iter = 10
+n_iter = 20
 cv = 5
 my_path = ""
 file = ""
@@ -217,7 +217,7 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         cdf = df.drop(columns=exog, axis=1)  # drop the wrong slices
         start = time.time()
         cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
-        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(exog), round((time.time() - start) * 1000)]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])], ignore_index=True)
+        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(cdf.columns) - 2, round((time.time() - start) * 1000)]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
@@ -227,21 +227,19 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
 def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     # Create a separate dataframe for rows with missing values in the target column
     mydf = df
-    # df.info()
     missing_values_df = df[df.isnull().any(axis=1)]
     missing_indices = missing_values_df.index
     df = df.dropna()
-    # df.info()
     exog = [x for x in df.columns if target_measure.split(sep)[0] not in x and x != date_attr]
     X_train, y_train, X_test, y_test = df[exog][:-test_size+1], df[target_measure][:-test_size+1], df[exog][-test_size:], df[target_measure][-test_size:]
     param_space = {
-        'p1': [1, 2, 3],
-        'p2': [1, 2, 3],
-        'p3': [1, 2, 3],
-        'p4': [1, 2, 3],
-        'p5': [1, 2, 3],
-        'p6': [1, 2, 3],
-        'p7': [4, 7, 12, 24],
+        'p1': [0, 1, 2, 4, 8, 24],
+        'p2': [0, 1, 2, 4, 8, 24],
+        'p3': [0, 1, 2, 4, 8, 24],
+        'p4': [0], #[1, 2, 3],
+        'p5': [0], #[1, 2, 3],
+        'p6': [0], #[1, 2, 3],
+        'p7': [0], #[4, 7, 12, 24],
     }
     best_r2, best_hp, best_y_pred = float('-inf'), {}, None
     random.seed(seed)
@@ -254,10 +252,9 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
             order = (c_hp["p1"] , c_hp["p2"], c_hp["p3"]) # to tune 
             seasonal_order = (c_hp["p4"], c_hp["p5"], c_hp["p6"], c_hp["p7"]) # to tune
             print("initializing sarimax... order={}, seasonal_order={}".format(order, seasonal_order))
-            X_train.info()
             model = SARIMAX(endog=y_train, exog=None if X_train.empty else X_train, order=order, seasonal_order=seasonal_order)
             print("fitting...")
-            results = model.fit(iterations=100, disp=False)
+            results = model.fit(iterations=200, disp=False)
             print("forecasting...")
             y_pred = results.get_forecast(steps=test_size, exog=None if X_test.empty else X_test).predicted_mean
             y_pred.index = y_test.index
@@ -475,9 +472,12 @@ if __name__ == '__main__':
     # Define the indices to replace with random values
     if nullify > 0:
         # X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
-        nan_indices = np.random.choice(X.index, int(len(X) * nullify / 100), replace=False)
+        # nan_indices = np.random.choice(X.index, int(len(X) * nullify / 100), replace=False)
         # Set values to NaN at those indices
-        X.loc[nan_indices, measure] = np.nan
+        # X.loc[nan_indices, measure] = np.nan
+        # Get the last ten distinct values of column A
+        last_ten_distinct_values_A = X['hour'].drop_duplicates(keep='last').tail(int(X['hour'].nunique() * nullify / 100))
+        X.loc[X['hour'].isin(last_ten_distinct_values_A), measure] = np.nan
     # write stats
     file_path = my_path + "../predict_intentions.csv"
     pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))

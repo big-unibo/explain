@@ -48,7 +48,7 @@ public abstract class Intention implements IIntention {
     private final Set<Triple<String, String, List<String>>> prevClause;
     protected final int sessionStep;
     public final Map<String, Object> statistics = Maps.newHashMap();
-    public final String id = UUID.randomUUID().toString();
+    public String id = UUID.randomUUID().toString();
 
     /**
      * Create an intention from the previous intention
@@ -58,7 +58,7 @@ public abstract class Intention implements IIntention {
     public Intention(final Intention i, final boolean accumulateAttributes) {
         if (i == null) {
             sessionStep = 0;
-            setFilename(UUID.randomUUID().toString());
+            setFilename(id);
             measures = Sets.newLinkedHashSet();
             clause = Sets.newLinkedHashSet();
             attributes = Sets.newHashSet();
@@ -83,6 +83,11 @@ public abstract class Intention implements IIntention {
             }
             cube = i.getCube();
         }
+    }
+
+    public void setId(final String id) {
+        this.id = id;
+        setFilename(id);
     }
 
     public void setFilename(final String filename) {
