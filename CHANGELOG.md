@@ -1,3 +1,10 @@
+## [1.0.18](https://github.com/w4bo/predict/compare/1.0.17...1.0.18) (2024-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-csv to v1.11.0 ([e7f1bfa](https://github.com/w4bo/predict/commit/e7f1bfad3f99978f9cb821c2852cda4ed698ebc0))
+
 ## [1.0.17](https://github.com/w4bo/predict/compare/1.0.16...1.0.17) (2024-05-02)
 
 
