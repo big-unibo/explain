@@ -1,3 +1,10 @@
+## [1.1.93](https://github.com/big-unibo/explain/compare/1.1.92...1.1.93) (2024-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.1 ([cc6d606](https://github.com/big-unibo/explain/commit/cc6d6069ea7848d12f8ed510c37d4c9649c24e6c))
+
 ## [1.1.92](https://github.com/big-unibo/explain/compare/1.1.91...1.1.92) (2024-05-03)
 
 
