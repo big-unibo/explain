@@ -1,3 +1,16 @@
+## [1.0.21](https://github.com/w4bo/predict/compare/1.0.20...1.0.21) (2024-05-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.30 ([6c099f2](https://github.com/w4bo/predict/commit/6c099f2f8abea6bf769be47d6667b84d9e6734b4))
+* **deps:** update node.js to 20.13 ([f755d32](https://github.com/w4bo/predict/commit/f755d322af1db15a3f2ead1e0a1087ca3a7e8c45))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.11 ([dcdc936](https://github.com/w4bo/predict/commit/dcdc936710f6e9b7b0c8b5fcd67d2c2734f6afe8))
+
 ## [1.0.20](https://github.com/w4bo/predict/compare/1.0.19...1.0.20) (2024-05-05)
 
 
