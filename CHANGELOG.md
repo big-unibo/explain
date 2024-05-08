@@ -1,3 +1,16 @@
+## [1.1.95](https://github.com/big-unibo/explain/compare/1.1.94...1.1.95) (2024-05-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.30 ([fde3e74](https://github.com/big-unibo/explain/commit/fde3e743e140eb52b87c21bdf802bfef08ef7aec))
+* **deps:** update node.js to 20.13 ([f389f28](https://github.com/big-unibo/explain/commit/f389f28c816c49ddc7c84dfd0b4c954762a9a6cc))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.11 ([dc2efbf](https://github.com/big-unibo/explain/commit/dc2efbf6de771ac3497b8c57a3e97f3010dec27d))
+
 ## [1.1.94](https://github.com/big-unibo/explain/compare/1.1.93...1.1.94) (2024-05-05)
 
 
