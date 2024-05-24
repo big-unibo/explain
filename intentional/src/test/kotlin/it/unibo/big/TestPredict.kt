@@ -66,17 +66,17 @@ class TestPredict {
             listOf("2022-07-05 10:00:00", "2022-07-10 10:00:00", "2022-07-15 10:00:00", "2022-07-20 10:00:00", "2022-07-25 10:00:00").forEach { timestamp ->  // , "2022-08-17 00:00:00"
                 execute("with WATERING predict value " +
                             "by hour, agent " +
-                            "for agent in (${sensors.map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
+                            "for agent in (${sensors.subList(0, 9 + 1).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
                                 "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
                                 "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
                                 "and field='Field-1f032c308c' " +
                             "using univariateTS, timeRandomForest, timeDecisionTree " + //
                             "nullify 5 " +
-                            "executionid I10${i++}")
+                            "executionid I-100-${i++}")
 
             }
-            var j = 0
-            sensors.forEachIndexed { idx, sensor ->
+            i = 0
+            listOf(1, 3, 6, 9).forEach { idx ->
                 listOf("2022-07-05 10:00:00", "2022-07-10 10:00:00", "2022-07-15 10:00:00", "2022-07-20 10:00:00", "2022-07-25 10:00:00").forEach { timestamp ->
                     execute("with WATERING predict value " +
                             "by hour, agent " +
@@ -86,7 +86,7 @@ class TestPredict {
                                 "and field='Field-1f032c308c' " +
                             "using multivariateTS, randomForest, decisionTree " +
                             "nullify 5 " +
-                            "executionid I20${j++}")
+                            "executionid I-101-${i++}")
                 }
             }
         }

@@ -295,8 +295,8 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
     df = df.dropna()
     X_train, Y_train, X_test, Y_test = df[exog][:-test_size+1], df[endo][:-test_size+1], df[exog][-test_size:], df[endo][-test_size:]
     param_space = {
-        'p1': [1, 2, 3],
-        'p2': [1, 2, 3]
+        'p1': [0, 1, 2, 4, 8, 24],
+        'p2': [0, 1, 2, 4, 8, 24]
     }
     Y_pred, forecast, best_r2, best_hp, best_Y_pred = None, None, float('-inf'), {}, None
     random.seed(seed)
