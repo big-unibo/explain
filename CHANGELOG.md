@@ -1,3 +1,30 @@
+## [1.1.96](https://github.com/big-unibo/explain/compare/1.1.95...1.1.96) (2024-06-01)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.1 ([e468105](https://github.com/big-unibo/explain/commit/e468105985c73d727aff1ef6e7a8738c1025836e))
+* **deps:** update dependency autopep8 to v2.1.2 ([e5a3a81](https://github.com/big-unibo/explain/commit/e5a3a810e451c50f664f54730070cdce97304075))
+* **deps:** update dependency autopep8 to v2.2.0 ([e610d33](https://github.com/big-unibo/explain/commit/e610d33296accc71bfc5c0fe5f0400a0ad966040))
+* **deps:** update dependency notebook to v7.2.0 ([782c195](https://github.com/big-unibo/explain/commit/782c195cdb68315f970c9d8b524142a6f7fd902c))
+* **deps:** update dependency requests to v2.32.1 ([fc8294a](https://github.com/big-unibo/explain/commit/fc8294a50ead177c30a0cff7284276cc70b52466))
+* **deps:** update dependency requests to v2.32.2 ([48f0ccc](https://github.com/big-unibo/explain/commit/48f0cccc25811e93c9d82925429405bc6d09edcb))
+* **deps:** update dependency requests to v2.32.3 ([0b24647](https://github.com/big-unibo/explain/commit/0b24647e1ea8610ab1214d7fb6a8987aefe966f4))
+* **deps:** update dependency scikit-learn to v1.5.0 ([4f0140f](https://github.com/big-unibo/explain/commit/4f0140f902d8a5653b640117894fca02ce4bdf57))
+* **deps:** update dependency scipy to v1.13.1 ([d333590](https://github.com/big-unibo/explain/commit/d333590e3dfeaee78caf1d22b21e42ba5bd9827d))
+* **deps:** update node.js to 20.14 ([94e0307](https://github.com/big-unibo/explain/commit/94e0307b3424fbf741fe81a1ac18047708437bfd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.1-jre ([adedb7e](https://github.com/big-unibo/explain/commit/adedb7e7a94f3b2fe1ba4a755f22dba30833e4dc))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.5 ([f7d82e2](https://github.com/big-unibo/explain/commit/f7d82e27427f2c1cd57378c71004f164121ba5d4))
+* **deps:** update actions/checkout action to v4.1.6 ([ea1a4a9](https://github.com/big-unibo/explain/commit/ea1a4a9f8540faaecb71bd064bf7418312f92d18))
+
 ## [1.1.95](https://github.com/big-unibo/explain/compare/1.1.94...1.1.95) (2024-05-08)
 
 
