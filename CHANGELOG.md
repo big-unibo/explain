@@ -1,3 +1,30 @@
+## [1.0.22](https://github.com/w4bo/predict/compare/1.0.21...1.0.22) (2024-06-01)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.1 ([d943c12](https://github.com/w4bo/predict/commit/d943c12b2a69043c4fcf9e06c89c33744361c802))
+* **deps:** update dependency autopep8 to v2.1.2 ([fae85e4](https://github.com/w4bo/predict/commit/fae85e48dba5dcb7d378e119558acdde09a61d33))
+* **deps:** update dependency autopep8 to v2.2.0 ([54cbc5d](https://github.com/w4bo/predict/commit/54cbc5d80b6e77a179a01f8049eff310c7124bda))
+* **deps:** update dependency notebook to v7.2.0 ([4360cfa](https://github.com/w4bo/predict/commit/4360cfa8eb9bf0ac004cfdbb0b562732b058dbfb))
+* **deps:** update dependency requests to v2.32.2 ([21db8ae](https://github.com/w4bo/predict/commit/21db8aebd5396d0eabda7afdd58198fac9841563))
+* **deps:** update dependency requests to v2.32.3 ([061c400](https://github.com/w4bo/predict/commit/061c400828cffa650fc4f928d2b109f3c3560739))
+* **deps:** update dependency scikit-learn to v1.5.0 ([42b5424](https://github.com/w4bo/predict/commit/42b54244757634289d31cbde967844ef3884da34))
+* **deps:** update dependency scipy to v1.13.1 ([7e71f65](https://github.com/w4bo/predict/commit/7e71f65a318508378090f0777bb9a696d02632d7))
+* **deps:** update node.js to 20.14 ([2f9432c](https://github.com/w4bo/predict/commit/2f9432caa76aea043d5e2b54a5307521c0166832))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.1-jre ([46315be](https://github.com/w4bo/predict/commit/46315be478d877b7d7240da5036b465bec7b8799))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.5 ([86ddfc7](https://github.com/w4bo/predict/commit/86ddfc77157b516e3399bd4a3cd1428217b1f3b0))
+* **deps:** update actions/checkout action to v4.1.6 ([697a7b7](https://github.com/w4bo/predict/commit/697a7b7aa6cd1e2fa2c9756cd6c205bae09efbf8))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.6.1 ([3400517](https://github.com/w4bo/predict/commit/3400517eb8ff0201584f5cb6b829b34c769b8d60))
+
 ## [1.0.21](https://github.com/w4bo/predict/compare/1.0.20...1.0.21) (2024-05-08)
 
 
