@@ -93,7 +93,7 @@ def compute_mic(data, casualty_var):
     return mic_c
 
 
-def compute_model(df, target_column, model, seed=seed, test_size=test_size):
+def compute_model(df, target_column, model, seed=seed, test_size=test_size, n_iter=n_iter):
     print(f"compute_model test_size: {test_size}, len(df): {len(df)}")
     df_enc = df.copy(deep=True)
     # One-hot encode object columns
@@ -122,7 +122,7 @@ def compute_model(df, target_column, model, seed=seed, test_size=test_size):
     # Fill in missing values in the original dataframe
     missing_values_df[target_column] = model.predict(missing_values_df.drop(target_column, axis=1))
     df.loc[df[target_column].isnull(), target_column] = missing_values_df[target_column]
-    return df, df[target_column], X_train, y_train, X_test, y_test, y_pred, missing_values_df, value
+    return df, df[target_column], X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, n_iter, -1
 
 
 def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
@@ -163,6 +163,7 @@ def mypivot(df, date_attr, column, exog, target_measure, impute=False):
         for x in [x for x in df.columns if target_measure not in x and df[x].isnull().any()]:
             df[x] = df[x].fillna(method='ffill').fillna(method='bfill')
     return df[[x for x in df.columns if "index" not in x]]
+
 
 def melt(df, date_attr, column, target_measure):
     if column is not None:
@@ -216,8 +217,8 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         cdf = df.drop(columns=endo, axis=1)  # drop the wrong target measures
         cdf = df.drop(columns=exog, axis=1)  # drop the wrong slices
         start = time.time()
-        cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
-        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(cdf.columns) - 2, round((time.time() - start) * 1000)]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])], ignore_index=True)
+        cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, success, success_time = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
+        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(cdf.columns) - 2, round((time.time() - start) * 1000), success, success_time]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
@@ -243,8 +244,10 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
     }
     best_r2, best_hp, best_y_pred = float('-inf'), {}, None
     random.seed(seed)
+    success, success_time = 0, 0
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
         try:
+            start = time.time()
             # Generate a random set of hyperparameters
             print("selecting parameters...")
             c_hp = {hp: random.choice(values) for hp, values in param_space.items()}
@@ -265,10 +268,13 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
                 best_r2 = c_r2
                 best_hp = dict(c_hp)
                 best_y_pred = y_pred
+            success += 1
+            success_time += round((time.time() - start) * 1000)
         except Exception as e:
             print(f"sarimax({c_hp}) - training: {e}")
     
     try:
+        start = time.time()
         order = (best_hp["p1"], best_hp["p2"], best_hp["p3"])
         seasonal_order = (best_hp["p4"], best_hp["p5"], best_hp["p6"], best_hp["p7"])
         model = SARIMAX(endog=df[target_measure], exog=None if df[exog].empty else df[exog], order=order, seasonal_order=seasonal_order)
@@ -277,11 +283,13 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
         forecast.index = mydf.loc[missing_indices[0]:missing_indices[-1]].index
         missing_values_df[target_measure] = forecast
         mydf.loc[mydf[target_measure].isnull(), target_measure] = missing_values_df[target_measure]
+        success += 1
+        success_time += round((time.time() - start) * 1000)
     except Exception as e:
         print(f"sarimax({c_hp}) - predicting: {e}")
     # import sys
     # sys.exit(1)
-    return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2
+    return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2, success, success_time
 
 
 def varmax(df, date_attr, target_measure, test_size=test_size):
@@ -295,13 +303,15 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
     df = df.dropna()
     X_train, Y_train, X_test, Y_test = df[exog][:-test_size+1], df[endo][:-test_size+1], df[exog][-test_size:], df[endo][-test_size:]
     param_space = {
-        'p1': [0, 1, 2, 4, 8, 24],
-        'p2': [0, 1, 2, 4, 8, 24]
+        'p1': [0, 1, 2, 4, 8, 24], #
+        'p2': [0, 1, 2] # , 4, 8, 24
     }
     Y_pred, forecast, best_r2, best_hp, best_Y_pred = None, None, float('-inf'), {}, None
     random.seed(seed)
+    success, success_time = 0, 0
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
         try:
+            start = time.time()
             # Generate a random set of hyperparameters
             c_hp = {hp: random.choice(values) for hp, values in param_space.items()}
             model = VARMAX(endog=Y_train, exog=None if X_train.empty else X_train, order=(c_hp["p1"], c_hp["p2"]))
@@ -315,18 +325,23 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
                 best_r2 = c_r2
                 best_hp = dict(c_hp)
                 best_Y_pred = Y_pred
+            success += 1
+            success_time += round((time.time() - start) * 1000)
         except Exception as e:
             print(f"varmax({c_hp}) - predicting: {e}")
     try:
+        start = time.time()
         c_hp = best_hp
         model = VARMAX(endog=df[endo], exog=None if df[exog].empty else df[exog], order=(best_hp["p1"], best_hp["p2"]))
         results = model.fit(iterations=100, disp=False)
         forecast = results.get_prediction(start=missing_indices[0], end=missing_indices[-1], exog=None if mydf[exog].loc[missing_indices].empty else mydf[exog].loc[missing_indices]).predicted_mean
         forecast.index = all_values.loc[missing_indices[0]:missing_indices[-1]].index
         all_values[endo] = all_values[endo].fillna(forecast)
+        success += 1
+        success_time += round((time.time() - start) * 1000)
     except Exception as e:
         print(f"varmax({c_hp}) - predicting: {e}")
-    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices] if forecast is not None else None, best_r2
+    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices] if forecast is not None else None, best_r2, success, success_time
 
 
 def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, test_size=test_size):
@@ -335,10 +350,10 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
     start = time.time()
-    df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value = model(df, date_attr, target_measure, test_size=test_size)
+    df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value, success, success_time = model(df, date_attr, target_measure, test_size=test_size)
     P = pd.DataFrame([
-            ['multivariateTS', 'ALL', value, (len(missing_values_df) / len(df)) if missing_values_df is not None else -1, len(targets), len(df.columns) - 1 - len(targets), round((time.time() - start) * 1000)],  # -1 is for the data_attr column
-        ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])
+            ['multivariateTS', 'ALL', value, (len(missing_values_df) / len(df)) if missing_values_df is not None else -1, len(targets), len(df.columns) - 1 - len(targets), round((time.time() - start) * 1000), success, success_time],  # -1 is for the data_attr column
+        ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"])
     for c in targets:
         if missing_values_df is not None:
             plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
@@ -419,10 +434,13 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
         if model == "decisionTree": alg=dtree
         elif model == "randomForest": alg=forest
         if alg is not None:
-            _, _, _, _, _, _, _, missing_values_df, value = alg(df.copy(deep=True), target_measure, test_size=test_size)
+            _, _, _, _, _, _, _, missing_values_df, value, success, success_time = alg(df.copy(deep=True), target_measure, test_size=test_size)
             end_time = round((time.time() - start) * 1000)  # time is in ms
             P = pd.concat([P,
-                        pd.DataFrame([[model, 'ALL', value, -1 if missing_values_df is None else (len(missing_values_df) / len(df)), -1, -1, end_time]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time"])
+                        pd.DataFrame(
+                            [[model, 'ALL', value, -1 if missing_values_df is None else (len(missing_values_df) / len(df)), -1, -1, end_time, success, success_time]],
+                            columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"]
+                        )
                 ], ignore_index=True)
             stats.append([execution_id, model, end_time])
             print(f"{model}. R2={value}")

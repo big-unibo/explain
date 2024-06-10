@@ -33,7 +33,7 @@ class TestPredict {
 
     @Test
     fun `test cimice 4`() {
-        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] and province in ('BO', 'RA') by week, province from small_instars, total_captures")
+        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] and province in ('BO', 'RA') by week, province from small_instars, total_captures executionid Cimice-114-Test4")
     }
 
     @Test
@@ -43,7 +43,7 @@ class TestPredict {
 
     @Test
     fun `test cimice2`() {
-        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week from small_instars, total_captures")
+        execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] by week from small_instars, total_captures executionid Cimice-113-Test2")
     }
 
     @Test
@@ -55,7 +55,7 @@ class TestPredict {
     fun `test watering`() {
         Intention.DEBUG = false
         val sensors = listOf(
-                "Sensor-0.25_0_0.4", "Sensor-0.25_0_0.2", "Sensor-0.25_0_0.6",
+                "Sensor-0.25_0_0.6", "Sensor-0.25_0_0.4", "Sensor-0.25_0_0.2",
                 "Sensor-0.5_0_0.2", "Sensor-0.5_0_0.4", "Sensor-0.5_0_0.6",
                 "Sensor-0.8_0_0.2", "Sensor-0.8_0_0.4", "Sensor-0.8_0_0.6",
                 "Sensor-0_0_0.2", "Sensor-0_0_0.4", "Sensor-0_0_0.6"
@@ -63,30 +63,33 @@ class TestPredict {
 
         listOf(1, 2).forEach { seed ->
             var i = 0
-            listOf("2022-07-05 10:00:00", "2022-07-10 10:00:00", "2022-07-15 10:00:00", "2022-07-20 10:00:00", "2022-07-25 10:00:00").forEach { timestamp ->  // , "2022-08-17 00:00:00"
+            listOf(
+                    "2022-07-05 10:00:00", "2022-07-10 10:00:00", "2022-07-15 10:00:00", "2022-07-20 10:00:00",
+                    "2022-07-25 10:00:00", "2022-07-30 10:00:00", "2022-08-14 10:00:00" /*, "2022-08-24 10:00:00" */
+            ).forEach { timestamp ->
                 execute("with WATERING predict value " +
                             "by hour, agent " +
-                            "for agent in (${sensors.subList(0, 9 + 1).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
+                            "for agent in (${sensors.subList(0, sensors.size).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
                                 "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
                                 "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
                                 "and field='Field-1f032c308c' " +
-                            "using univariateTS, timeRandomForest, timeDecisionTree " + //
+                            "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS " + //
                             "nullify 5 " +
-                            "executionid I-100-${i++}")
+                            "executionid I-120-12-${i++}")
 
             }
             i = 0
-            listOf(1, 3, 6, 9).forEach { idx ->
-                listOf("2022-07-05 10:00:00", "2022-07-10 10:00:00", "2022-07-15 10:00:00", "2022-07-20 10:00:00", "2022-07-25 10:00:00").forEach { timestamp ->
+            listOf(2, 3, 4, 5, 6, 9, 12).forEach { idx ->
+                listOf("2022-07-04 10:00:00").forEach { timestamp ->
                     execute("with WATERING predict value " +
                             "by hour, agent " +
-                            "for agent in (${sensors.subList(0, idx + 1).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
+                            "for agent in (${sensors.subList(0, idx).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
                                 "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
                                 "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
                                 "and field='Field-1f032c308c' " +
-                            "using multivariateTS, randomForest, decisionTree " +
+                            (if (idx <= 6) { "" } else { "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS "}) +
                             "nullify 5 " +
-                            "executionid I-101-${i++}")
+                            "executionid I-122-$idx-${i++}")
                 }
             }
         }
