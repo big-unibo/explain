@@ -32,6 +32,30 @@ class TestPredict {
     }
 
     @Test
+    fun `test cimice 7`() {
+        val measures = listOf("adults", "cum_degree_days")
+        measures.forEachIndexed { i, _ ->
+            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-200-$i")
+        }
+    }
+
+    @Test
+    fun `test cimice 6`() {
+        val measures = listOf("adults", "small_instars", "large_instars", "total_captures")
+        measures.forEachIndexed { i, _ ->
+            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-117-$i")
+        }
+    }
+
+    @Test
+    fun `test cimice 5`() {
+        val provinces = listOf("'BO'", "'RA'", "'FC'")
+        provinces.forEachIndexed { i, _ ->
+            execute("with CIMICE predict adults for province in (${provinces.subList(0 , i + 1).reduce {a,b -> "$a, $b" }}) by week, province from small_instars, total_captures executionid Cimice-119-$i")
+        }
+    }
+
+    @Test
     fun `test cimice 4`() {
         execute("with CIMICE predict adults for month between ['2021-05', '2021-09'] and province in ('BO', 'RA') by week, province from small_instars, total_captures executionid Cimice-114-Test4")
     }
