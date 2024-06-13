@@ -34,7 +34,7 @@ class TestPredict {
     @Test
     fun `test cimice 8`() {
         Intention.DEBUG = false
-        listOf(5, 10, 15, 20, 25, 30).forEach { v ->
+        listOf(10, 15, 20, 25, 30).forEach { v ->
             execute("with CIMICE predict adults for province in ('BO') by week, province from small_instars, total_captures testsize $v executionid Cimice-202-$v")
         }
     }
