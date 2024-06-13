@@ -8,6 +8,7 @@ predict : 'with' cube=id 'predict' mc=measure
              ('from' against+=measure (',' against+=measure)*)?
              ('using' using+=id (',' using+=id)*)?
              ('nullify' nullify=INT)?
+             ('testsize' testsize=INT)?
              ('executionid' executionid=ID)?
              EOF;
 

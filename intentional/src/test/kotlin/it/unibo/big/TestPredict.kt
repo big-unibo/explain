@@ -32,7 +32,16 @@ class TestPredict {
     }
 
     @Test
+    fun `test cimice 8`() {
+        Intention.DEBUG = false
+        listOf(5, 10, 15, 20, 25, 30).forEach { v ->
+            execute("with CIMICE predict adults for province in ('BO') by week, province from small_instars, total_captures testsize $v executionid Cimice-202-$v")
+        }
+    }
+
+    @Test
     fun `test cimice 7`() {
+        Intention.DEBUG = false
         val measures = listOf("adults", "cum_degree_days")
         measures.forEachIndexed { i, _ ->
             execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-200-$i")
@@ -41,6 +50,7 @@ class TestPredict {
 
     @Test
     fun `test cimice 6`() {
+        Intention.DEBUG = false
         val measures = listOf("adults", "small_instars", "large_instars", "total_captures")
         measures.forEachIndexed { i, _ ->
             execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-117-$i")
@@ -49,6 +59,7 @@ class TestPredict {
 
     @Test
     fun `test cimice 5`() {
+        Intention.DEBUG = false
         val provinces = listOf("'BO'", "'RA'", "'FC'")
         provinces.forEachIndexed { i, _ ->
             execute("with CIMICE predict adults for province in (${provinces.subList(0 , i + 1).reduce {a,b -> "$a, $b" }}) by week, province from small_instars, total_captures executionid Cimice-119-$i")
@@ -100,7 +111,6 @@ class TestPredict {
                             "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS " + //
                             "nullify 5 " +
                             "executionid I-120-12-${i++}")
-
             }
             i = 0
             listOf(2, 3, 4, 5, 6, 9, 12).forEach { idx ->

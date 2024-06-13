@@ -362,7 +362,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     return melt(df, date_attr, column, target_measure), P
 
 
-def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
+def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, test_size=test_size):
     date_attr = [x for x in by if "week" in x or "hour" in x or "timestamp" in x or "date" in x or "day" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
@@ -405,7 +405,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
             for x in [x for x in pdf.columns if target_measure in x]:
                 for i in range(nullify_last): pdf.loc[len(pdf) - (i + 1), x] = np.nan
 
-        test_pivot_size = round(len(pdf) * 0.2)
+        test_pivot_size = round(len(pdf) * test_size / 100.0)
         print(f"test_pivot_size: {test_pivot_size}")
         for model in using:
             alg = None
@@ -426,7 +426,7 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1):
 
     # Time agnostic
     df.to_csv(my_path + file + "_" + session_step + "_df.csv", index=False)
-    test_size = round(len(df) * 0.2)
+    test_size = round(len(df) * test_size / 100.0)
     print(f"tests_size: {test_size}")
     for model in using:
         alg = None
@@ -460,6 +460,7 @@ if __name__ == '__main__':
     parser.add_argument("--execution_id", help="execution id", type=str)
     parser.add_argument("--using", help="models for prediction", nargs='?', const='', default='', type=str)
     parser.add_argument("--nullify", help="Percentage of values to nullify", type=float)
+    parser.add_argument("--test_size", help="Size of the test set", type=float)
 
     args = parser.parse_args()
     my_path = args.path.replace("\"", "")
@@ -471,6 +472,7 @@ if __name__ == '__main__':
     cube = json.loads(cube)
     using = "" if args.using == "" else args.using.split(",")
     nullify = 0 if args.nullify is None else args.nullify
+    test_size = test_size if args.test_size is None else args.test_size
 
     # Load the data
     try:
@@ -489,18 +491,18 @@ if __name__ == '__main__':
     np.random.seed(0)
     # Define the indices to replace with random values
     if nullify > 0:
-        # X.loc[range(len(X) - int(len(X) * nullify / 100), len(X)), measure] = np.nan
-        # nan_indices = np.random.choice(X.index, int(len(X) * nullify / 100), replace=False)
-        # Set values to NaN at those indices
-        # X.loc[nan_indices, measure] = np.nan
-        # Get the last ten distinct values of column A
-        last_ten_distinct_values_A = X['hour'].drop_duplicates(keep='last').tail(int(X['hour'].nunique() * nullify / 100))
-        X.loc[X['hour'].isin(last_ten_distinct_values_A), measure] = np.nan
+        key = "hour" if "hour" in X.columns else "week"
+        # Get the last distinct values
+        nullable_values = X[key].drop_duplicates(keep='last').tail(int(X[key].nunique() * nullify / 100))
+        X.loc[X[key].isin(nullable_values), measure] = np.nan
     # write stats
     file_path = my_path + "../predict_intentions.csv"
-    pd.DataFrame([[execution_id, nullify, len(X)]], columns=["execution_id", "nullify", "cardinality"]).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
+    pd.DataFrame(
+        [[execution_id, nullify, len(X), X[measure].isnull().sum(), X[measure].notnull().sum(), test_size]],
+        columns=["execution_id", "nullify", "cardinality", "missing_values", "not_missing_values", "test_size"]
+    ).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
     # execute the operator
-    P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id)
+    P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id, test_size=test_size)
     # write the statistics on the components
     P.to_csv(my_path + file + "_" + session_step + "_property.csv", index=False)
     # write the statistics on the execution times
