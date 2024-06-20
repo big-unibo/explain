@@ -1,3 +1,23 @@
+## [1.1.97](https://github.com/big-unibo/explain/compare/1.1.96...1.1.97) (2024-06-20)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.0 ([572f06e](https://github.com/big-unibo/explain/commit/572f06e6d700f1c8a35b2a1cc3ed6c95165e0c35))
+* **deps:** update dependency notebook to v7.2.1 ([5e0e0ee](https://github.com/big-unibo/explain/commit/5e0e0eeb10be382b5eb98367a0ba2dabbfa5b96a))
+* **deps:** update dependency sqlalchemy to v2.0.31 ([973e9d1](https://github.com/big-unibo/explain/commit/973e9d111d77fe22a5fc7816a4feeed5ae2ccf73))
+* **deps:** update node.js to 20.15 ([e55d4f5](https://github.com/big-unibo/explain/commit/e55d4f5217dd21c7e045af7e4bb177b63c632e11))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.12 ([24e38ff](https://github.com/big-unibo/explain/commit/24e38ff0c058fa3e5e08346b9657a1b32493478c))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.7 ([b0f8321](https://github.com/big-unibo/explain/commit/b0f8321d93d2b9ecf811a84667cdfedc8f743b69))
+
 ## [1.1.96](https://github.com/big-unibo/explain/compare/1.1.95...1.1.96) (2024-06-01)
 
 
