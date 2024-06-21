@@ -1,3 +1,23 @@
+## [1.0.23](https://github.com/w4bo/predict/compare/1.0.22...1.0.23) (2024-06-21)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.0 ([386af42](https://github.com/w4bo/predict/commit/386af424317b3d68a946d7082df97b0b9ecb28ad))
+* **deps:** update dependency notebook to v7.2.1 ([6a93727](https://github.com/w4bo/predict/commit/6a937279f1647613a0e772674b889dbce8e83bf5))
+* **deps:** update dependency sqlalchemy to v2.0.31 ([50d19b8](https://github.com/w4bo/predict/commit/50d19b85c78065af009784918ea17567a7628cae))
+* **deps:** update node.js to 20.15 ([61aca9e](https://github.com/w4bo/predict/commit/61aca9ee3e4e156160907ec9397f3e0aa2823071))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.12 ([2f4faee](https://github.com/w4bo/predict/commit/2f4faeed678f924eb5a9e7f4204ccd2e9b452ca7))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.7 ([bf01eaa](https://github.com/w4bo/predict/commit/bf01eaa6ae48b3d30e48596e024465db01cc23cd))
+
 ## [1.0.22](https://github.com/w4bo/predict/compare/1.0.21...1.0.22) (2024-06-01)
 
 
