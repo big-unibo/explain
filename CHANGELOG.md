@@ -1,3 +1,15 @@
+## [1.1.98](https://github.com/big-unibo/explain/compare/1.1.97...1.1.98) (2024-06-27)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.1 ([f16e2e7](https://github.com/big-unibo/explain/commit/f16e2e7fc940dd93433cd8319622c08fefd9a314))
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.3 ([3ec280f](https://github.com/big-unibo/explain/commit/3ec280fd32948640ee38443dec0e9d692c8db37c))
+
 ## [1.1.97](https://github.com/big-unibo/explain/compare/1.1.96...1.1.97) (2024-06-20)
 
 
