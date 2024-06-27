@@ -1,3 +1,15 @@
+## [1.0.24](https://github.com/w4bo/predict/compare/1.0.23...1.0.24) (2024-06-27)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.1 ([ada6d4e](https://github.com/w4bo/predict/commit/ada6d4e63467c1fcc6c3b077720b39ab2e992e54))
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.3 ([979a422](https://github.com/w4bo/predict/commit/979a4224cf2beb3fba8313717d8d8a7ab6994914))
+
 ## [1.0.23](https://github.com/w4bo/predict/compare/1.0.22...1.0.23) (2024-06-21)
 
 
