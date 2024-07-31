@@ -1,3 +1,19 @@
+## [1.1.99](https://github.com/big-unibo/explain/compare/1.1.98...1.1.99) (2024-07-31)
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.5.1 ([a91d468](https://github.com/big-unibo/explain/commit/a91d468917621c91e2ca8d79d7f1cd98439b110f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.86 ([7ce062d](https://github.com/big-unibo/explain/commit/7ce062ddd54654d0a08bf2d531509b14b093f43b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.87 ([fdccf16](https://github.com/big-unibo/explain/commit/fdccf1603dfda6f1d85f2de84d29e0227a659b76))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.95 ([fa302d2](https://github.com/big-unibo/explain/commit/fa302d25b5e9b75bfbe47f1817a6dc623eb303ff))
+* **deps:** update node.js to 20.16 ([1b66adb](https://github.com/big-unibo/explain/commit/1b66adb3f2e1b123d973eb99d4f12b8a8171d980))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.2 ([f6c727f](https://github.com/big-unibo/explain/commit/f6c727f33b0f4fc46ec0035bc09ad0b49632ddc7))
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.17.2 ([8448e2e](https://github.com/big-unibo/explain/commit/8448e2e34f3fa0da395a7ca44cec20c2eebc71d7))
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.15.0 ([82e1eb6](https://github.com/big-unibo/explain/commit/82e1eb6c76cb515f3b326522aa89978991930051))
+
 ## [1.1.98](https://github.com/big-unibo/explain/compare/1.1.97...1.1.98) (2024-06-27)
 
 
