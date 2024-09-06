@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
-
+import sys
 import pandas as pd
 from os import path
 from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
@@ -41,7 +41,8 @@ plt.rcParams['ytick.labelsize'] = 12
 seed=42
 random.seed(seed)
 test_size=20
-sep="!"
+accuracy_size=10
+sep = "!"
 n_iter = 20
 cv = 5
 my_path = ""
@@ -93,8 +94,8 @@ def compute_mic(data, casualty_var):
     return mic_c
 
 
-def compute_model(df, target_column, model, seed=seed, test_size=test_size, n_iter=n_iter):
-    print(f"compute_model test_size: {test_size}, len(df): {len(df)}")
+def compute_model(df, target_column, model, seed=seed, test_size=test_size, n_iter=n_iter, accuracy_size=accuracy_size):
+    # print(f"compute_model test_size: {test_size}, len(df): {len(df)}")
     df_enc = df.copy(deep=True)
     # One-hot encode object columns
     object_columns = list(df.select_dtypes(include=['object']).columns)
@@ -104,7 +105,7 @@ def compute_model(df, target_column, model, seed=seed, test_size=test_size, n_it
     if len(datetime_columns) > 0: df_enc[datetime_columns] = df_enc[datetime_columns].astype('int64') / 10**9
     # Create a separate dataframe for rows with missing values in the target column
     missing_values_df = df_enc[df_enc[target_column].isnull()]
-    if len(missing_values_df) == 0: return df, df[target_column], None, None, None, None, None, None, None
+    if len(missing_values_df) == 0: return df, df[target_column], None, None, None, None, None, None, None, None, None, None
     df_enc = df_enc.dropna(subset=[target_column])
     # Separate target variable (what you want to predict) from features
     X = df_enc.drop(target_column, axis=1)
@@ -118,15 +119,17 @@ def compute_model(df, target_column, model, seed=seed, test_size=test_size, n_it
     # best_model = model.best_estimator_
     # print('Best Hyperparameters:', best_params)
     y_pred = model.predict(X_test)
-    value = r2_score(y_test, y_pred)    
+    # print("compute_model", len(y_test), len(y_pred), len(y_test[-accuracy_size:]))
+    value = r2_score(y_test, y_pred)
+    accuracy = r2_score(y_test[-accuracy_size:], y_pred[-accuracy_size:])
     # Fill in missing values in the original dataframe
     missing_values_df[target_column] = model.predict(missing_values_df.drop(target_column, axis=1))
     df.loc[df[target_column].isnull(), target_column] = missing_values_df[target_column]
-    return df, df[target_column], X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, n_iter, -1
+    return df, df[target_column], X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, n_iter, -1, accuracy
 
 
-def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
-    print(f"dtree test_size: {test_size}")
+def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size, accuracy_size=accuracy_size):
+    # print(f"dtree test_size: {test_size}")
     # Define the hyperparameters you want to search through
     param_grid = {
         'max_depth': [2, 3, 4, 5],
@@ -135,10 +138,10 @@ def dtree(df, target_column, date_attr=None, seed=seed, test_size=test_size):
         'random_state': [seed] 
     }
     model = RandomizedSearchCV(DecisionTreeRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
-    return compute_model(df, target_column, model, test_size=test_size)
+    return compute_model(df, target_column, model, test_size=test_size, accuracy_size=accuracy_size)
 
 
-def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
+def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size, accuracy_size=accuracy_size):
     # Define hyperparameters to tune and their possible values
     param_grid = {
         'n_estimators': [2, 3, 4, 5],
@@ -148,7 +151,7 @@ def forest(df, target_column, date_attr=None, seed=seed, test_size=test_size):
         'random_state': [seed] 
     }
     model = RandomizedSearchCV(RandomForestRegressor(random_state=seed), param_grid, n_iter=n_iter, cv=cv, scoring='r2', random_state=seed)
-    return compute_model(df, target_column, model, test_size=test_size)
+    return compute_model(df, target_column, model, test_size=test_size, accuracy_size=accuracy_size)
 
 
 def mypivot(df, date_attr, column, exog, target_measure, impute=False):
@@ -189,6 +192,7 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
         title = f'{target_measure.split(sep)[1]}' + (f' (R$^2$={max(0.0, round(value, 2))})' if j == 0 else '') 
         axs[i + j].tick_params(axis='x', rotation=90)
         axs[i + j].set_title(title)
+        myFmt = DateFormatter("%Y-%m-%d")
         if "week" in date_attr: myFmt = DateFormatter("%Y-%W")
         elif "hour" in date_attr: myFmt = DateFormatter("%Y-%m-%d %H:%M:%S")
         axs[i + j].xaxis.set_major_formatter(myFmt)
@@ -203,8 +207,8 @@ def save(fig, figtitle, target_measure):
     for ext in ["svg", "pdf"]: fig.savefig(f"{my_path}{file}_{session_step}_{figtitle}_{target_measure}.{ext}")
     
 
-def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test_size=test_size):
-    print(f"timeseries test_size: {test_size}")
+def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test_size=test_size, accuracy_size=accuracy_size):
+    # print(f"timeseries test_size: {test_size}")
     targets = [x for x in df.columns if sep in x and target_measure in x]
     actual_targets = [c for c in targets if df[c].isnull().any()]
     fig, axs = plt.subplots(max(1, len(actual_targets)), 2, figsize=(8, 1 + 3 * len(actual_targets)), sharex=False, sharey=False)  # Create a figure and subplots
@@ -217,15 +221,17 @@ def timeseries(df, date_attr, column, target_measure, model, figtitle="dt", test
         cdf = df.drop(columns=endo, axis=1)  # drop the wrong target measures
         cdf = df.drop(columns=exog, axis=1)  # drop the wrong slices
         start = time.time()
-        cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, success, success_time = model(cdf, c, date_attr=date_attr, test_size=test_size)  # compute the model
-        P = pd.concat([P, pd.DataFrame([[figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(cdf.columns) - 2, round((time.time() - start) * 1000), success, success_time]], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"])], ignore_index=True)
+        cdf, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, success, success_time, accuracy = model(cdf, c, date_attr=date_attr, test_size=test_size, accuracy_size=accuracy_size)  # compute the model
+        P = pd.concat([P, pd.DataFrame([
+                [figtitle, c.split(sep)[1], value, len(missing_values_df) / len(cdf), 1, len(cdf.columns) - 2, round((time.time() - start) * 1000), success, success_time, accuracy]
+            ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time", "accuracy"])], ignore_index=True)
         plot(fig, axs, cdf, date_attr, c, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i, figtitle)
         i += 2
         save(fig, figtitle, c)
     return melt(df, date_attr, column, target_measure), P
 
 
-def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
+def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed, accuracy_size=accuracy_size):
     # Create a separate dataframe for rows with missing values in the target column
     mydf = df
     missing_values_df = df[df.isnull().any(axis=1)]
@@ -242,30 +248,33 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
         'p6': [0], #[1, 2, 3],
         'p7': [0], #[4, 7, 12, 24],
     }
-    best_r2, best_hp, best_y_pred = float('-inf'), {}, None
+    best_r2, best_hp, best_y_pred, best_acc = float('-inf'), {}, None, None
     random.seed(seed)
     success, success_time = 0, 0
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
         try:
             start = time.time()
             # Generate a random set of hyperparameters
-            print("selecting parameters...")
+            # print("selecting parameters...")
             c_hp = {hp: random.choice(values) for hp, values in param_space.items()}
             # Train and evaluate the model with the current set of hyperparameters
             order = (c_hp["p1"] , c_hp["p2"], c_hp["p3"]) # to tune 
             seasonal_order = (c_hp["p4"], c_hp["p5"], c_hp["p6"], c_hp["p7"]) # to tune
-            print("initializing sarimax... order={}, seasonal_order={}".format(order, seasonal_order))
+            # print("initializing sarimax... order={}, seasonal_order={}".format(order, seasonal_order))
             model = SARIMAX(endog=y_train, exog=None if X_train.empty else X_train, order=order, seasonal_order=seasonal_order)
-            print("fitting...")
+            # print("fitting...")
             results = model.fit(iterations=200, disp=False)
-            print("forecasting...")
+            # print("forecasting...")
             y_pred = results.get_forecast(steps=test_size, exog=None if X_test.empty else X_test).predicted_mean
             y_pred.index = y_test.index
-            print("computing R2...")
+            # print("computing R2...")
             c_r2 = r2_score(y_test, y_pred)
+            c_acc = r2_score(y_test[-accuracy_size:], y_pred[-accuracy_size:])
+            # print("sarimax", len(y_test), len(y_pred), len(y_test[-accuracy_size:]))
             # Update the best hyperparameters if the current configuration is better
             if c_r2 > best_r2:
                 best_r2 = c_r2
+                best_acc = c_acc
                 best_hp = dict(c_hp)
                 best_y_pred = y_pred
             success += 1
@@ -287,12 +296,10 @@ def sarimax(df, target_measure, date_attr, test_size=test_size, seed=seed):
         success_time += round((time.time() - start) * 1000)
     except Exception as e:
         print(f"sarimax({c_hp}) - predicting: {e}")
-    # import sys
-    # sys.exit(1)
-    return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2, success, success_time
+    return mydf, mydf[target_measure], X_train, y_train, X_test, y_test, best_y_pred, missing_values_df, best_r2, success, success_time, best_acc
 
 
-def varmax(df, date_attr, target_measure, test_size=test_size):
+def varmax(df, date_attr, target_measure, test_size=test_size, accuracy_size=accuracy_size):
     # Create a separate dataframe for rows with missing values in the target column
     exog = [x for x in df.columns if target_measure.split(sep)[0] not in x and x != date_attr]
     endo = [x for x in df.columns if target_measure in x]
@@ -306,7 +313,7 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
         'p1': [0, 1, 2, 4, 8, 24], #
         'p2': [0, 1, 2] # , 4, 8, 24
     }
-    Y_pred, forecast, best_r2, best_hp, best_Y_pred = None, None, float('-inf'), {}, None
+    Y_pred, forecast, best_r2, best_hp, best_Y_pred, best_acc = None, None, float('-inf'), {}, None, None
     random.seed(seed)
     success, success_time = 0, 0
     for _ in range(min(len(list(product(*param_space.values()))), n_iter)):
@@ -318,11 +325,14 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
             results = model.fit(iterations=100, disp=False)
             fcst = results.get_forecast(steps=test_size, exog=None if X_test.empty else X_test)
             Y_pred = fcst.predicted_mean
+            # print("varmax", len(Y_test), len(Y_pred), len(Y_test[-accuracy_size:]))
             Y_pred.index = Y_test.index
             c_r2 = r2_score(Y_test, Y_pred)
+            c_acc = r2_score(Y_test[-accuracy_size:], Y_pred[-accuracy_size:])
             # Update the best hyperparameters if the current configuration is better
             if c_r2 > best_r2:
                 best_r2 = c_r2
+                best_acc = c_acc
                 best_hp = dict(c_hp)
                 best_Y_pred = Y_pred
             success += 1
@@ -341,19 +351,19 @@ def varmax(df, date_attr, target_measure, test_size=test_size):
         success_time += round((time.time() - start) * 1000)
     except Exception as e:
         print(f"varmax({c_hp}) - predicting: {e}")
-    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices] if forecast is not None else None, best_r2, success, success_time
+    return mydf, mydf[endo], X_train, Y_train, X_test, Y_test, best_Y_pred, forecast.loc[missing_indices] if forecast is not None else None, best_r2, success, success_time, best_acc
 
 
-def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, test_size=test_size):
+def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, test_size=test_size, accuracy_size=accuracy_size):
     targets = [x for x in df.columns if sep in x and target_measure in x]
     fig, axs = plt.subplots(len(targets), 2, figsize=(8, 1 + 3*len(targets)), sharex=False, sharey=False)  # Create a figure and subplots
     axs = axs.flatten()  # Flatten the axs array if it's a multi-dimensional array
     i = 0
     start = time.time()
-    df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value, success, success_time = model(df, date_attr, target_measure, test_size=test_size)
+    df, Y, X_train, Y_train, X_test, Y_test, Y_pred, missing_values_df, value, success, success_time, accuracy = model(df, date_attr, target_measure, test_size=test_size, accuracy_size=accuracy_size)
     P = pd.DataFrame([
-            ['multivariateTS', 'ALL', value, (len(missing_values_df) / len(df)) if missing_values_df is not None else -1, len(targets), len(df.columns) - 1 - len(targets), round((time.time() - start) * 1000), success, success_time],  # -1 is for the data_attr column
-        ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"])
+            ['multivariateTS', 'ALL', value, (len(missing_values_df) / len(df)) if missing_values_df is not None else -1, len(targets), len(df.columns) - 1 - len(targets), round((time.time() - start) * 1000), success, success_time, accuracy],  # -1 is for the data_attr column
+        ], columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time", "accuracy"])
     for c in targets:
         if missing_values_df is not None:
             plot(fig, axs, df, date_attr, c, Y[c], X_train, Y_train[c], X_test, Y_test[c], Y_pred[c], missing_values_df, value, i, figtitle)
@@ -362,7 +372,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     return melt(df, date_attr, column, target_measure), P
 
 
-def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, test_size=test_size):
+def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, test_size=test_size, accuracy_size=accuracy_size):
     date_attr = [x for x in by if "week" in x or "hour" in x or "timestamp" in x or "date" in x or "day" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
@@ -406,7 +416,8 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, t
                 for i in range(nullify_last): pdf.loc[len(pdf) - (i + 1), x] = np.nan
 
         test_pivot_size = round(len(pdf) * test_size / 100.0)
-        print(f"test_pivot_size: {test_pivot_size}")
+        test_accuracy_size = int(min(test_pivot_size, accuracy_size))
+        print(f"test_pivot_size: {test_pivot_size}, accuracy_size: {accuracy_size}")
         for model in using:
             alg = None
             start = time.time()
@@ -414,12 +425,12 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, t
             elif model == "timeRandomForest": alg=forest
             elif model == "timeDecisionTree": alg=dtree
             if alg is not None:
-                _, Q = timeseries(pdf.copy(deep=True), date_attr, column, target_measure, alg, figtitle=model, test_size=test_pivot_size)
+                _, Q = timeseries(pdf.copy(deep=True), date_attr, column, target_measure, alg, figtitle=model, test_size=test_pivot_size, accuracy_size=test_accuracy_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
                 P = pd.concat([P, Q], ignore_index=True)
                 stats.append([execution_id, model, end_time])
-            if model == "multivariateTS" and column is not None and df[column].nunique() > 1:
-                _, Q = multi_timeseries(pdf.copy(deep=True), date_attr, column, target_measure, varmax, figtitle=model, test_size=test_pivot_size)
+            if model == "multivariateTS" and column is not None and df[column].nunique() > 1: # : #
+                _, Q = multi_timeseries(pdf.copy(deep=True), date_attr, column, target_measure, varmax, figtitle=model, test_size=test_pivot_size, accuracy_size=test_accuracy_size)
                 end_time = round((time.time() - start) * 1000)  # time is in ms
                 P = pd.concat([P, Q], ignore_index=True)
                 stats.append([execution_id, model, end_time])
@@ -427,19 +438,22 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, t
     # Time agnostic
     df.to_csv(my_path + file + "_" + session_step + "_df.csv", index=False)
     test_size = round(len(df) * test_size / 100.0)
-    print(f"tests_size: {test_size}")
+    test_accuracy_size = int(min(test_size, accuracy_size))
+
+    print(f"tests_size: {test_size}, accuracy_size: {accuracy_size}")
     for model in using:
+        print(f"Executing: {model}")
         alg = None
         start = time.time()
         if model == "decisionTree": alg=dtree
         elif model == "randomForest": alg=forest
         if alg is not None:
-            _, _, _, _, _, _, _, missing_values_df, value, success, success_time = alg(df.copy(deep=True), target_measure, test_size=test_size)
+            _, _, _, _, _, _, _, missing_values_df, value, success, success_time, accuracy = alg(df.copy(deep=True), target_measure, test_size=test_size, accuracy_size=test_accuracy_size)
             end_time = round((time.time() - start) * 1000)  # time is in ms
             P = pd.concat([P,
                         pd.DataFrame(
-                            [[model, 'ALL', value, -1 if missing_values_df is None else (len(missing_values_df) / len(df)), -1, -1, end_time, success, success_time]],
-                            columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time"]
+                            [[model, 'ALL', value, -1 if missing_values_df is None else (len(missing_values_df) / len(df)), -1, -1, end_time, success, success_time, accuracy]],
+                            columns=["model", "component", "interest", "sparsity", "endog", "exog", "component_time", "success", "success_time", "accuracy"]
                         )
                 ], ignore_index=True)
             stats.append([execution_id, model, end_time])
@@ -460,7 +474,7 @@ if __name__ == '__main__':
     parser.add_argument("--execution_id", help="execution id", type=str)
     parser.add_argument("--using", help="models for prediction", nargs='?', const='', default='', type=str)
     parser.add_argument("--nullify", help="Percentage of values to nullify", type=float)
-    parser.add_argument("--test_size", help="Size of the test set", type=float)
+    parser.add_argument("--accuracy_size", help="Size of the accuracy set", type=float)
 
     args = parser.parse_args()
     my_path = args.path.replace("\"", "")
@@ -472,7 +486,7 @@ if __name__ == '__main__':
     cube = json.loads(cube)
     using = "" if args.using == "" else args.using.split(",")
     nullify = 0 if args.nullify is None else args.nullify
-    test_size = test_size if args.test_size is None else args.test_size
+    accuracy_size = accuracy_size if args.accuracy_size is None else args.accuracy_size
 
     # Load the data
     try:
@@ -498,11 +512,11 @@ if __name__ == '__main__':
     # write stats
     file_path = my_path + "../predict_intentions.csv"
     pd.DataFrame(
-        [[execution_id, nullify, len(X), X[measure].isnull().sum(), X[measure].notnull().sum(), test_size]],
-        columns=["execution_id", "nullify", "cardinality", "missing_values", "not_missing_values", "test_size"]
+        [[execution_id, nullify, len(X), X[measure].isnull().sum(), X[measure].notnull().sum(), test_size, accuracy_size / len(X)]],
+        columns=["execution_id", "nullify", "cardinality", "missing_values", "not_missing_values", "test_size", "cardinality_acc"]
     ).to_csv(file_path, index=False, mode='a', header=not path.exists(file_path))
     # execute the operator
-    P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id, test_size=test_size)
+    P, stats = predict(X, by, measure, nullify_last=None, using=using, execution_id=execution_id, test_size=test_size, accuracy_size=accuracy_size)
     # write the statistics on the components
     P.to_csv(my_path + file + "_" + session_step + "_property.csv", index=False)
     # write the statistics on the execution times

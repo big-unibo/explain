@@ -34,8 +34,8 @@ class TestPredict {
     @Test
     fun `test cimice 8`() {
         Intention.DEBUG = false
-        listOf(10, 15, 20, 25, 30).forEach { v ->
-            execute("with CIMICE predict adults for province in ('BO') by week, province from small_instars, total_captures testsize $v executionid Cimice-202-$v")
+        listOf("['2022-10', '2022-42']", "['2021-10', '2022-42']", "['2020-10', '2022-42']").forEachIndexed { i, v ->
+            execute("with CIMICE predict adults for week between $v and province in ('BO') by week, province from small_instars, total_captures accuracysize 10 executionid Cimice-202-$i")
         }
     }
 
@@ -44,7 +44,7 @@ class TestPredict {
         Intention.DEBUG = false
         val measures = listOf("adults", "cum_degree_days")
         measures.forEachIndexed { i, _ ->
-            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-200-$i")
+            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0, i + 1).reduce { a, b -> "$a, $b" }} accuracysize 20 executionid Cimice-200-$i")
         }
     }
 
@@ -53,7 +53,7 @@ class TestPredict {
         Intention.DEBUG = false
         val measures = listOf("adults", "small_instars", "large_instars", "total_captures")
         measures.forEachIndexed { i, _ ->
-            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0 , i + 1).reduce {a,b -> "$a, $b" }} executionid Cimice-117-$i")
+            execute("with CIMICE predict adults for province in ('BO') by week, province from ${measures.subList(0, i + 1).reduce { a, b -> "$a, $b" }} accuracysize 20 executionid Cimice-117-$i")
         }
     }
 
@@ -62,7 +62,7 @@ class TestPredict {
         Intention.DEBUG = false
         val provinces = listOf("'BO'", "'RA'", "'FC'")
         provinces.forEachIndexed { i, _ ->
-            execute("with CIMICE predict adults for province in (${provinces.subList(0 , i + 1).reduce {a,b -> "$a, $b" }}) by week, province from small_instars, total_captures executionid Cimice-119-$i")
+            execute("with CIMICE predict adults for province in (${provinces.subList(0, i + 1).reduce { a, b -> "$a, $b" }}) by week, province from small_instars, total_captures accuracysize 20 executionid Cimice-119-$i")
         }
     }
 
@@ -103,25 +103,29 @@ class TestPredict {
                     "2022-07-25 10:00:00", "2022-07-30 10:00:00", "2022-08-14 10:00:00" /*, "2022-08-24 10:00:00" */
             ).forEach { timestamp ->
                 execute("with WATERING predict value " +
-                            "by hour, agent " +
-                            "for agent in (${sensors.subList(0, sensors.size).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
-                                "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
-                                "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
-                                "and field='Field-1f032c308c' " +
-                            "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS " + //
-                            "nullify 5 " +
-                            "executionid I-120-12-${i++}")
+                        "by hour, agent " +
+                        "for agent in (${sensors.subList(0, sensors.size).map { "'${it}'" }.reduce { a, b -> "${a}, ${b}" }}) " +
+                        "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
+                        "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
+                        "and field='Field-1f032c308c' " +
+                        "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS " + //
+                        "nullify 5 " +
+                        "executionid I-120-12-${i++}")
             }
             i = 0
             listOf(2, 3, 4, 5, 6, 9, 12).forEach { idx ->
                 listOf("2022-07-04 10:00:00").forEach { timestamp ->
                     execute("with WATERING predict value " +
                             "by hour, agent " +
-                            "for agent in (${sensors.subList(0, idx).map { "'${it}'" }.reduce {a, b -> "${a}, ${b}"}}) " +
-                                "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
-                                "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
-                                "and field='Field-1f032c308c' " +
-                            (if (idx <= 6) { "" } else { "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS "}) +
+                            "for agent in (${sensors.subList(0, idx).map { "'${it}'" }.reduce { a, b -> "${a}, ${b}" }}) " +
+                            "and hour between ['2022-07-01 10:00:00', '${timestamp}'] " +
+                            "and measurement_type in ('GROUND_WATER_POTENTIAL') " +
+                            "and field='Field-1f032c308c' " +
+                            (if (idx <= 6) {
+                                ""
+                            } else {
+                                "using timeDecisionTree, timeRandomForest, decisionTree, randomForest, univariateTS "
+                            }) +
                             "nullify 5 " +
                             "executionid I-122-$idx-${i++}")
                 }
@@ -137,7 +141,7 @@ class TestPredict {
     @Test
     fun `test models 2`() {
         execute("with sales_fact_1997 predict unit_sales by the_date using univariateTS")
-        execute("with sales_fact_1997 predict unit_sales by the_month using multivariateTS")
+        // execute("with sales_fact_1997 predict unit_sales by the_month using multivariateTS")
         execute("with sales_fact_1997 predict unit_sales by the_month using timeDecisionTree")
         execute("with sales_fact_1997 predict unit_sales by the_month using timeRandomForest, univariateTS")
     }

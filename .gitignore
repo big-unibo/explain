@@ -1,3 +1,5 @@
+**/*.tex
+**/*.csv
 .started
 .ready
 .env

@@ -11,7 +11,7 @@ class Predict : Intention {
     val against: MutableSet<String> = mutableSetOf()
     val using: MutableSet<String> = mutableSetOf()
     var nullify: Int = 0
-    var testsize: Int = 20
+    var accuracysize: Int = 20
 
     fun concat(c: Collection<String>, sep: String =", "): String {
         if (c.isEmpty()) {
@@ -32,7 +32,7 @@ class Predict : Intention {
                 + " --execution_id " + id
                 + " --cube " + json.toString().replace(" ", "__")
                 + " --using " + concat(using, sep = ",")
-                + " --test_size " + testsize
+                + " --accuracy_size " + accuracysize
                 + " --nullify " + nullify)
     }
 
