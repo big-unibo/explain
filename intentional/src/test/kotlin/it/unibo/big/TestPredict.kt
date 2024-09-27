@@ -166,6 +166,7 @@ class TestPredict {
                     "with sales predict unit_sales by the_date, product_id", // 77k
                     "with sales predict unit_sales by the_date, customer_id, product_id" // 87k
             ).forEach { s ->
+                println("\n--- $s ---\n")
                 val d = PredictExecute.parse(s)
                 PredictExecute.execute(d, path)
                 if (first) csvPrinter.printRecord(d.statistics.keys.sorted())
