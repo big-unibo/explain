@@ -1,3 +1,298 @@
+## [1.1.99](https://github.com/big-unibo/explain/compare/1.1.98...1.1.99) (2024-07-31)
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.5.1 ([a91d468](https://github.com/big-unibo/explain/commit/a91d468917621c91e2ca8d79d7f1cd98439b110f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.86 ([7ce062d](https://github.com/big-unibo/explain/commit/7ce062ddd54654d0a08bf2d531509b14b093f43b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.87 ([fdccf16](https://github.com/big-unibo/explain/commit/fdccf1603dfda6f1d85f2de84d29e0227a659b76))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.95 ([fa302d2](https://github.com/big-unibo/explain/commit/fa302d25b5e9b75bfbe47f1817a6dc623eb303ff))
+* **deps:** update node.js to 20.16 ([1b66adb](https://github.com/big-unibo/explain/commit/1b66adb3f2e1b123d973eb99d4f12b8a8171d980))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.2 ([f6c727f](https://github.com/big-unibo/explain/commit/f6c727f33b0f4fc46ec0035bc09ad0b49632ddc7))
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.17.2 ([8448e2e](https://github.com/big-unibo/explain/commit/8448e2e34f3fa0da395a7ca44cec20c2eebc71d7))
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.15.0 ([82e1eb6](https://github.com/big-unibo/explain/commit/82e1eb6c76cb515f3b326522aa89978991930051))
+
+## [1.1.98](https://github.com/big-unibo/explain/compare/1.1.97...1.1.98) (2024-06-27)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.1 ([f16e2e7](https://github.com/big-unibo/explain/commit/f16e2e7fc940dd93433cd8319622c08fefd9a314))
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.3 ([3ec280f](https://github.com/big-unibo/explain/commit/3ec280fd32948640ee38443dec0e9d692c8db37c))
+
+## [1.1.97](https://github.com/big-unibo/explain/compare/1.1.96...1.1.97) (2024-06-20)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.0 ([572f06e](https://github.com/big-unibo/explain/commit/572f06e6d700f1c8a35b2a1cc3ed6c95165e0c35))
+* **deps:** update dependency notebook to v7.2.1 ([5e0e0ee](https://github.com/big-unibo/explain/commit/5e0e0eeb10be382b5eb98367a0ba2dabbfa5b96a))
+* **deps:** update dependency sqlalchemy to v2.0.31 ([973e9d1](https://github.com/big-unibo/explain/commit/973e9d111d77fe22a5fc7816a4feeed5ae2ccf73))
+* **deps:** update node.js to 20.15 ([e55d4f5](https://github.com/big-unibo/explain/commit/e55d4f5217dd21c7e045af7e4bb177b63c632e11))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.12 ([24e38ff](https://github.com/big-unibo/explain/commit/24e38ff0c058fa3e5e08346b9657a1b32493478c))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.7 ([b0f8321](https://github.com/big-unibo/explain/commit/b0f8321d93d2b9ecf811a84667cdfedc8f743b69))
+
+## [1.1.96](https://github.com/big-unibo/explain/compare/1.1.95...1.1.96) (2024-06-01)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.1 ([e468105](https://github.com/big-unibo/explain/commit/e468105985c73d727aff1ef6e7a8738c1025836e))
+* **deps:** update dependency autopep8 to v2.1.2 ([e5a3a81](https://github.com/big-unibo/explain/commit/e5a3a810e451c50f664f54730070cdce97304075))
+* **deps:** update dependency autopep8 to v2.2.0 ([e610d33](https://github.com/big-unibo/explain/commit/e610d33296accc71bfc5c0fe5f0400a0ad966040))
+* **deps:** update dependency notebook to v7.2.0 ([782c195](https://github.com/big-unibo/explain/commit/782c195cdb68315f970c9d8b524142a6f7fd902c))
+* **deps:** update dependency requests to v2.32.1 ([fc8294a](https://github.com/big-unibo/explain/commit/fc8294a50ead177c30a0cff7284276cc70b52466))
+* **deps:** update dependency requests to v2.32.2 ([48f0ccc](https://github.com/big-unibo/explain/commit/48f0cccc25811e93c9d82925429405bc6d09edcb))
+* **deps:** update dependency requests to v2.32.3 ([0b24647](https://github.com/big-unibo/explain/commit/0b24647e1ea8610ab1214d7fb6a8987aefe966f4))
+* **deps:** update dependency scikit-learn to v1.5.0 ([4f0140f](https://github.com/big-unibo/explain/commit/4f0140f902d8a5653b640117894fca02ce4bdf57))
+* **deps:** update dependency scipy to v1.13.1 ([d333590](https://github.com/big-unibo/explain/commit/d333590e3dfeaee78caf1d22b21e42ba5bd9827d))
+* **deps:** update node.js to 20.14 ([94e0307](https://github.com/big-unibo/explain/commit/94e0307b3424fbf741fe81a1ac18047708437bfd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.1-jre ([adedb7e](https://github.com/big-unibo/explain/commit/adedb7e7a94f3b2fe1ba4a755f22dba30833e4dc))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.5 ([f7d82e2](https://github.com/big-unibo/explain/commit/f7d82e27427f2c1cd57378c71004f164121ba5d4))
+* **deps:** update actions/checkout action to v4.1.6 ([ea1a4a9](https://github.com/big-unibo/explain/commit/ea1a4a9f8540faaecb71bd064bf7418312f92d18))
+
+## [1.1.95](https://github.com/big-unibo/explain/compare/1.1.94...1.1.95) (2024-05-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.30 ([fde3e74](https://github.com/big-unibo/explain/commit/fde3e743e140eb52b87c21bdf802bfef08ef7aec))
+* **deps:** update node.js to 20.13 ([f389f28](https://github.com/big-unibo/explain/commit/f389f28c816c49ddc7c84dfd0b4c954762a9a6cc))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.11 ([dc2efbf](https://github.com/big-unibo/explain/commit/dc2efbf6de771ac3497b8c57a3e97f3010dec27d))
+
+## [1.1.94](https://github.com/big-unibo/explain/compare/1.1.93...1.1.94) (2024-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.17.1 ([0787ca3](https://github.com/big-unibo/explain/commit/0787ca32a95dd6e92924002648716e05735cbe07))
+
+## [1.1.93](https://github.com/big-unibo/explain/compare/1.1.92...1.1.93) (2024-05-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.1 ([cc6d606](https://github.com/big-unibo/explain/commit/cc6d6069ea7848d12f8ed510c37d4c9649c24e6c))
+
+## [1.1.92](https://github.com/big-unibo/explain/compare/1.1.91...1.1.92) (2024-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-csv to v1.11.0 ([9d9be0f](https://github.com/big-unibo/explain/commit/9d9be0f9fde598e6a03cc6985e3143157f02fc2d))
+
+## [1.1.91](https://github.com/big-unibo/explain/compare/1.1.90...1.1.91) (2024-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.2.0-jre ([faf7ffd](https://github.com/big-unibo/explain/commit/faf7ffd3a6a4ec72e6875c4ca38eb65e5df949e6))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.1.3 ([a996e7e](https://github.com/big-unibo/explain/commit/a996e7e70ed5ca57fd0ece301d37564f0913ebae))
+* **deps:** update actions/checkout action to v4.1.4 ([827f94c](https://github.com/big-unibo/explain/commit/827f94c86dc8090dc109b2b082d249c3f84e80f4))
+
+## [1.1.90](https://github.com/big-unibo/explain/compare/1.1.89...1.1.90) (2024-04-19)
+
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.1.3 ([fc6d57c](https://github.com/big-unibo/explain/commit/fc6d57c075304e88ef400f3278c59d586e7f0d1f))
+* **deps:** update dependency scikit-learn to v1.4.2 ([6a9a27f](https://github.com/big-unibo/explain/commit/6a9a27f6f899e436c247929442421529dfd3d7cd))
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.7 ([df593ad](https://github.com/big-unibo/explain/commit/df593ad6390a67a63d9983191c99df2b91f99fe6))
+
+## [1.1.89](https://github.com/big-unibo/explain/compare/1.1.88...1.1.89) (2024-04-12)
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.13 ([0c0d4e5](https://github.com/big-unibo/explain/commit/0c0d4e5ae32203c5996ec245ad00bfa5ab0a134a))
+
+## [1.1.88](https://github.com/big-unibo/explain/compare/1.1.87...1.1.88) (2024-04-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.16.1 ([2915703](https://github.com/big-unibo/explain/commit/291570310a8924c21706762026ba97c24f26687f))
+
+## [1.1.87](https://github.com/big-unibo/explain/compare/1.1.86...1.1.87) (2024-04-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20240303 ([e6ee461](https://github.com/big-unibo/explain/commit/e6ee4615c4e874d585af7c6b9675590f4b4cf4fa))
+
+## [1.1.86](https://github.com/big-unibo/explain/compare/1.1.85...1.1.86) (2024-04-08)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.4 ([3b3c1b3](https://github.com/big-unibo/explain/commit/3b3c1b3316473a57ffc859080ce9a3a63f95d9db))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.10 ([ed74ce3](https://github.com/big-unibo/explain/commit/ed74ce30886b58c0dc0c76c13764a98911cc2ddf))
+
+## [1.1.85](https://github.com/big-unibo/explain/compare/1.1.84...1.1.85) (2024-04-04)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.1.0-jre ([815f6de](https://github.com/big-unibo/explain/commit/815f6de0d71fd9e4878174950fad34fc4652f218))
+
+## [1.1.84](https://github.com/big-unibo/explain/compare/1.1.83...1.1.84) (2024-04-03)
+
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.16.0 ([bc3017e](https://github.com/big-unibo/explain/commit/bc3017e751f769a73b63e750d8fd5497611791b7))
+
+## [1.1.83](https://github.com/big-unibo/explain/compare/1.1.82...1.1.83) (2024-04-03)
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.13.0 ([fb76222](https://github.com/big-unibo/explain/commit/fb76222272bce2a36833ffe9f44528ac5be47dbc))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.17.0 ([00ed826](https://github.com/big-unibo/explain/commit/00ed8262e398cb99fef55d5a1f2ad10e7752d1b0))
+
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.1 ([1c1b8e4](https://github.com/big-unibo/explain/commit/1c1b8e43b064bf9411a54a3cce7ea2c35c49f357))
+
+## [1.1.82](https://github.com/big-unibo/explain/compare/1.1.81...1.1.82) (2024-04-03)
+
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.1.0 ([77087fa](https://github.com/big-unibo/explain/commit/77087fa6cd2a55c930cc3f737899cab032f55502))
+* **deps:** update node.js to 20.12 ([bb58eb0](https://github.com/big-unibo/explain/commit/bb58eb0a3f0d1c97428210a2a37226d98fce4c43))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.17.0 ([71cdcf7](https://github.com/big-unibo/explain/commit/71cdcf7e34f73dbf86b27912dcd1f22abfa0549e))
+
+## [1.1.81](https://github.com/big-unibo/explain/compare/1.1.80...1.1.81) (2024-04-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.9 ([baf112f](https://github.com/big-unibo/explain/commit/baf112f8ac118241fd7b24d9fbdbcfa5a9c051a8))
+
+## [1.1.80](https://github.com/big-unibo/explain/compare/1.1.79...1.1.80) (2024-04-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.datatype:jackson-datatype-jsr310 to v2.16.2 ([e87b993](https://github.com/big-unibo/explain/commit/e87b9934ec6db853df83f334beff77aff013ea56))
+
+## [1.1.79](https://github.com/big-unibo/explain/compare/1.1.78...1.1.79) (2024-04-02)
+
+
+### Dependency updates
+
+* **deps:** update dependency matplotlib to v3.8.3 ([524bf7c](https://github.com/big-unibo/explain/commit/524bf7cb17106ffab9f4dcf8ee4ae509b125244e))
+* **deps:** update dependency notebook to v7.0.8 ([7a487a8](https://github.com/big-unibo/explain/commit/7a487a832ddc10d83a5604cd00620688b5bc6df3))
+* **deps:** update dependency notebook to v7.1.0 ([a72b413](https://github.com/big-unibo/explain/commit/a72b4130d7f3238b370129172739958181cac72b))
+* **deps:** update dependency notebook to v7.1.2 ([3a5d637](https://github.com/big-unibo/explain/commit/3a5d637d845dba35697dcd24827aa1c2f9e1721e))
+* **deps:** update dependency scikit-learn to v1.4.1.post1 ([c4c6d74](https://github.com/big-unibo/explain/commit/c4c6d747ed41434b618c61f0db216e5a30d661e9))
+* **deps:** update dependency sqlalchemy to v2.0.26 ([d48d3d4](https://github.com/big-unibo/explain/commit/d48d3d4cf2a3935467788c158c5196728e5bc847))
+* **deps:** update dependency sqlalchemy to v2.0.27 ([f90411e](https://github.com/big-unibo/explain/commit/f90411ef41f7daa7900ad67c134f35d05871c95d))
+* **deps:** update dependency sqlalchemy to v2.0.29 ([e81818e](https://github.com/big-unibo/explain/commit/e81818e90a71dd19af6011f00392dc12dd7d8358))
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.16.2 ([7c94c08](https://github.com/big-unibo/explain/commit/7c94c08df3f7a49b94d1635c213501e76e570857))
+
+## [1.1.78](https://github.com/big-unibo/explain/compare/1.1.77...1.1.78) (2024-02-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency numpy to v1.26.4 ([9b6fc9f](https://github.com/big-unibo/explain/commit/9b6fc9f07421ab3d25da6838535b1983e99f73f1))
+
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20240205 ([a57d712](https://github.com/big-unibo/explain/commit/a57d712d1edaa946f3f7db648c61688eefa4a59f))
+
+## [1.1.77](https://github.com/big-unibo/explain/compare/1.1.76...1.1.77) (2024-02-06)
+
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.4 ([eced5db](https://github.com/big-unibo/explain/commit/eced5db8c9deeb3b84d2b890316616767d5303d8))
+
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.12 ([09a16b8](https://github.com/big-unibo/explain/commit/09a16b815a7bbcece33ac7372cc01d4dcbf4ac97))
+
+## [1.1.76](https://github.com/big-unibo/explain/compare/1.1.75...1.1.76) (2024-02-04)
+
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.10.2 ([d1b2c54](https://github.com/big-unibo/explain/commit/d1b2c54ef68d95fecd64c1d166f3b4a9d5d67133))
+
+## [1.1.75](https://github.com/big-unibo/explain/compare/1.1.74...1.1.75) (2024-02-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.6 ([a91b556](https://github.com/big-unibo/explain/commit/a91b5567d14f8f44c57105481b0f50e07effcad3))
+
+## [1.1.74](https://github.com/big-unibo/explain/compare/1.1.73...1.1.74) (2024-01-31)
+
+
+### Dependency updates
+
+* **deps:** update dependency scipy to v1.12.0 ([a018c22](https://github.com/big-unibo/explain/commit/a018c22ac6ad3c0aef263451cfc710a1af107ece))
+
+
+### Bug Fixes
+
+* **deps:** update dependency io.ktor:ktor-server-servlet to v2.3.8 ([c1cdbf9](https://github.com/big-unibo/explain/commit/c1cdbf926ceece2956a0c325c2934260cebb08d1))
+
 ## [1.1.73](https://github.com/big-unibo/explain/compare/1.1.72...1.1.73) (2024-01-20)
 
 
