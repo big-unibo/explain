@@ -4,7 +4,7 @@
 
 ## Research papers
 
-TBD 
+This repository implements the paper "Predicting Multidimensional Cubes Through Intentional Analytics" submitted to the IEEE TKDE journal.
 
 ## Running the tests
 
@@ -34,11 +34,3 @@ bash stop.sh
 ## Working and deploying the application
 
 - Change the necessary files (see the ones copied by `init.sh`)
-- Deploy the web application on Tomcat
-
-```sh
-./deploy.sh
-```
-
-- **Remember** to `chmod -R 777` the folders `scr/main/python` and the one containing the Oracle client 
-- (If using Intellij) **Remember** to set the `LD_LIBRARY_PATH` in the run/debug configuration (see the `.env` file)
