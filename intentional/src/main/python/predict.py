@@ -1,45 +1,57 @@
 #!/usr/bin/env python
 # coding: utf-8
+# Standard library imports
 import sys
-import pandas as pd
-from os import path
-from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
-from sklearn.tree import DecisionTreeRegressor
-from sklearn.ensemble import RandomForestRegressor
-from sklearn.metrics import mean_squared_error
-from sklearn.metrics import r2_score
-from sklearn.preprocessing import OneHotEncoder
-import matplotlib.pyplot as plt
-from statsmodels.tsa.statespace.sarimax import SARIMAX
 import random
 import warnings
 import time
 import json
-from minepy import cstats
-from autots import AutoTS, load_daily
-import warnings
-import numpy as np
-import pandas as pd
-from sqlalchemy import create_engine
-from dotenv import dotenv_values
-import numpy as np
-import cx_Oracle
-import warnings
-from matplotlib.dates import DateFormatter
-from sklearn.tree import plot_tree
-import matplotlib.pyplot as plt
-from statsmodels.tsa.statespace.varmax import VARMAX
+from os import path
 from itertools import product
 import argparse
-warnings.filterwarnings('ignore')  # .filterwarnings(action='once') 
-plt.rcParams['font.size'] = 14
-plt.rcParams['legend.fontsize'] = 10
-plt.rcParams['xtick.labelsize'] = 12
-plt.rcParams['ytick.labelsize'] = 12
-# plt.rcParams["font.family"] = "serif"
-# plt.rcParams["font.serif"] = ["Times New Roman"]
-seed=42
+
+# Data manipulation and storage
+import pandas as pd
+import numpy as np
+from sqlalchemy import create_engine
+from dotenv import dotenv_values
+import cx_Oracle
+
+# Machine Learning imports
+from sklearn.model_selection import train_test_split, GridSearchCV, RandomizedSearchCV
+from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.preprocessing import OneHotEncoder
+
+# Time Series analysis imports
+from statsmodels.tsa.statespace.sarimax import SARIMAX
+from statsmodels.tsa.statespace.varmax import VARMAX
+
+# Visualization imports
+import matplotlib.pyplot as plt
+from matplotlib.dates import DateFormatter
+
+# Additional libraries
+from minepy import cstats
+from autots import AutoTS, load_daily
+
+# Suppress warnings
+warnings.filterwarnings('ignore')
+
+
+warnings.filterwarnings('ignore')
+# Optimize matplotlib rcParams
+plt.rcParams.update({
+    'font.size': 14,
+    'legend.fontsize': 10,
+    'xtick.labelsize': 12,
+    'ytick.labelsize': 12
+})
+# Set random seed
+seed = 42
 random.seed(seed)
+
 test_size=20
 accuracy_size=10
 sep = "!"
@@ -48,22 +60,6 @@ cv = 5
 my_path = ""
 file = ""
 session_step = ""
-
-# config = dotenv_values("../../../.env")
-# out_db_params = {
-#     'db_host': config["ORACLE_IP"],
-#     'db_name': config["ORACLE_DB"],
-#     'db_user': config["ORACLE_USER"],
-#     'db_password': config["ORACLE_PWD"],
-#     'db_port': config["ORACLE_PORT"]
-# }
-# print(config["LD_LIBRARY_PATH"])
-# cx_Oracle.init_oracle_client(lib_dir=config["LD_LIBRARY_PATH"])
-# engine = create_engine('oracle+cx_oracle://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'.format(**out_db_params))
-# query = "SELECT * FROM cimice_dt_time"
-# df = pd.read_sql(query, engine)
-# df
-
 
 # Get the query
 def get_data(columns=None, filters=None, file_name=None):
@@ -177,8 +173,6 @@ def melt(df, date_attr, column, target_measure):
 
 
 def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, y_test, y_pred, missing_values_df, value, i=0, figtitle=''):
-    # fig.suptitle("" + figtitle + "")
-    # fig.autofmt_xdate()
     axs[i].plot(cdf[date_attr].loc[X_train.index], y_train, label="Train", c='blue')
     axs[i].plot(cdf[date_attr].loc[X_test.index], y_test, label="Test", c='blue', ls='--')
     if y_pred is not None:
@@ -186,8 +180,7 @@ def plot(fig, axs, cdf, date_attr, target_measure, y, X_train, y_train, X_test, 
     
     axs[i + 1].plot(cdf[date_attr], y, c='blue')
     axs[i + 1].scatter(cdf[date_attr].loc[missing_values_df.index], missing_values_df[target_measure], label="Pred", c='darkorange')
-    # axs[i + 1].set_xlim([cdf[date_attr].tail(20).min(), cdf[date_attr].tail(20).max()])
-    
+
     for j in range(2):
         title = f'{target_measure.split(sep)[1]}' + (f' (R$^2$={max(0.0, round(value, 2))})' if j == 0 else '') 
         axs[i + j].tick_params(axis='x', rotation=90)
@@ -409,7 +402,6 @@ def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, t
         end_time = round((time.time() - start) * 1000)  # time is in ms
         stats.append([execution_id, "pivot", end_time])
         pdf.to_csv(my_path + file + "_" + session_step + "_pdf.csv", index=False)
-        # pdf.info()
         # Add null values in the end, if necessary
         if nullify_last is not None:
             for x in [x for x in pdf.columns if target_measure in x]:

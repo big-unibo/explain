@@ -146,34 +146,34 @@ class TestPredict {
         execute("with sales_fact_1997 predict unit_sales by the_month using timeRandomForest, univariateTS")
     }
 
-    @Test
-    fun testScalability() {
-        val writer = Files.newBufferedWriter(Paths.get("resources/intention/predict_time.csv"))
-        val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
-        var first = true
-
-        for (t in 0..9) {
-            listOf(
-                    "with sales predict unit_sales by the_month", // 12
-                    "with sales predict unit_sales by product_family, the_month", // 36
-                    "with sales predict unit_sales by the_date", // 323
-                    "with sales predict unit_sales by product_category, the_month", // 540
-                    "with sales predict unit_sales by product_subcategory, the_month", // 1224
-                    "with sales predict unit_sales by product_category, the_date", // 12113
-                    "with sales predict unit_sales by customer_id, the_month", // 16949
-                    "with sales predict unit_sales by product_id, the_month", // 18492
-                    "with sales predict unit_sales by the_date, customer_id", // 20k
-                    "with sales predict unit_sales by the_date, product_id", // 77k
-                    "with sales predict unit_sales by the_date, customer_id, product_id" // 87k
-            ).forEach { s ->
-                println("\n--- $s ---\n")
-                val d = PredictExecute.parse(s)
-                PredictExecute.execute(d, path)
-                if (first) csvPrinter.printRecord(d.statistics.keys.sorted())
-                first = false
-                csvPrinter.printRecord(d.statistics.keys.sorted().map { d.statistics[it] })
-                csvPrinter.flush()
-            }
-        }
-    }
+//    @Test
+//    fun testScalability() {
+//        val writer = Files.newBufferedWriter(Paths.get("resources/intention/predict_time.csv"))
+//        val csvPrinter = CSVPrinter(writer, CSVFormat.DEFAULT)
+//        var first = true
+//
+//        for (t in 0..9) {
+//            listOf(
+//                    "with sales predict unit_sales by the_month", // 12
+//                    "with sales predict unit_sales by product_family, the_month", // 36
+//                    "with sales predict unit_sales by the_date", // 323
+//                    "with sales predict unit_sales by product_category, the_month", // 540
+//                    "with sales predict unit_sales by product_subcategory, the_month", // 1224
+//                    "with sales predict unit_sales by product_category, the_date", // 12113
+//                    "with sales predict unit_sales by customer_id, the_month", // 16949
+//                    "with sales predict unit_sales by product_id, the_month", // 18492
+//                    "with sales predict unit_sales by the_date, customer_id", // 20k
+//                    "with sales predict unit_sales by the_date, product_id", // 77k
+//                    "with sales predict unit_sales by the_date, customer_id, product_id" // 87k
+//            ).forEach { s ->
+//                println("\n--- $s ---\n")
+//                val d = PredictExecute.parse(s)
+//                PredictExecute.execute(d, path)
+//                if (first) csvPrinter.printRecord(d.statistics.keys.sorted())
+//                first = false
+//                csvPrinter.printRecord(d.statistics.keys.sorted().map { d.statistics[it] })
+//                csvPrinter.flush()
+//            }
+//        }
+//    }
 }
