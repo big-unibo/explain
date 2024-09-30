@@ -60,6 +60,7 @@ cv = 5
 my_path = ""
 file = ""
 session_step = ""
+models = ["univariateTS", "multivariateTS", "timeDecisionTree", "timeRandomForest", "decisionTree", "randomForest"]
 
 # Get the query
 def get_data(columns=None, filters=None, file_name=None):
@@ -365,7 +366,7 @@ def multi_timeseries(df, date_attr, column, target_measure, model, figtitle, tes
     return melt(df, date_attr, column, target_measure), P
 
 
-def predict(df, by, target_measure, using, nullify_last=None, execution_id=-1, test_size=test_size, accuracy_size=accuracy_size):
+def predict(df, by, target_measure, using=models, nullify_last=None, execution_id=-1, test_size=test_size, accuracy_size=accuracy_size):
     date_attr = [x for x in by if "week" in x or "hour" in x or "timestamp" in x or "date" in x or "day" in x or "month" in x or "year" in x]
     if len(date_attr) == 0:
         date_attr = None
@@ -492,7 +493,7 @@ if __name__ == '__main__':
     X = X.dropna(axis=1, how='all')
     X.columns = [x.lower() for x in X.columns]
     by = [x.lower() for x in cube["GC"]]
-    using = ["univariateTS", "multivariateTS", "timeDecisionTree", "timeRandomForest", "decisionTree", "randomForest"] if len(using) == 0 else using
+    using = models if len(using) == 0 else using
     # Set a seed for reproducibility
     np.random.seed(0)
     # Define the indices to replace with random values
