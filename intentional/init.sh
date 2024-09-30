@@ -10,8 +10,6 @@ echo "Replacing .env.example with .env"
 cp .env.example .env
 echo "Replacing src/main/resources/config.example.yml src/main/resources/config.yml"
 cp src/main/resources/config.example.yml src/main/resources/config.yml
-echo "Replacing ../web/js/config.example.js ../web/js/config.js"
-cp ../web/js/config.example.js ../web/js/config.js
 
 P=$(pwd)
 echo $P
