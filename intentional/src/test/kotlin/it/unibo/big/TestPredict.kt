@@ -90,10 +90,10 @@ class TestPredict {
     fun `test watering`() {
         Intention.DEBUG = false
         val sensors = listOf(
-                "Sensor-0.25_0_0.6", "Sensor-0.25_0_0.4", "Sensor-0.25_0_0.2",
-                "Sensor-0.5_0_0.2", "Sensor-0.5_0_0.4", "Sensor-0.5_0_0.6",
-                "Sensor-0.8_0_0.2", "Sensor-0.8_0_0.4", "Sensor-0.8_0_0.6",
-                "Sensor-0_0_0.2", "Sensor-0_0_0.4", "Sensor-0_0_0.6"
+                "Sensor-0.25_0_-0.6", "Sensor-0.25_0_-0.4", "Sensor-0.25_0_-0.2",
+                "Sensor-0.5_0_-0.2", "Sensor-0.5_0_-0.4", "Sensor-0.5_0_-0.6",
+                "Sensor-0.8_0_-0.2", "Sensor-0.8_0_-0.4", "Sensor-0.8_0_-0.6",
+                "Sensor-0_0_-0.2", "Sensor-0_0_-0.4", "Sensor-0_0_-0.6"
         )
 
         listOf(1, 2).forEach { seed ->
