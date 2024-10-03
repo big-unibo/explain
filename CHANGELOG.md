@@ -1,3 +1,21 @@
+## [1.1.100](https://github.com/big-unibo/explain/compare/1.1.99...1.1.100) (2024-10-03)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.2.2 ([82901d5](https://github.com/big-unibo/explain/commit/82901d5a056500524f2ea74ef880f125b55f5740))
+* **deps:** update dependency scikit-learn to v1.5.2 ([25033df](https://github.com/big-unibo/explain/commit/25033df71f3c57d4a484a3838170358c0fe4f0bf))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.110 ([6200a87](https://github.com/big-unibo/explain/commit/6200a87af8760156edc2fa510d28b1b1a05115e6))
+* **deps:** update dependency sqlalchemy to v2.0.35 ([624d7f4](https://github.com/big-unibo/explain/commit/624d7f4190d778d827833b35aabfd0465d8fad15))
+
+### Bug Fixes
+
+* **deps:** update dependency io.github.cdimascio:dotenv-kotlin to v6.4.2 ([726e62f](https://github.com/big-unibo/explain/commit/726e62f3757b2a8aa0d04211a61ea9da95abd913))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.2.2 ([8433cbe](https://github.com/big-unibo/explain/commit/8433cbe52b5d1a5ff8df5a72b62d9f555ddfc139))
+* **deps:** update actions/setup-node action to v4.0.4 ([56098c5](https://github.com/big-unibo/explain/commit/56098c5483e4f37b96ee1102718315092354ec04))
+
 ## [1.1.99](https://github.com/big-unibo/explain/compare/1.1.98...1.1.99) (2024-07-31)
 
 ### Dependency updates
