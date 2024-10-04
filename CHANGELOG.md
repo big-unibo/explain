@@ -1,3 +1,9 @@
+## [1.1.101](https://github.com/big-unibo/explain/compare/1.1.100...1.1.101) (2024-10-04)
+
+### Bug Fixes
+
+* **deps:** update dependency org.antlr:antlr4 to v4.13.2 ([90f1f18](https://github.com/big-unibo/explain/commit/90f1f1857f75ca13a4ec9f62548d0be698167078))
+
 ## [1.1.100](https://github.com/big-unibo/explain/compare/1.1.99...1.1.100) (2024-10-03)
 
 ### Dependency updates
