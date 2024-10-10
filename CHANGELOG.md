@@ -1,3 +1,13 @@
+## [1.1.108](https://github.com/big-unibo/explain/compare/1.1.107...1.1.108) (2024-10-10)
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.3.1-jre ([3ff94ca](https://github.com/big-unibo/explain/commit/3ff94cab7d063c4a83c4885404526b0ced94bb61))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.2.1 ([2e4ea18](https://github.com/big-unibo/explain/commit/2e4ea18c9df2b9d8ad4705fed4c4d1dd4d8e5072))
+
 ## [1.1.107](https://github.com/big-unibo/explain/compare/1.1.106...1.1.107) (2024-10-08)
 
 ### Bug Fixes
