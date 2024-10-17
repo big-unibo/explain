@@ -1,3 +1,9 @@
+## [1.1.111](https://github.com/big-unibo/explain/compare/1.1.110...1.1.111) (2024-10-17)
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.17.0 ([9fe9938](https://github.com/big-unibo/explain/commit/9fe9938710e01cb306ed4360d3b6df624996a20e))
+
 ## [1.1.110](https://github.com/big-unibo/explain/compare/1.1.109...1.1.110) (2024-10-17)
 
 ### Bug Fixes
