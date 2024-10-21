@@ -1,3 +1,9 @@
+## [1.1.113](https://github.com/big-unibo/explain/compare/1.1.112...1.1.113) (2024-10-21)
+
+### Bug Fixes
+
+* **deps:** update junit5 monorepo to v5.11.3 ([91fa852](https://github.com/big-unibo/explain/commit/91fa8527000c4e5042797f54056e579355ff16f4))
+
 ## [1.1.112](https://github.com/big-unibo/explain/compare/1.1.111...1.1.112) (2024-10-18)
 
 ### Bug Fixes
