@@ -1,3 +1,20 @@
+## [1.1.114](https://github.com/big-unibo/explain/compare/1.1.113...1.1.114) (2024-10-29)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.112 ([dd425be](https://github.com/big-unibo/explain/commit/dd425beaf22420fe648f52206566cde61dcbd89a))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.113 ([fc2c357](https://github.com/big-unibo/explain/commit/fc2c3575fcbf8219f1d8561edf6b5bacbfd54fce))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.18.1 ([c5916af](https://github.com/big-unibo/explain/commit/c5916af3ed612c63a9c3ff2befd681c42e9b2310))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.2.2 ([c09bff3](https://github.com/big-unibo/explain/commit/c09bff345bbc3b73e58f9197c9c5c2a19fc333bd))
+* **deps:** update actions/setup-java action to v4.5.0 ([b6af1ba](https://github.com/big-unibo/explain/commit/b6af1baa05a89533fc68a8090769a02ba0550758))
+* **deps:** update actions/setup-node action to v4.1.0 ([5445227](https://github.com/big-unibo/explain/commit/5445227df6afe23be4d83a8f29bd40d57afdc927))
+
 ## [1.1.113](https://github.com/big-unibo/explain/compare/1.1.112...1.1.113) (2024-10-21)
 
 ### Bug Fixes
