@@ -1,3 +1,15 @@
+## [1.1.116](https://github.com/big-unibo/explain/compare/1.1.115...1.1.116) (2024-11-21)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.114 ([552e825](https://github.com/big-unibo/explain/commit/552e8254607721f67bc130b1d70981edf3b715c9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.115 ([#363](https://github.com/big-unibo/explain/issues/363)) ([f74fab3](https://github.com/big-unibo/explain/commit/f74fab3fbbf77e9a6b75ae3919dcb9e6a66edd8b))
+* **deps:** update node.js to v22 ([df0179a](https://github.com/big-unibo/explain/commit/df0179af998c6468f9edd49cd5a14c5b7cf8258d))
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.18.0 ([#364](https://github.com/big-unibo/explain/issues/364)) ([e9adbc6](https://github.com/big-unibo/explain/commit/e9adbc65ef18f1a0f6a627f28aa147d564798619))
+
 ## [1.1.115](https://github.com/big-unibo/explain/compare/1.1.114...1.1.115) (2024-10-29)
 
 ### Bug Fixes
