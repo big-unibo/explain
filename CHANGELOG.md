@@ -1,3 +1,17 @@
+## [1.1.120](https://github.com/big-unibo/explain/compare/1.1.119...1.1.120) (2024-12-12)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.3.0 ([#372](https://github.com/big-unibo/explain/issues/372)) ([124bffd](https://github.com/big-unibo/explain/commit/124bffd4fb7787f74fd9ae5cbb14fa9b4bb059e8))
+* **deps:** update dependency notebook to v7.3.1 ([#373](https://github.com/big-unibo/explain/issues/373)) ([2d542e3](https://github.com/big-unibo/explain/commit/2d542e326c296d4f2cba85bde287b62da678f771))
+* **deps:** update dependency scikit-learn to v1.6.0 ([#375](https://github.com/big-unibo/explain/issues/375)) ([2101f99](https://github.com/big-unibo/explain/commit/2101f9943c996bc91ef8975df4e2bf86bf092f6d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.116 ([#374](https://github.com/big-unibo/explain/issues/374)) ([eb9809e](https://github.com/big-unibo/explain/commit/eb9809e56a55b9ed7f49d310eb12132bfffa1ad6))
+* **deps:** update node.js to 22.12 ([#371](https://github.com/big-unibo/explain/issues/371)) ([95e7ee7](https://github.com/big-unibo/explain/commit/95e7ee740fb40b72fae8c75dccd1923ed3cba85c))
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.8 ([#376](https://github.com/big-unibo/explain/issues/376)) ([512b967](https://github.com/big-unibo/explain/commit/512b96734bbe4b67e39139d553a475695e014541))
+
 ## [1.1.119](https://github.com/big-unibo/explain/compare/1.1.118...1.1.119) (2024-11-29)
 
 ### Bug Fixes
