@@ -1,3 +1,9 @@
+## [1.1.123](https://github.com/big-unibo/explain/compare/1.1.122...1.1.123) (2024-12-17)
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.4.0-jre ([#379](https://github.com/big-unibo/explain/issues/379)) ([7d68423](https://github.com/big-unibo/explain/commit/7d68423b548a833fc68e1060d86d821a938ee403))
+
 ## [1.1.122](https://github.com/big-unibo/explain/compare/1.1.121...1.1.122) (2024-12-16)
 
 ### Bug Fixes
