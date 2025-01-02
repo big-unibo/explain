@@ -1,3 +1,18 @@
+## [1.1.124](https://github.com/big-unibo/explain/compare/1.1.123...1.1.124) (2025-01-02)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.3.2 ([#382](https://github.com/big-unibo/explain/issues/382)) ([96d76b8](https://github.com/big-unibo/explain/commit/96d76b8b84b9af0934f539082d828bd56829a6de))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.117 ([#381](https://github.com/big-unibo/explain/issues/381)) ([fb4b4f2](https://github.com/big-unibo/explain/commit/fb4b4f293c6802a23fb105ac23aa5b868072bb25))
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20241224 ([#383](https://github.com/big-unibo/explain/issues/383)) ([5467067](https://github.com/big-unibo/explain/commit/546706773b2e2dfcfb6da275af8db672ce09459d))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.6.0 ([#380](https://github.com/big-unibo/explain/issues/380)) ([3f7c540](https://github.com/big-unibo/explain/commit/3f7c54078cc6286c3a42e60d84672397bd904951))
+
 ## [1.1.123](https://github.com/big-unibo/explain/compare/1.1.122...1.1.123) (2024-12-17)
 
 ### Bug Fixes
