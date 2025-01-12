@@ -1,3 +1,15 @@
+## [1.1.126](https://github.com/big-unibo/explain/compare/1.1.125...1.1.126) (2025-01-12)
+
+### Dependency updates
+
+* **deps:** update dependency scikit-learn to v1.6.1 ([#389](https://github.com/big-unibo/explain/issues/389)) ([7030894](https://github.com/big-unibo/explain/commit/70308947c5d06e627db799ccf438415620597513))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.119 ([#387](https://github.com/big-unibo/explain/issues/387)) ([18d1dd4](https://github.com/big-unibo/explain/commit/18d1dd4f5d8eabbfbe75fa25a5013d9a4944eaa8))
+* **deps:** update dependency sqlalchemy to v2.0.37 ([#388](https://github.com/big-unibo/explain/issues/388)) ([2aeb814](https://github.com/big-unibo/explain/commit/2aeb814bfdf13fd6ffc78a39d0704d696131066a))
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-csv to v1.13.0 ([#390](https://github.com/big-unibo/explain/issues/390)) ([68443e9](https://github.com/big-unibo/explain/commit/68443e99f3b4c8cbc8ad1876bc0098d4cf5f4f3f))
+
 ## [1.1.125](https://github.com/big-unibo/explain/compare/1.1.124...1.1.125) (2025-01-08)
 
 ### Dependency updates
