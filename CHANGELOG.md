@@ -1,3 +1,9 @@
+## [1.1.127](https://github.com/big-unibo/explain/compare/1.1.126...1.1.127) (2025-01-13)
+
+### Bug Fixes
+
+* **deps:** update dependency com.opencsv:opencsv to v5.10 ([#391](https://github.com/big-unibo/explain/issues/391)) ([8bd9428](https://github.com/big-unibo/explain/commit/8bd9428aa26c409cd70eaed6e9b4df0f87f62b12))
+
 ## [1.1.126](https://github.com/big-unibo/explain/compare/1.1.125...1.1.126) (2025-01-12)
 
 ### Dependency updates
