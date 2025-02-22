@@ -1,3 +1,25 @@
+## [1.1.128](https://github.com/big-unibo/explain/compare/1.1.127...1.1.128) (2025-02-22)
+
+### Dependency updates
+
+* **deps:** update dependency autopep8 to v2.3.2 ([#392](https://github.com/big-unibo/explain/issues/392)) ([28b8f1c](https://github.com/big-unibo/explain/commit/28b8f1c5689ab5502b23d7de260c70f24eb072cb))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.121 ([#398](https://github.com/big-unibo/explain/issues/398)) ([93157fd](https://github.com/big-unibo/explain/commit/93157fd1766826dfc67e405aed498b1e3b48204d))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.122 ([#399](https://github.com/big-unibo/explain/issues/399)) ([aef320f](https://github.com/big-unibo/explain/commit/aef320f752efd515dad972030aa45dd93e45f9a0))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.123 ([#402](https://github.com/big-unibo/explain/issues/402)) ([68cb2dd](https://github.com/big-unibo/explain/commit/68cb2ddaac3f151cfe028ae288b61af92fca355f))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.124 ([#403](https://github.com/big-unibo/explain/issues/403)) ([d6405c0](https://github.com/big-unibo/explain/commit/d6405c063657773754a628bcd53d754a819698cd))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.125 ([#404](https://github.com/big-unibo/explain/issues/404)) ([fd26f47](https://github.com/big-unibo/explain/commit/fd26f47e4a11000c416f5926f24ab907843b437c))
+* **deps:** update dependency sqlalchemy to v2.0.38 ([#400](https://github.com/big-unibo/explain/issues/400)) ([aea6f6c](https://github.com/big-unibo/explain/commit/aea6f6c191aa36b2b6b081ea38d7b7938a150329))
+* **deps:** update node.js to 22.14 ([#401](https://github.com/big-unibo/explain/issues/401)) ([a5974cf](https://github.com/big-unibo/explain/commit/a5974cf939182dd1f8d169ee5aadce7f11107b1b))
+
+### Bug Fixes
+
+* **deps:** update dependency io.github.cdimascio:dotenv-kotlin to v6.5.1 ([#406](https://github.com/big-unibo/explain/issues/406)) ([b4e31d6](https://github.com/big-unibo/explain/commit/b4e31d6febc73dff24b7dde621d6652a336101bd))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-java action to v4.7.0 ([#397](https://github.com/big-unibo/explain/issues/397)) ([7894b2b](https://github.com/big-unibo/explain/commit/7894b2b1ed3be6a1df4a4c7a83c129df3859532e))
+* **deps:** update actions/setup-node action to v4.2.0 ([#393](https://github.com/big-unibo/explain/issues/393)) ([4071293](https://github.com/big-unibo/explain/commit/407129306fea7ffd197196f88a2bdfc281f739be))
+
 ## [1.1.127](https://github.com/big-unibo/explain/compare/1.1.126...1.1.127) (2025-01-13)
 
 ### Bug Fixes
