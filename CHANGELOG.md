@@ -1,3 +1,9 @@
+## [1.1.129](https://github.com/big-unibo/explain/compare/1.1.128...1.1.129) (2025-02-25)
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.17 ([#407](https://github.com/big-unibo/explain/issues/407)) ([68120c4](https://github.com/big-unibo/explain/commit/68120c46b8e4ef161c415f94bec474b462be0d2f))
+
 ## [1.1.128](https://github.com/big-unibo/explain/compare/1.1.127...1.1.128) (2025-02-22)
 
 ### Dependency updates
