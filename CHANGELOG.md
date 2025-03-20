@@ -1,3 +1,9 @@
+## [1.1.133](https://github.com/big-unibo/explain/compare/1.1.132...1.1.133) (2025-03-20)
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-csv to v1.14.0 ([#415](https://github.com/big-unibo/explain/issues/415)) ([fb845ef](https://github.com/big-unibo/explain/commit/fb845ef2f886e64c205ac734e99f4d5203a2fe6f))
+
 ## [1.1.132](https://github.com/big-unibo/explain/compare/1.1.131...1.1.132) (2025-03-20)
 
 ### Dependency updates
