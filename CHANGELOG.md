@@ -1,3 +1,18 @@
+## [1.1.132](https://github.com/big-unibo/explain/compare/1.1.131...1.1.132) (2025-03-20)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.3.3 ([#412](https://github.com/big-unibo/explain/issues/412)) ([5332c4a](https://github.com/big-unibo/explain/commit/5332c4aaffef31c32707493e2e38a6675d8a7a11))
+* **deps:** update dependency sqlalchemy to v2.0.39 ([#411](https://github.com/big-unibo/explain/issues/411)) ([6ae789c](https://github.com/big-unibo/explain/commit/6ae789c51fe44ffdcc07512430638371c6b4d106))
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.4.5-jre ([#414](https://github.com/big-unibo/explain/issues/414)) ([a7830c4](https://github.com/big-unibo/explain/commit/a7830c402c309a3df82ac3640da6c40191be5db8))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4.3.0 ([#413](https://github.com/big-unibo/explain/issues/413)) ([d3b6931](https://github.com/big-unibo/explain/commit/d3b6931368ee4cf0d907ce0b24cc4d6166c6772c))
+
 ## [1.1.131](https://github.com/big-unibo/explain/compare/1.1.130...1.1.131) (2025-03-01)
 
 ### Bug Fixes
