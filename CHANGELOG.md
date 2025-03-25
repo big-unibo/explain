@@ -1,3 +1,10 @@
+## [1.1.134](https://github.com/big-unibo/explain/compare/1.1.133...1.1.134) (2025-03-25)
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.4.6-jre ([#420](https://github.com/big-unibo/explain/issues/420)) ([537e603](https://github.com/big-unibo/explain/commit/537e60367373c60c61c52f328fe7da68cb2b26a1))
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.9 ([#419](https://github.com/big-unibo/explain/issues/419)) ([52224f0](https://github.com/big-unibo/explain/commit/52224f0e1fe7f62598d95dd059f846c46958eea1))
+
 ## [1.1.133](https://github.com/big-unibo/explain/compare/1.1.132...1.1.133) (2025-03-20)
 
 ### Bug Fixes
