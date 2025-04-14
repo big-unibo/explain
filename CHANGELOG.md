@@ -1,3 +1,13 @@
+## [1.1.138](https://github.com/big-unibo/explain/compare/1.1.137...1.1.138) (2025-04-14)
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.4.8-jre ([#429](https://github.com/big-unibo/explain/issues/429)) ([5f61da8](https://github.com/big-unibo/explain/commit/5f61da8748cbdc863db324d356ee053aa5cb4d3b))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v4.4.0 ([#428](https://github.com/big-unibo/explain/issues/428)) ([02d4cec](https://github.com/big-unibo/explain/commit/02d4cec130e17d265b3d56692fdd8d7107646873))
+
 ## [1.1.137](https://github.com/big-unibo/explain/compare/1.1.136...1.1.137) (2025-04-12)
 
 ### Dependency updates
