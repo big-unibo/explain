@@ -1,3 +1,15 @@
+## [1.1.139](https://github.com/big-unibo/explain/compare/1.1.138...1.1.139) (2025-04-25)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.4.1 ([#430](https://github.com/big-unibo/explain/issues/430)) ([6c8a0fd](https://github.com/big-unibo/explain/commit/6c8a0fdff2ee2f8eee463e2da92729cfa52b97fd))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.126 ([#432](https://github.com/big-unibo/explain/issues/432)) ([4176cca](https://github.com/big-unibo/explain/commit/4176ccaddcc19db8167b9cc2aea8d9c92cd078ab))
+* **deps:** update node.js to 22.15 ([#431](https://github.com/big-unibo/explain/issues/431)) ([1737d3f](https://github.com/big-unibo/explain/commit/1737d3f1be579f56d8177055e617346ab8cea1f1))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.19.0 ([#433](https://github.com/big-unibo/explain/issues/433)) ([bc57405](https://github.com/big-unibo/explain/commit/bc57405888b0231f33cc0cc264967041607c0339))
+
 ## [1.1.138](https://github.com/big-unibo/explain/compare/1.1.137...1.1.138) (2025-04-14)
 
 ### Bug Fixes
