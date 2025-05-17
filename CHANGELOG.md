@@ -1,3 +1,15 @@
+## [1.1.142](https://github.com/big-unibo/explain/compare/1.1.141...1.1.142) (2025-05-17)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.4.2 ([#437](https://github.com/big-unibo/explain/issues/437)) ([0d72b2d](https://github.com/big-unibo/explain/commit/0d72b2d37d11f2d0ae11b86c10b7e48a6a297e05))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.128 ([#438](https://github.com/big-unibo/explain/issues/438)) ([ea52b52](https://github.com/big-unibo/explain/commit/ea52b5271f6c1f02eacd3fcdf6401313769f4ad5))
+* **deps:** update dependency sqlalchemy to v2.0.41 ([#439](https://github.com/big-unibo/explain/issues/439)) ([988fa4a](https://github.com/big-unibo/explain/commit/988fa4a86ead35fab6fe9af17fb93befc8efc00d))
+
+### Bug Fixes
+
+* **deps:** update dependency org.json:json to v20250517 ([#440](https://github.com/big-unibo/explain/issues/440)) ([ea99461](https://github.com/big-unibo/explain/commit/ea99461c88da224e38e890bd8beb417b96996a88))
+
 ## [1.1.141](https://github.com/big-unibo/explain/compare/1.1.140...1.1.141) (2025-05-04)
 
 ### Dependency updates
