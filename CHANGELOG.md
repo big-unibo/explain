@@ -1,3 +1,18 @@
+## [1.1.143](https://github.com/big-unibo/explain/compare/1.1.142...1.1.143) (2025-06-02)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.4.3 ([#444](https://github.com/big-unibo/explain/issues/444)) ([77e8e80](https://github.com/big-unibo/explain/commit/77e8e802b486c06f27d5858a596a780e6f89b925))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.129 ([#441](https://github.com/big-unibo/explain/issues/441)) ([32e1a3d](https://github.com/big-unibo/explain/commit/32e1a3d7137f4b4a5a3c5b0e74930a10b1dc3750))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.131 ([#443](https://github.com/big-unibo/explain/issues/443)) ([fec8707](https://github.com/big-unibo/explain/commit/fec87077b90db3bf451640585cb046352139f44e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.132 ([#445](https://github.com/big-unibo/explain/issues/445)) ([5c5a26d](https://github.com/big-unibo/explain/commit/5c5a26daf84c80cf767af7e61e2c6dd650efd18e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.133 ([#446](https://github.com/big-unibo/explain/issues/446)) ([282504d](https://github.com/big-unibo/explain/commit/282504d5676d9f60573858e127f0cf61250254a2))
+* **deps:** update node.js to 22.16 ([#442](https://github.com/big-unibo/explain/issues/442)) ([b6437c6](https://github.com/big-unibo/explain/commit/b6437c6bd714d5b17f24d8af8f83250034942de3))
+
+### Bug Fixes
+
+* **deps:** update dependency com.opencsv:opencsv to v5.11.1 ([#447](https://github.com/big-unibo/explain/issues/447)) ([4e155c5](https://github.com/big-unibo/explain/commit/4e155c5ab1b276e19de657ef8b7d1d3e8d97d223))
+
 ## [1.1.142](https://github.com/big-unibo/explain/compare/1.1.141...1.1.142) (2025-05-17)
 
 ### Dependency updates
