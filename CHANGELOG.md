@@ -1,3 +1,13 @@
+## [1.1.144](https://github.com/big-unibo/explain/compare/1.1.143...1.1.144) (2025-06-07)
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.5 ([#448](https://github.com/big-unibo/explain/issues/448)) ([5559872](https://github.com/big-unibo/explain/commit/55598727f86cfdcc8b1380b1a3250e8efd4d172f))
+
+### Bug Fixes
+
+* **deps:** update dependency edu.stanford.nlp:stanford-corenlp to v4.5.10 ([#450](https://github.com/big-unibo/explain/issues/450)) ([d4e7a3b](https://github.com/big-unibo/explain/commit/d4e7a3b88c45b44882708f3050c6b26d0fc9c984))
+
 ## [1.1.143](https://github.com/big-unibo/explain/compare/1.1.142...1.1.143) (2025-06-02)
 
 ### Dependency updates
