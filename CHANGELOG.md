@@ -1,3 +1,13 @@
+## [1.1.145](https://github.com/big-unibo/explain/compare/1.1.144...1.1.145) (2025-06-14)
+
+### Dependency updates
+
+* **deps:** update dependency requests to v2.32.4 ([#451](https://github.com/big-unibo/explain/issues/451)) ([3e3aab1](https://github.com/big-unibo/explain/commit/3e3aab187c06886cfeff958fc84e5087eaadfff5))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.19.1 ([#452](https://github.com/big-unibo/explain/issues/452)) ([d80405d](https://github.com/big-unibo/explain/commit/d80405d4cdd1e9330b6f6af8c610967667bdc163))
+
 ## [1.1.144](https://github.com/big-unibo/explain/compare/1.1.143...1.1.144) (2025-06-07)
 
 ### Dependency updates
