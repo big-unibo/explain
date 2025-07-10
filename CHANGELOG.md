@@ -1,3 +1,18 @@
+## [1.1.148](https://github.com/big-unibo/explain/compare/1.1.147...1.1.148) (2025-07-10)
+
+### Dependency updates
+
+* **deps:** update dependency gradle to v7.6.6 ([#463](https://github.com/big-unibo/explain/issues/463)) ([7720388](https://github.com/big-unibo/explain/commit/77203888978585a21c8bf79b8d3974c690ef73bc))
+* **deps:** update dependency notebook to v7.4.4 ([#460](https://github.com/big-unibo/explain/issues/460)) ([c273110](https://github.com/big-unibo/explain/commit/c273110685d677d33beb551ab633abae1123447e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.134 ([#458](https://github.com/big-unibo/explain/issues/458)) ([4d151a5](https://github.com/big-unibo/explain/commit/4d151a55911997bc6c72b9859a99852a7c5e348b))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.135 ([#459](https://github.com/big-unibo/explain/issues/459)) ([3afa541](https://github.com/big-unibo/explain/commit/3afa5412fa106476b90b8e6e26a4c2ba4f9a5927))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.136 ([#461](https://github.com/big-unibo/explain/issues/461)) ([0d40c3b](https://github.com/big-unibo/explain/commit/0d40c3b642b31f5dccec62df3bec017bcdcef873))
+* **deps:** update node.js to 22.17 ([#457](https://github.com/big-unibo/explain/issues/457)) ([995f9fc](https://github.com/big-unibo/explain/commit/995f9fc0676977371a1a5c4c5632c3a2aa832a3d))
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.18.0 ([#464](https://github.com/big-unibo/explain/issues/464)) ([fd84f47](https://github.com/big-unibo/explain/commit/fd84f4767a4fcd01d9f5e14e5aa7512de62abb0e))
+
 ## [1.1.147](https://github.com/big-unibo/explain/compare/1.1.146...1.1.147) (2025-06-22)
 
 ### Bug Fixes
