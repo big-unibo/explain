@@ -1,3 +1,14 @@
+## [1.1.149](https://github.com/big-unibo/explain/compare/1.1.148...1.1.149) (2025-07-19)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.137 ([#465](https://github.com/big-unibo/explain/issues/465)) ([50cea4d](https://github.com/big-unibo/explain/commit/50cea4d003973b5f686a466a84b4ea1bda5f1572))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.138 ([#466](https://github.com/big-unibo/explain/issues/466)) ([12c3e93](https://github.com/big-unibo/explain/commit/12c3e9306f8a83bcf58e1448d81ae402f44e0346))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.19.2 ([#467](https://github.com/big-unibo/explain/issues/467)) ([978147c](https://github.com/big-unibo/explain/commit/978147cf406bbebaf373f1237284e8aeccbee333))
+
 ## [1.1.148](https://github.com/big-unibo/explain/compare/1.1.147...1.1.148) (2025-07-10)
 
 ### Dependency updates
