@@ -1,3 +1,9 @@
+## [1.1.151](https://github.com/big-unibo/explain/compare/1.1.150...1.1.151) (2025-07-19)
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.20.0 ([#469](https://github.com/big-unibo/explain/issues/469)) ([d0ea3c7](https://github.com/big-unibo/explain/commit/d0ea3c7ab6bc4eb2f320d5cb66e9239561353f12))
+
 ## [1.1.150](https://github.com/big-unibo/explain/compare/1.1.149...1.1.150) (2025-07-19)
 
 ### Bug Fixes
