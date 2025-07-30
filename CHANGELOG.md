@@ -1,3 +1,13 @@
+## [1.1.153](https://github.com/big-unibo/explain/compare/1.1.152...1.1.153) (2025-07-30)
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.42 ([#471](https://github.com/big-unibo/explain/issues/471)) ([ce3dcbf](https://github.com/big-unibo/explain/commit/ce3dcbfa2401ceb9a3cd3177ebd20ce268351eb1))
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-csv to v1.14.1 ([#472](https://github.com/big-unibo/explain/issues/472)) ([1baa816](https://github.com/big-unibo/explain/commit/1baa8161f359ab18eceecdc2264a2ed9f32a52ae))
+
 ## [1.1.152](https://github.com/big-unibo/explain/compare/1.1.151...1.1.152) (2025-07-27)
 
 ### Bug Fixes
