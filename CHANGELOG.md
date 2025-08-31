@@ -1,3 +1,26 @@
+## [1.1.154](https://github.com/big-unibo/explain/compare/1.1.153...1.1.154) (2025-08-31)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.4.5 ([#476](https://github.com/big-unibo/explain/issues/476)) ([a91177f](https://github.com/big-unibo/explain/commit/a91177f70371fe745d767dcef6940dd74bbabe0e))
+* **deps:** update dependency requests to v2.32.5 ([#481](https://github.com/big-unibo/explain/issues/481)) ([2eb7a69](https://github.com/big-unibo/explain/commit/2eb7a699db9ac796c7ae8027445be8d8905c1dd7))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.139 ([#475](https://github.com/big-unibo/explain/issues/475)) ([8efd491](https://github.com/big-unibo/explain/commit/8efd4914626cd1d6f0be96769d1a9aedb8d75251))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.140 ([#480](https://github.com/big-unibo/explain/issues/480)) ([da3c141](https://github.com/big-unibo/explain/commit/da3c141dd5a903a6aa48d061331f60f77497e8a9))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.141 ([#486](https://github.com/big-unibo/explain/issues/486)) ([e84db44](https://github.com/big-unibo/explain/commit/e84db444e905835e2a6ffb6c4549f128a79e9802))
+* **deps:** update dependency sqlalchemy to v2.0.43 ([#479](https://github.com/big-unibo/explain/issues/479)) ([0d22398](https://github.com/big-unibo/explain/commit/0d223988a79c87d438a2e41ad7f647a727623069))
+* **deps:** update node.js to 22.18 ([#474](https://github.com/big-unibo/explain/issues/474)) ([0157b94](https://github.com/big-unibo/explain/commit/0157b948746fe43d5e7a599e8d1213ab36910bdf))
+* **deps:** update node.js to 22.19 ([#483](https://github.com/big-unibo/explain/issues/483)) ([7c815ae](https://github.com/big-unibo/explain/commit/7c815ae57e221054180d8daae6c873c5960ffae5))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.20.0 ([#484](https://github.com/big-unibo/explain/issues/484)) ([91339dc](https://github.com/big-unibo/explain/commit/91339dcb66e11d48c0397f2b14324316d825be0a))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v4.3.0 ([#477](https://github.com/big-unibo/explain/issues/477)) ([eb581de](https://github.com/big-unibo/explain/commit/eb581deceee53d8b35b7b70465ddefa7e67ecd9a))
+* **deps:** update actions/checkout action to v5 ([#478](https://github.com/big-unibo/explain/issues/478)) ([aa5bf6f](https://github.com/big-unibo/explain/commit/aa5bf6f86f2894360a4baa975628b8aee26d597a))
+* **deps:** update actions/setup-java action to v5 ([#482](https://github.com/big-unibo/explain/issues/482)) ([5f9f57a](https://github.com/big-unibo/explain/commit/5f9f57ac2fbe55a0a2c4025d035e202cb4163c28))
+
 ## [1.1.153](https://github.com/big-unibo/explain/compare/1.1.152...1.1.153) (2025-07-30)
 
 ### Dependency updates
