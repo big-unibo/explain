@@ -1,3 +1,20 @@
+## [1.1.156](https://github.com/big-unibo/explain/compare/1.1.155...1.1.156) (2025-09-18)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.142 ([#489](https://github.com/big-unibo/explain/issues/489)) ([9a8d15f](https://github.com/big-unibo/explain/commit/9a8d15f2d8497df464ca792f313cce86eb3eb7d2))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.143 ([#490](https://github.com/big-unibo/explain/issues/490)) ([7de3971](https://github.com/big-unibo/explain/commit/7de39711942c26b192b14462d1deae09c9dd6352))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.145 ([#491](https://github.com/big-unibo/explain/issues/491)) ([57eceef](https://github.com/big-unibo/explain/commit/57eceef83ef3961cf2f0af5d002cdef5108a9f21))
+
+### Bug Fixes
+
+* **deps:** update dependency com.google.guava:guava to v33.5.0-jre ([#492](https://github.com/big-unibo/explain/issues/492)) ([bddbcc2](https://github.com/big-unibo/explain/commit/bddbcc256bb3c2e860a84b86fd9e161a73d14bd8))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v5 ([#487](https://github.com/big-unibo/explain/issues/487)) ([71f4c62](https://github.com/big-unibo/explain/commit/71f4c62401f1deacde726dd2158eda65894ada86))
+* **deps:** update actions/setup-python action to v6 ([#488](https://github.com/big-unibo/explain/issues/488)) ([dd219ad](https://github.com/big-unibo/explain/commit/dd219ad10312b759a6d7ef545dd218ea135c944c))
+
 ## [1.1.155](https://github.com/big-unibo/explain/compare/1.1.154...1.1.155) (2025-09-08)
 
 ### Bug Fixes
