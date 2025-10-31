@@ -1,3 +1,27 @@
+## [1.1.158](https://github.com/big-unibo/explain/compare/1.1.157...1.1.158) (2025-10-31)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.4.6 ([#496](https://github.com/big-unibo/explain/issues/496)) ([7f81acb](https://github.com/big-unibo/explain/commit/7f81acb939305362f99b6e223e0496e48f7247c4))
+* **deps:** update dependency notebook to v7.4.7 ([#498](https://github.com/big-unibo/explain/issues/498)) ([a868d27](https://github.com/big-unibo/explain/commit/a868d2725b1c4b3f11c2513a7a81e575b6da011e))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.147 ([#497](https://github.com/big-unibo/explain/issues/497)) ([32712f6](https://github.com/big-unibo/explain/commit/32712f6c10d25d10b5d125923b4060f5e80613de))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.148 ([#502](https://github.com/big-unibo/explain/issues/502)) ([dcd76b7](https://github.com/big-unibo/explain/commit/dcd76b715bdba1fbc0cb28fc04086eb1f776a7de))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.149 ([#503](https://github.com/big-unibo/explain/issues/503)) ([290519a](https://github.com/big-unibo/explain/commit/290519a8b682ce3bdc01ced5de6a8e6abeff4913))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.150 ([#505](https://github.com/big-unibo/explain/issues/505)) ([7511640](https://github.com/big-unibo/explain/commit/7511640b5d34e2aff5e38ac740a0100845e83503))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.152 ([#506](https://github.com/big-unibo/explain/issues/506)) ([9173765](https://github.com/big-unibo/explain/commit/9173765ca1bb44a72c46c6eb5309da474735e7de))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.153 ([#508](https://github.com/big-unibo/explain/issues/508)) ([12a2b3b](https://github.com/big-unibo/explain/commit/12a2b3b0d1f676cac590ba01273dc9c893dca7d2))
+* **deps:** update dependency sqlalchemy to v2.0.44 ([#500](https://github.com/big-unibo/explain/issues/500)) ([00be478](https://github.com/big-unibo/explain/commit/00be478b9c9c6f9c68f11d6a3c8d507f82c863db))
+* **deps:** update node.js to 22.21 ([#504](https://github.com/big-unibo/explain/issues/504)) ([50a454f](https://github.com/big-unibo/explain/commit/50a454f70de525970bcaa7b41ea0c30cc387be9c))
+* **deps:** update node.js to v24 ([#507](https://github.com/big-unibo/explain/issues/507)) ([a566480](https://github.com/big-unibo/explain/commit/a56648050fc2ef052dc4e798b090455e99107adb))
+
+### Bug Fixes
+
+* **deps:** update dependency com.fasterxml.jackson.dataformat:jackson-dataformat-yaml to v2.20.1 ([#509](https://github.com/big-unibo/explain/issues/509)) ([31c422e](https://github.com/big-unibo/explain/commit/31c422e59942a282cf958ec6359af7eb715dbbfe))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v6 ([#501](https://github.com/big-unibo/explain/issues/501)) ([2b7d88a](https://github.com/big-unibo/explain/commit/2b7d88a0d723ce2d0a96477e32a9caf6955e86d0))
+
 ## [1.1.157](https://github.com/big-unibo/explain/compare/1.1.156...1.1.157) (2025-09-25)
 
 ### Dependency updates
