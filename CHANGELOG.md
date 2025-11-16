@@ -1,3 +1,14 @@
+## [1.1.161](https://github.com/big-unibo/explain/compare/1.1.160...1.1.161) (2025-11-16)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.155 ([#513](https://github.com/big-unibo/explain/issues/513)) ([c38ccf3](https://github.com/big-unibo/explain/commit/c38ccf3523c1dd84f1403902ff909558b6885012))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.156 ([#514](https://github.com/big-unibo/explain/issues/514)) ([555369d](https://github.com/big-unibo/explain/commit/555369d11df79f6ef432bfa99189cb8bb23479ad))
+
+### Bug Fixes
+
+* **deps:** update dependency org.apache.commons:commons-lang3 to v3.20.0 ([#515](https://github.com/big-unibo/explain/issues/515)) ([f580263](https://github.com/big-unibo/explain/commit/f580263517960a2580dd0b5f44bbf95ef167850c))
+
 ## [1.1.160](https://github.com/big-unibo/explain/compare/1.1.159...1.1.160) (2025-11-08)
 
 ### Dependency updates
