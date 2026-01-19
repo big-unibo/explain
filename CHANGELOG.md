@@ -1,3 +1,27 @@
+## [1.1.162](https://github.com/big-unibo/explain/compare/1.1.161...1.1.162) (2026-01-19)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.5.0 ([#518](https://github.com/big-unibo/explain/issues/518)) ([56dea97](https://github.com/big-unibo/explain/commit/56dea97662c55c0fc508506f27975a212479c7ee))
+* **deps:** update dependency notebook to v7.5.1 ([#524](https://github.com/big-unibo/explain/issues/524)) ([c38f1f5](https://github.com/big-unibo/explain/commit/c38f1f554515bc4cd368d1f9607f1b5028a4172f))
+* **deps:** update dependency notebook to v7.5.2 ([#525](https://github.com/big-unibo/explain/issues/525)) ([4405401](https://github.com/big-unibo/explain/commit/4405401cd21ac62383d8a500b290bbd723323437))
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.157 ([#516](https://github.com/big-unibo/explain/issues/516)) ([dd0c1bb](https://github.com/big-unibo/explain/commit/dd0c1bbb179bfa9ec00668f6a6103773ccd6aa8e))
+* **deps:** update dependency sqlalchemy to v2.0.45 ([#522](https://github.com/big-unibo/explain/issues/522)) ([f8cd023](https://github.com/big-unibo/explain/commit/f8cd023470b0c49e08b836495f574a8d0d6e7076))
+* **deps:** update node.js to 24.12 ([#523](https://github.com/big-unibo/explain/issues/523)) ([eb5404f](https://github.com/big-unibo/explain/commit/eb5404f0ec43aaf9e319ff98a94dd1494f076ce1))
+* **deps:** update node.js to 24.13 ([#526](https://github.com/big-unibo/explain/issues/526)) ([cda2899](https://github.com/big-unibo/explain/commit/cda28998ae026de27e7fdd25c393281d9ff80eb5))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.21.0 ([#528](https://github.com/big-unibo/explain/issues/528)) ([6e1c862](https://github.com/big-unibo/explain/commit/6e1c862a01a13c66c9d0615cd8244e7cf9fd1f9b))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v5.0.1 ([#517](https://github.com/big-unibo/explain/issues/517)) ([7aa2ebf](https://github.com/big-unibo/explain/commit/7aa2ebfe0e535cd730891f8bcb9502fd39ae27b1))
+* **deps:** update actions/checkout action to v6 ([#519](https://github.com/big-unibo/explain/issues/519)) ([23d4f35](https://github.com/big-unibo/explain/commit/23d4f355c538c8b07bdef9cc3ffab5bb9008f6f5))
+* **deps:** update actions/setup-java action to v5.1.0 ([#521](https://github.com/big-unibo/explain/issues/521)) ([0c6d42a](https://github.com/big-unibo/explain/commit/0c6d42a6d9c4ef983645f3b4692ca7265497fac6))
+* **deps:** update actions/setup-node action to v6.1.0 ([#520](https://github.com/big-unibo/explain/issues/520)) ([e91abf4](https://github.com/big-unibo/explain/commit/e91abf4f4ae3ad06a69b2e6a692494170d909a29))
+* **deps:** update actions/setup-node action to v6.2.0 ([#527](https://github.com/big-unibo/explain/issues/527)) ([aabd61c](https://github.com/big-unibo/explain/commit/aabd61c7f515887887fd0046b1277f69b7028587))
+
 ## [1.1.161](https://github.com/big-unibo/explain/compare/1.1.160...1.1.161) (2025-11-16)
 
 ### Dependency updates
