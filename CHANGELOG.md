@@ -1,3 +1,13 @@
+## [1.1.165](https://github.com/big-unibo/explain/compare/1.1.164...1.1.165) (2026-04-11)
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.49 ([#543](https://github.com/big-unibo/explain/issues/543)) ([955bffb](https://github.com/big-unibo/explain/commit/955bffb447e458ba2c01a8fc2f1560b167a7df9b))
+
+### Bug Fixes
+
+* **deps:** update dependency org.jgrapht:jgrapht-core to v1.5.3 ([#544](https://github.com/big-unibo/explain/issues/544)) ([8471af6](https://github.com/big-unibo/explain/commit/8471af60648e3b33d75470bacb439fb6b36c4c2a))
+
 ## [1.1.164](https://github.com/big-unibo/explain/compare/1.1.163...1.1.164) (2026-03-21)
 
 ### Dependency updates
