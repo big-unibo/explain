@@ -1,3 +1,17 @@
+## [1.1.167](https://github.com/big-unibo/explain/compare/1.1.166...1.1.167) (2026-04-23)
+
+### Dependency updates
+
+* **deps:** update node.js to 24.15 ([#546](https://github.com/big-unibo/explain/issues/546)) ([34da428](https://github.com/big-unibo/explain/commit/34da428d68baf94b904a24732b5772b88d438c83))
+
+### Bug Fixes
+
+* **deps:** update dependency commons-io:commons-io to v2.22.0 ([#548](https://github.com/big-unibo/explain/issues/548)) ([2d837c5](https://github.com/big-unibo/explain/commit/2d837c5f0283069751c1bb59d2076df9077a47b0))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v6.4.0 ([#547](https://github.com/big-unibo/explain/issues/547)) ([ec7a11f](https://github.com/big-unibo/explain/commit/ec7a11fc4850d4daa11000ef444d2495ea3dc818))
+
 ## [1.1.166](https://github.com/big-unibo/explain/compare/1.1.165...1.1.166) (2026-04-15)
 
 ### Bug Fixes
