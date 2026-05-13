@@ -1,3 +1,13 @@
+## [1.1.169](https://github.com/big-unibo/explain/compare/1.1.168...1.1.169) (2026-05-13)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.5.6 ([#550](https://github.com/big-unibo/explain/issues/550)) ([35a2b2a](https://github.com/big-unibo/explain/commit/35a2b2a9d107ca53a67df1f17393236c2825a007))
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.18 ([#551](https://github.com/big-unibo/explain/issues/551)) ([34b78f3](https://github.com/big-unibo/explain/commit/34b78f33f7920d9ad492abd6c542e51357fe5084))
+
 ## [1.1.168](https://github.com/big-unibo/explain/compare/1.1.167...1.1.168) (2026-04-29)
 
 ### Bug Fixes
