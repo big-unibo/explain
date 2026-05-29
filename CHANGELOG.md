@@ -1,3 +1,14 @@
+## [1.1.170](https://github.com/big-unibo/explain/compare/1.1.169...1.1.170) (2026-05-29)
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.50 ([#553](https://github.com/big-unibo/explain/issues/553)) ([b8ce2df](https://github.com/big-unibo/explain/commit/b8ce2dffebaa7a8959c808bf233e0486c32a40f3))
+* **deps:** update node.js to 24.16 ([#552](https://github.com/big-unibo/explain/issues/552)) ([9728e1e](https://github.com/big-unibo/explain/commit/9728e1ed9061b92d14e1db78c3ba28d4b40da3d6))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.21.4 ([#554](https://github.com/big-unibo/explain/issues/554)) ([bfa8cf0](https://github.com/big-unibo/explain/commit/bfa8cf007f10d730f9588e0801f7443fee360c13))
+
 ## [1.1.169](https://github.com/big-unibo/explain/compare/1.1.168...1.1.169) (2026-05-13)
 
 ### Dependency updates
