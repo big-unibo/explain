@@ -1,3 +1,17 @@
+## [1.1.171](https://github.com/big-unibo/explain/compare/1.1.170...1.1.171) (2026-06-05)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.5.7 ([#560](https://github.com/big-unibo/explain/issues/560)) ([be4adc9](https://github.com/big-unibo/explain/commit/be4adc916dab4630a55b6f807960f39effea9479))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.22.0 ([#555](https://github.com/big-unibo/explain/issues/555)) ([4c978fa](https://github.com/big-unibo/explain/commit/4c978fa2496a5b2a000d87987f8f4e6c8b676026))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v6.0.3 ([#556](https://github.com/big-unibo/explain/issues/556)) ([4ab4d50](https://github.com/big-unibo/explain/commit/4ab4d5049dfc90e8bd0f860bb8700b258a74f0ba))
+
 ## [1.1.170](https://github.com/big-unibo/explain/compare/1.1.169...1.1.170) (2026-05-29)
 
 ### Dependency updates
