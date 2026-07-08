@@ -1,3 +1,22 @@
+## [1.1.172](https://github.com/big-unibo/explain/compare/1.1.171...1.1.172) (2026-07-08)
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.51 ([#561](https://github.com/big-unibo/explain/issues/561)) ([da5d858](https://github.com/big-unibo/explain/commit/da5d858b6bfebede07e8e9899d5700adf31613c3))
+* **deps:** update node.js to 24.17 ([#563](https://github.com/big-unibo/explain/issues/563)) ([e26f218](https://github.com/big-unibo/explain/commit/e26f218c9e23f49aa0b9596f185318997dcfe129))
+* **deps:** update node.js to 24.18 ([#566](https://github.com/big-unibo/explain/issues/566)) ([8a10881](https://github.com/big-unibo/explain/commit/8a1088125b01fa8dd828815eaf9dc1190c94dc34))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.22.1 ([#569](https://github.com/big-unibo/explain/issues/569)) ([8119291](https://github.com/big-unibo/explain/commit/8119291e9a2f4111b8e228b140b6c121722017a9))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v7 ([#565](https://github.com/big-unibo/explain/issues/565)) ([70c5b45](https://github.com/big-unibo/explain/commit/70c5b452077098aae6d592296f1447ce8b2fe40f))
+* **deps:** update actions/setup-java action to v5.3.0 ([#562](https://github.com/big-unibo/explain/issues/562)) ([bc8999b](https://github.com/big-unibo/explain/commit/bc8999bf26a38595803b69cf86cfd392fbb91d3b))
+* **deps:** update actions/setup-java action to v5.4.0 ([#567](https://github.com/big-unibo/explain/issues/567)) ([f87dbe3](https://github.com/big-unibo/explain/commit/f87dbe3f65b014748368e4c9bdd35d63f62fe0fc))
+* **deps:** update actions/setup-java action to v5.5.0 ([#568](https://github.com/big-unibo/explain/issues/568)) ([44a5c7a](https://github.com/big-unibo/explain/commit/44a5c7a464ebcea60a16454674cc9538d826a0b8))
+
 ## [1.1.171](https://github.com/big-unibo/explain/compare/1.1.170...1.1.171) (2026-06-05)
 
 ### Dependency updates
