@@ -1,3 +1,23 @@
+## [1.1.173](https://github.com/big-unibo/explain/compare/1.1.172...1.1.173) (2026-08-17)
+
+### Dependency updates
+
+* **deps:** update dependency sqlalchemy to v2.0.52 ([#581](https://github.com/big-unibo/explain/issues/581)) ([38811a5](https://github.com/big-unibo/explain/commit/38811a5b5c949ec6f9aa37462faf14edc7c2e4e5))
+* **deps:** update node.js to 24.19 ([#579](https://github.com/big-unibo/explain/issues/579)) ([6a74bc4](https://github.com/big-unibo/explain/commit/6a74bc4b8a59ad8d068e1ecb677eab6d82132ea2))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.22.2 ([#585](https://github.com/big-unibo/explain/issues/585)) ([1401ba5](https://github.com/big-unibo/explain/commit/1401ba591a966f3b49c5f42de889c189017bcffe))
+
+### Build and continuous integration
+
+* **deps:** update actions/checkout action to v7.0.1 ([#577](https://github.com/big-unibo/explain/issues/577)) ([927bfae](https://github.com/big-unibo/explain/commit/927bfae5707352a77cc20f2c7ff0fc0f4262a3f5))
+* **deps:** update actions/setup-java action to v5.6.0 ([#575](https://github.com/big-unibo/explain/issues/575)) ([9a762e5](https://github.com/big-unibo/explain/commit/9a762e5cf400abdfdc8ddb44fc51d9c9b9f6f9aa))
+* **deps:** update actions/setup-java action to v5.7.0 ([#578](https://github.com/big-unibo/explain/issues/578)) ([de9159f](https://github.com/big-unibo/explain/commit/de9159f94dc8b9ad4dcd971af970dc36e745ffb1))
+* **deps:** update actions/setup-node action to v6.5.0 ([#573](https://github.com/big-unibo/explain/issues/573)) ([e847c58](https://github.com/big-unibo/explain/commit/e847c586ad53a28bfd314c328c16a31c73f67845))
+* **deps:** update actions/setup-node action to v7 ([#574](https://github.com/big-unibo/explain/issues/574)) ([f56bafc](https://github.com/big-unibo/explain/commit/f56bafc62c8539fb2b2e7ddeff165d72b6094d5a))
+* **deps:** update actions/setup-python action to v7 ([#576](https://github.com/big-unibo/explain/issues/576)) ([67a17a9](https://github.com/big-unibo/explain/commit/67a17a95d082d1f49b9acaf2389f170c2517ef73))
+
 ## [1.1.172](https://github.com/big-unibo/explain/compare/1.1.171...1.1.172) (2026-07-08)
 
 ### Dependency updates
