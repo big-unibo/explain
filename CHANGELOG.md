@@ -1,3 +1,14 @@
+## [1.1.176](https://github.com/big-unibo/explain/compare/1.1.175...1.1.176) (2026-09-13)
+
+### Dependency updates
+
+* **deps:** update node.js to 24.20 ([#589](https://github.com/big-unibo/explain/issues/589)) ([3f6f953](https://github.com/big-unibo/explain/commit/3f6f953f9adcef81094fc87e845993eeb36a8255))
+* **deps:** update node.js to 24.21 ([#592](https://github.com/big-unibo/explain/issues/592)) ([16834b3](https://github.com/big-unibo/explain/commit/16834b38e6f7d6209ecd95ce9552a638463df192))
+
+### Bug Fixes
+
+* **deps:** update slf4j monorepo to v2.0.19 ([#590](https://github.com/big-unibo/explain/issues/590)) ([e8897a0](https://github.com/big-unibo/explain/commit/e8897a0c2aeb9bebf576bd4f4c92d2cb2149b364))
+
 ## [1.1.175](https://github.com/big-unibo/explain/compare/1.1.174...1.1.175) (2026-08-18)
 
 ### Bug Fixes
