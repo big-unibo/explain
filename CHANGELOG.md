@@ -1,3 +1,19 @@
+## [1.1.182](https://github.com/big-unibo/explain/compare/1.1.181...1.1.182) (2026-10-18)
+
+### Dependency updates
+
+* **deps:** update dependency notebook to v7.5.8 ([#607](https://github.com/big-unibo/explain/issues/607)) ([e940fcc](https://github.com/big-unibo/explain/commit/e940fccc098112983781b9a76b75b47f78a8a9c6))
+* **deps:** update dependency sqlalchemy to v2.0.55 ([#613](https://github.com/big-unibo/explain/issues/613)) ([dfe17ba](https://github.com/big-unibo/explain/commit/dfe17badc359f0c2653b53e91fb3ff08a3639416))
+* **deps:** update node.js to 24.22 ([#612](https://github.com/big-unibo/explain/issues/612)) ([18d30c3](https://github.com/big-unibo/explain/commit/18d30c38f1d6b87c928ff80f68726378095e15bd))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.22.4 ([#614](https://github.com/big-unibo/explain/issues/614)) ([96a9e27](https://github.com/big-unibo/explain/commit/96a9e27c73961d477ff32761e969dafb1589074b))
+
+### Build and continuous integration
+
+* **deps:** update actions/setup-node action to v7.1.0 ([#611](https://github.com/big-unibo/explain/issues/611)) ([b9bab10](https://github.com/big-unibo/explain/commit/b9bab107f3384c4cd60ddf65d97b6cf8cb4a35be))
+
 ## [1.1.181](https://github.com/big-unibo/explain/compare/1.1.180...1.1.181) (2026-10-01)
 
 ### Bug Fixes
