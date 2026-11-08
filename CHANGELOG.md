@@ -1,3 +1,14 @@
+## [1.1.184](https://github.com/big-unibo/explain/compare/1.1.183...1.1.184) (2026-11-08)
+
+### Dependency updates
+
+* **deps:** update dependency semantic-release-preconfigured-conventional-commits to v1.1.158 ([#618](https://github.com/big-unibo/explain/issues/618)) ([dd91ef7](https://github.com/big-unibo/explain/commit/dd91ef7ea3e235793ec4299406edb1090980f471))
+* **deps:** update dependency sqlalchemy to v2.0.57 ([#621](https://github.com/big-unibo/explain/issues/621)) ([944b129](https://github.com/big-unibo/explain/commit/944b1298c5f9010f7e1003c4a19502ec22fb5464))
+
+### Bug Fixes
+
+* **deps:** update jackson monorepo to v2.23.0 ([#622](https://github.com/big-unibo/explain/issues/622)) ([7cfd46d](https://github.com/big-unibo/explain/commit/7cfd46d1f25d59422d6117f6afdf34371ba90186))
+
 ## [1.1.183](https://github.com/big-unibo/explain/compare/1.1.182...1.1.183) (2026-10-29)
 
 ### Dependency updates
